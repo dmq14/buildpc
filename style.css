@@ -1,0 +1,38 @@
+.title-prd{
+    width: 25%;
+}
+
+.line-through{
+    text-decoration: line-through;
+}
+.price-prdt{
+    font-size: 25px;
+    font-weight: bold;
+    color: red;
+}
+.info-prdt p{
+    margin-bottom: 0px;
+}
+.brand-prdt{
+    width: 100%;
+    
+}
+
+.percent {
+    background-color: #FFB6C1;
+    color: #ff0000;
+    border-radius: 11px;
+}
+.name-prdt{
+    font-size: 16px;
+    font-weight: bold;
+}
+.center-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.checkbox-fil{
+    width: 48%;
+}
