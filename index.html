@@ -24,23 +24,24 @@
                           <i class="fa fa-plus-circle" aria-hidden="true"></i>
                           Chọn Cpu - Bộ vi xử lý
                       </button>
-                    <ul id="selectedProductsList" style="list-style-type: none;"></ul>
+                    <div id="selectedProductsList" style="list-style-type: none;"></div>
 
                   </td>
                   </tr>
                   <tr>
                     <th scope="row" class="title-prd">2. MAIN - BO MẠCH CHỦ</th>
                     <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#main">
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#main" id="buttonmain">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
                             Chọn Main - Bo mạch chủ
+                            <div id="selectedMain" style="list-style-type: none;"></div>
                         </button>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row" class="title-prd">3. RAM - BỘ NHỚ TRONG</th>
                     <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ram">
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ram"id="buttonram">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
                             Chọn Ram - Bộ nhớ trong
                         </button>
@@ -199,7 +200,7 @@
                           CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
                           Cache, Raptor Lake)
                         </p>
-                        <p class=" price-prdt">10.000.000đ</p>
+                        <p class=" price-prdt">2.500.000đ</p>
                         <div class="d-flex align-items-center">
                           <p class="line-through me-2">20.000.000đ</p>
                           <p class="percent float-left percent">-25%</p>
@@ -229,7 +230,7 @@
                           CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
                           Cache, Raptor Lake)
                         </p>
-                        <p class=" price-prdt">10.000.000đ</p>
+                        <p class=" price-prdt">2.500.000đ</p>
                         <div class="d-flex align-items-center">
                           <p class="line-through me-2">20.000.000đ</p>
                           <p class="percent float-left percent">-25%</p>
@@ -259,7 +260,7 @@
                           CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
                           Cache, Raptor Lake)
                         </p>
-                        <p class=" price-prdt">10.000.000đ</p>
+                        <p class=" price-prdt">2.500.000đ</p>
                         <div class="d-flex align-items-center">
                           <p class="line-through me-2">20.000.000đ</p>
                           <p class="percent float-left percent">-25%</p>
@@ -289,7 +290,7 @@
                           CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
                           Cache, Raptor Lake)
                         </p>
-                        <p class=" price-prdt">10.000.000đ</p>
+                        <p class=" price-prdt">2.500.000đ</p>
                         <div class="d-flex align-items-center">
                           <p class="line-through me-2">20.000.000đ</p>
                           <p class="percent float-left percent">-25%</p>
@@ -319,7 +320,7 @@
                           CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
                           Cache, Raptor Lake)
                         </p>
-                        <p class=" price-prdt">10.000.000đ</p>
+                        <p class=" price-prdt">2.500.000đ</p>
                         <div class="d-flex align-items-center">
                           <p class="line-through me-2">20.000.000đ</p>
                           <p class="percent float-left percent">-25%</p>
@@ -477,6 +478,36 @@
         
                 <div class="col-lg-8 col-sm-12">
                   <div class="scroll-prdt">
+                  <div class="prdt bg-white mb-2" id="main1">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/NewFolder/NewFolder/z590_Gigabyte_Khoa_Vang-1663995451.webp"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class=" price-prdt">2.500.000đ</p>
+                        <div class="d-flex align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning btn-mobile-add" onclick="addMain(1)">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div class="prdt bg-white mb-2">
                     <div class="row w-100">
                       <div class="col-lg-2 col-4 ">
@@ -491,7 +522,7 @@
                           CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
                           Cache, Raptor Lake)
                         </p>
-                        <p class=" price-prdt">10.000.000đ</p>
+                        <p class=" price-prdt">2.500.000đ</p>
                         <div class="d-flex align-items-center">
                           <p class="line-through me-2">20.000.000đ</p>
                           <p class="percent float-left percent">-25%</p>
@@ -521,7 +552,7 @@
                           CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
                           Cache, Raptor Lake)
                         </p>
-                        <p class=" price-prdt">10.000.000đ</p>
+                        <p class=" price-prdt">2.500.000đ</p>
                         <div class="d-flex align-items-center">
                           <p class="line-through me-2">20.000.000đ</p>
                           <p class="percent float-left percent">-25%</p>
@@ -551,7 +582,7 @@
                           CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
                           Cache, Raptor Lake)
                         </p>
-                        <p class=" price-prdt">10.000.000đ</p>
+                        <p class=" price-prdt">2.500.000đ</p>
                         <div class="d-flex align-items-center">
                           <p class="line-through me-2">20.000.000đ</p>
                           <p class="percent float-left percent">-25%</p>
@@ -581,37 +612,7 @@
                           CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
                           Cache, Raptor Lake)
                         </p>
-                        <p class=" price-prdt">10.000.000đ</p>
-                        <div class="d-flex align-items-center">
-                          <p class="line-through me-2">20.000.000đ</p>
-                          <p class="percent float-left percent">-25%</p>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-12">
-                        <div class="center-div">
-                          <button type="button" class="btn btn-warning btn-mobile-add">
-                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                            Chọn linh kiện
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="prdt bg-white mb-2">
-                    <div class="row w-100">
-                      <div class="col-lg-2 col-4 ">
-                        <img
-                          class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/NewFolder/NewFolder/z590_Gigabyte_Khoa_Vang-1663995451.webp"
-                          alt=""
-                        />
-                      </div>
-                      <div class="col-lg-6 col-8 info-prdt">
-                        <p class="name-prdt">
-                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
-                          Cache, Raptor Lake)
-                        </p>
-                        <p class=" price-prdt">10.000.000đ</p>
+                        <p class=" price-prdt">2.500.000đ</p>
                         <div class="d-flex align-items-center">
                           <p class="line-through me-2">20.000.000đ</p>
                           <p class="percent float-left percent">-25%</p>
@@ -755,7 +756,7 @@
                           CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
                           Cache, Raptor Lake)
                         </p>
-                        <p class=" price-prdt">10.000.000đ</p>
+                        <p class=" price-prdt">2.500.000đ</p>
                         <div class="d-flex align-items-center">
                           <p class="line-through me-2">20.000.000đ</p>
                           <p class="percent float-left percent">-25%</p>
@@ -785,7 +786,7 @@
                           CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
                           Cache, Raptor Lake)
                         </p>
-                        <p class=" price-prdt">10.000.000đ</p>
+                        <p class=" price-prdt">2.500.000đ</p>
                         <div class="d-flex align-items-center">
                           <p class="line-through me-2">20.000.000đ</p>
                           <p class="percent float-left percent">-25%</p>
@@ -815,7 +816,7 @@
                           CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
                           Cache, Raptor Lake)
                         </p>
-                        <p class=" price-prdt">10.000.000đ</p>
+                        <p class=" price-prdt">2.500.000đ</p>
                         <div class="d-flex align-items-center">
                           <p class="line-through me-2">20.000.000đ</p>
                           <p class="percent float-left percent">-25%</p>
@@ -845,7 +846,7 @@
                           CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
                           Cache, Raptor Lake)
                         </p>
-                        <p class=" price-prdt">10.000.000đ</p>
+                        <p class=" price-prdt">2.500.000đ</p>
                         <div class="d-flex align-items-center">
                           <p class="line-through me-2">20.000.000đ</p>
                           <p class="percent float-left percent">-25%</p>
@@ -875,7 +876,7 @@
                           CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
                           Cache, Raptor Lake)
                         </p>
-                        <p class=" price-prdt">10.000.000đ</p>
+                        <p class=" price-prdt">2.500.000đ</p>
                         <div class="d-flex align-items-center">
                           <p class="line-through me-2">20.000.000đ</p>
                           <p class="percent float-left percent">-25%</p>

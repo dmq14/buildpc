@@ -64,17 +64,19 @@ function displaySelectedProducts() {
         var image = document.createElement('img');
         image.src = product.image;
         image.alt = product.name;
-        image.style.maxWidth = '50px'; // Điều chỉnh kích thước hình ảnh tùy ý
+        image.style.maxWidth = '90px'; // Điều chỉnh kích thước hình ảnh tùy ý
         listItem.appendChild(image);
 
         // Tạo phần tử đoạn văn thứ nhất
         var paragraph1 = document.createElement('p');
         paragraph1.textContent = product.name;
+        paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
         // Tạo phần tử đoạn văn thứ hai
         var paragraph2 = document.createElement('p');
         paragraph2.textContent = product.price;
+        paragraph2.className = 'price-prdt';
         listItem.appendChild(paragraph2);
 
         // Tạo nút xóa với biểu tượng (icon)
