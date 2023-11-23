@@ -746,7 +746,7 @@ function deleteVo(voId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa Vo khỏi danh sách?");
     if (confirmDelete) {
         // Delete the Vo component from the list
-        buttonvo.style.display = 'none';
+        buttonvo.style.display = 'block';
         var existingVoIndex = selectedVo.findIndex(function (selectedVoComponent) {
             return selectedVoComponent.id === voId;
         });
