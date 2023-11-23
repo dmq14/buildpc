@@ -63,3 +63,18 @@
 }
 
 }
+
+
+@media (max-width: 991px){
+    .btn-mobile-add {
+        margin-left: 20%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .center-div{
+        height: 100%;
+    }
+    .name-prdt{
+        font-size: 14px;
+    }
+    }
