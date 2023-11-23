@@ -46,111 +46,852 @@
     </div>
 
     <!-- popup cpu -->
-    <div class="modal fade" id="cpu" tabindex="-1" role="dialog" aria-labelledby="cpu" aria-hidden="true" >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel1">cpu</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Header 1</th>
-                    <th scope="col">Header 2</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Row 1, Cell 1</td>
-                    <td>Row 1, Cell 2</td>
-                  </tr>
-                  <tr>
-                    <td>Row 2, Cell 1</td>
-                    <td>Row 2, Cell 2</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
+    <div class="modal fade" id="cpu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">CPU - Bộ vi xử lý</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
+          <div class="modal-body bg-light">
+            <div class="container-fluid  mb-5 ">
+              <div class="row">
+                <div class="col-lg-4 col-sm-12 ">
+                  <nav class="navbar navbar-expand-sm navbar-dark">
+                    <button
+                      class="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapsibleNavbar"
+                    >
+                      <span class="navbar-toggler-icon"
+                        ><i
+                          class="fa fa-bars"
+                          aria-hidden="true"
+                          style="color: black"
+                        ></i
+                      ></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <div class="scroll-prdt">
+                          <div class="brand-prdt border-bottom">
+                            <h6 class="title-filter">Dòng Cpu</h6>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">Intel Core I3(9)</span>
+                            </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Intel Core I5(9)</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Intel Core I7(9)</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Intel Core I9(9)</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">AMD Ryzen 3(3)</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">AMD Ryzen 5(3)</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">AMD Ryzen 7(3)</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">AMD Ryzen 9(3)</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Khoảng giá</h6>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Dưới 1 triệu</span>
+                              </label>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">1 - 3 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">4 - 6 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">7 - 9 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Trên 10 triệu</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2">
+                            <h6 class="title-filter">Thế hệ</h6>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Intel thế hệ 10<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Intel thế hệ 11</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Intel thế hệ 12</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Intel thế hệ 13</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Intel thế hệ 14</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">AMD thế hệ 5</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">AMD thế hệ 7</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">AMD thế hệ 9</span>
+                              </label>
+                          </div>
+                        </div>
+                    </div>
+                  </nav>
+                </div>
+        
+                <div class="col-lg-8 col-sm-12">
+                  <div class="scroll-prdt">
+                  <div class="prdt bg-white mb-2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/CPU/i7-13700k-1665035090.webp"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="text-center name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class="text-center price-prdt">10.000.000đ</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/CPU/i7-13700k-1665035090.webp"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="text-center name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class="text-center price-prdt">10.000.000đ</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/CPU/i7-13700k-1665035090.webp"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="text-center name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class="text-center price-prdt">10.000.000đ</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/CPU/i7-13700k-1665035090.webp"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="text-center name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class="text-center price-prdt">10.000.000đ</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/CPU/i7-13700k-1665035090.webp"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="text-center name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class="text-center price-prdt">10.000.000đ</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
+    </div>
+    
     <!-- end popup cpu -->
 
     <!-- popup main -->
-    <div class="modal fade" id="main" tabindex="-1" role="dialog" aria-labelledby="main" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel1">main</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Header 1</th>
-                    <th scope="col">Header 2</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Row 1, Cell 1</td>
-                    <td>Row 1, Cell 2</td>
-                  </tr>
-                  <tr>
-                    <td>Row 2, Cell 1</td>
-                    <td>Row 2, Cell 2</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
+    <div class="modal fade" id="main" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">MAIN - Bo mạch chủ</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
+          <div class="modal-body bg-light">
+            <div class="container-fluid  mb-5 ">
+              <div class="row">
+                <div class="col-lg-4 col-sm-12 ">
+                  <nav class="navbar navbar-expand-sm navbar-dark">
+                    <button
+                      class="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapsibleNavbar"
+                    >
+                      <span class="navbar-toggler-icon"
+                        ><i
+                          class="fa fa-bars"
+                          aria-hidden="true"
+                          style="color: black"
+                        ></i
+                      ></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <div class="scroll-prdt">
+                          <div class="brand-prdt border-bottom">
+                            <h6 class="title-filter">Chipset</h6>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">AMD</span>
+                            </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Intel</span>
+                              </label>
+                             
+                          </div>
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Khoảng giá</h6>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Dưới 1 triệu</span>
+                              </label>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">1 - 3 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">4 - 6 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">7 - 9 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Trên 10 triệu</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Kiểu Ram hỗ trợ</h6>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">DDR4<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">DDR5</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Số khe Ram</h6>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">2<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">4</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2">
+                            <h6 class="title-filter">Dung lượng</h6>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">32GB<hệ/span>
+                            </label>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">64GB<hệ/span>
+                            </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">96GB<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">128GB</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">256GB</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">512GB</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter"> >512GB </span>
+                              </label>
+                          </div>
+                        </div>
+                    </div>
+                  </nav>
+                </div>
+        
+                <div class="col-lg-8 col-sm-12">
+                  <div class="scroll-prdt">
+                  <div class="prdt bg-white mb-2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/NewFolder/NewFolder/z590_Gigabyte_Khoa_Vang-1663995451.webp"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="text-center name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class="text-center price-prdt">10.000.000đ</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/NewFolder/NewFolder/z590_Gigabyte_Khoa_Vang-1663995451.webp"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="text-center name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class="text-center price-prdt">10.000.000đ</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/NewFolder/NewFolder/z590_Gigabyte_Khoa_Vang-1663995451.webp"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="text-center name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class="text-center price-prdt">10.000.000đ</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/NewFolder/NewFolder/z590_Gigabyte_Khoa_Vang-1663995451.webp"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="text-center name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class="text-center price-prdt">10.000.000đ</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/NewFolder/NewFolder/z590_Gigabyte_Khoa_Vang-1663995451.webp"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="text-center name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class="text-center price-prdt">10.000.000đ</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
+    </div>
     <!-- end popup main -->  
 
     <!-- popup ram -->
-    <div class="modal fade" id="ram" tabindex="-1" role="dialog" aria-labelledby="ram" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel1">ram</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Header 1</th>
-                    <th scope="col">Header 2</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Row 1, Cell 1</td>
-                    <td>Row 1, Cell 2</td>
-                  </tr>
-                  <tr>
-                    <td>Row 2, Cell 1</td>
-                    <td>Row 2, Cell 2</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
+    <div class="modal fade" id="ram" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">RAM - Bộ nhớ trong</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
+          <div class="modal-body bg-light">
+            <div class="container-fluid  mb-5 ">
+              <div class="row">
+                <div class="col-lg-4 col-sm-12 ">
+                  <nav class="navbar navbar-expand-sm navbar-dark">
+                    <button
+                      class="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapsibleNavbar"
+                    >
+                      <span class="navbar-toggler-icon"
+                        ><i
+                          class="fa fa-bars"
+                          aria-hidden="true"
+                          style="color: black"
+                        ></i
+                      ></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <div class="scroll-prdt">
+
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Khoảng giá</h6>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Dưới 1 triệu</span>
+                              </label>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">1 - 3 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">4 - 6 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">7 - 9 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Trên 10 triệu</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Dung lượng</h6>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">4GB<hệ/span>
+                            </label>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">8GB<hệ/span>
+                            </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">32GB<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">64GB</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">128GB</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">256GB</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2">
+                            <h6 class="title-filter">Loại Ram</h6>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">DDR4<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">DDR5</span>
+                              </label>
+
+                          </div>
+                        </div>
+                    </div>
+                  </nav>
+                </div>
+        
+                <div class="col-lg-8 col-sm-12">
+                  <div class="scroll-prdt">
+                  <div class="prdt bg-white mb-2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/1-1683273146.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="text-center name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class="text-center price-prdt">10.000.000đ</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/1-1683273146.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="text-center name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class="text-center price-prdt">10.000.000đ</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/1-1683273146.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="text-center name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class="text-center price-prdt">10.000.000đ</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/1-1683273146.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="text-center name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class="text-center price-prdt">10.000.000đ</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/1-1683273146.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="text-center name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class="text-center price-prdt">10.000.000đ</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
+    </div>
     <!-- end popup ram -->
 <script src="script.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
