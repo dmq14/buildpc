@@ -5,6 +5,7 @@ var selectedRam = [];
 var selectedVga = [];
 var selectedSsd = [];
 var selectedPsu = [];
+var selectedVo = [];
 // Load danh sách sản phẩm đã chọn từ Local Storage khi trang web được load
 window.onload = function () {
     var storedProducts = localStorage.getItem('selectedProducts');
@@ -13,6 +14,7 @@ window.onload = function () {
     var storedVga = localStorage.getItem('selectedVga');
     var storedSsd = localStorage.getItem('selectedSsd');
     var storedPsu = localStorage.getItem('selectedPsu');
+    var storedVo = localStorage.getItem('selectedVo');
 
     if (storedProducts) {
         selectedProducts = JSON.parse(storedProducts);
@@ -37,6 +39,10 @@ window.onload = function () {
     if (storedPsu) {
         selectedPsu = JSON.parse(storedPsu);
         displaySelectedPsu();
+    }
+    if (storedVo) {
+        selectedVo = JSON.parse(storedVo);
+        displaySelectedVo();
     }
 };
 
@@ -651,6 +657,106 @@ function deletePsu(psuId) {
             // Hiển thị danh sách đã chọn và lưu vào Local Storage
             displaySelectedPsu();
             localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
+        }
+    }
+}
+
+//CASE--------------------------------------------
+
+
+function addVo(voId) {
+    // Get information about the selected Vo component from the page
+    var voDiv = document.getElementById('vo' + voId);
+    var voName = voDiv.querySelector('.name-prdt').textContent;
+    var voPrice = voDiv.querySelector('.price-prdt').textContent;
+    var voImage = voDiv.querySelector('.img-fluid').src;
+
+    // Check if the Vo component is already in the selected list
+    var existingVoIndex = selectedVo.findIndex(function (selectedVo) {
+        return selectedVo.id === voId;
+    });
+
+    // If the Vo component is already in the list, show an alert and do not add it again
+    if (existingVoIndex !== -1) {
+        window.alert("Vo đã chọn rồi!");
+        return;
+    }
+
+    // Add the selected Vo component to the list
+    var selectedVoComponent = {
+        id: voId,
+        name: voName,
+        price: voPrice,
+        image: voImage
+    };
+    selectedVo.push(selectedVoComponent);
+
+    // Display the selected Vo components and save to Local Storage
+    displaySelectedVo();
+    localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
+
+    $('#vo').modal('hide');
+}
+
+function displaySelectedVo() {
+    var selectedVoList = document.getElementById('selectedVo');
+    selectedVoList.innerHTML = ''; // Clear the old content
+    lengthPrd = selectedVo.length;
+     if(lengthPrd >=1){
+        buttonvo.style.display = 'none';
+    }
+    // Display the selected Vo components
+    selectedVo.forEach(function (selectedVoComponent) {
+        var listItem = document.createElement('li');
+
+        // Create the image element
+        var image = document.createElement('img');
+        image.src = selectedVoComponent.image;
+        image.alt = selectedVoComponent.name;
+        image.style.maxWidth = '90px'; // Adjust image size as needed
+        listItem.appendChild(image);
+
+        // Create the first paragraph element
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = selectedVoComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        // Create the second paragraph element
+        var paragraph2 = document.createElement('p');
+        paragraph2.textContent = selectedVoComponent.price;
+        paragraph2.className = 'price-prdt';
+        listItem.appendChild(paragraph2);
+
+        // Create the delete button with the trash icon
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteVo(selectedVoComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedVoList.appendChild(listItem);
+    });
+}
+
+function deleteVo(voId) {
+    // Confirm the deletion of the Vo component
+    var confirmDelete = window.confirm("Bạn có chắc muốn xóa Vo khỏi danh sách?");
+    if (confirmDelete) {
+        // Delete the Vo component from the list
+        buttonvo.style.display = 'none';
+        var existingVoIndex = selectedVo.findIndex(function (selectedVoComponent) {
+            return selectedVoComponent.id === voId;
+        });
+
+        if (existingVoIndex !== -1) {
+            selectedVo.splice(existingVoIndex, 1);
+
+            // Display the selected Vo components and save to Local Storage
+            displaySelectedVo();
+            localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
         }
     }
 }
