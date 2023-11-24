@@ -1,91 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Selection</title>
-    <style>
-        img {
-            max-width: 100px; /* Điều chỉnh kích thước ảnh tùy ý */
-            max-height: 100px;
-        }
-    </style>
-</head>
-<body>
+var a = "1.500.500đ";
+var b = "2.500.000đ";
 
-<!-- Danh sách sản phẩm -->
-<div id="productList">
-    <h2>Danh sách sản phẩm</h2>
-    <ul>
-        <li id="product1">
-            <img src="path/to/product1.jpg" alt="Sản phẩm 1">
-            <p>Thông tin sản phẩm 1</p>
-            <button onclick="addProductToSelectedList(1)">Chọn</button>
-        </li>
-        <li id="product2">
-            <img src="path/to/product2.jpg" alt="Sản phẩm 2">
-            <p>Thông tin sản phẩm 2</p>
-            <button onclick="addProductToSelectedList(2)">Chọn</button>
-        </li>
-    </ul>
-</div>
+// Loại bỏ ký tự không phải là số và chuyển đổi thành số
+var numberA = parseFloat(a.replace(/[^\d]/g, ''));
+var numberB = parseFloat(b.replace(/[^\d]/g, ''));
 
-<!-- Danh sách sản phẩm đã chọn -->
-<div id="selectedProducts">
-    <h2>Danh sách sản phẩm đã chọn</h2>
-    <ul></ul>
-</div>
+// Thực hiện phép cộng
+var result = numberA + numberB;
+var formattedResult = result.toLocaleString( { style: 'currency', currency: 'VND' });
+formattedResult = formattedResult.replace('$', '') + 'đ';
 
-<script>
-    var selectedProducts = [];
 
-    function addProductToSelectedList(productId) {
-        // Kiểm tra xem sản phẩm đã tồn tại trong danh sách hay chưa
-        var existingProduct = selectedProducts.find(function (selectedProduct) {
-            return selectedProduct.id === productId;
-        });
-
-        // Nếu sản phẩm chưa tồn tại trong danh sách, thêm vào
-        if (!existingProduct) {
-            var product = {
-                id: productId,
-                name: 'Sản phẩm ' + productId,
-                image: 'path/to/product' + productId + '.jpg',
-                description: 'Thông tin sản phẩm ' + productId
-            };
-            selectedProducts.push(product);
-            displaySelectedProducts();
-        }
-    }
-
-    function displaySelectedProducts() {
-        var selectedProductsList = document.getElementById('selectedProducts').querySelector('ul');
-        selectedProductsList.innerHTML = ''; // Xóa nội dung cũ
-
-        // Hiển thị danh sách đã chọn
-        selectedProducts.forEach(function (product) {
-            var listItem = document.createElement('li');
-
-            // Tạo phần tử hình ảnh
-            var image = document.createElement('img');
-            image.src = product.image;
-            image.alt = product.name;
-            listItem.appendChild(image);
-
-            // Tạo phần tử đoạn văn thứ nhất
-            var paragraph1 = document.createElement('p');
-            paragraph1.textContent = product.name;
-            listItem.appendChild(paragraph1);
-
-            // Tạo phần tử đoạn văn thứ hai
-            var paragraph2 = document.createElement('p');
-            paragraph2.textContent = product.description;
-            listItem.appendChild(paragraph2);
-
-            selectedProductsList.appendChild(listItem);
-        });
-    }
-</script>
-
-</body>
-</html>
+console.log(formattedResult); // Output: "4,000,500.00 ₫"
+console.log(result); // Kết quả sẽ là 4000500

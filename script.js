@@ -11,6 +11,12 @@ var selectedManhinh = [];
 var selectedMice = [];
 var selectedChuot = [];
 var selectedPhim = [];
+
+
+
+
+
+
 window.onload = function () {
     var storedCpu = localStorage.getItem('selectedCpus');
     var storedMain = localStorage.getItem('selectedMain');
@@ -67,7 +73,11 @@ window.onload = function () {
         selectedPhim = JSON.parse(storedPhim);
         displaySelectedPhim();
     }
+    
+    displayTotalSum();
+  
 };
+
 
 //CPU----------------------------------------
 function addCpu(cpuId) {
@@ -95,7 +105,7 @@ function addCpu(cpuId) {
 
     displaySelectedCpus();
     localStorage.setItem('selectedCpus', JSON.stringify(selectedCpus));
-
+    displayTotalSum();
     $('#cpu').modal('hide');
 }
 
@@ -121,11 +131,16 @@ function displaySelectedCpus() {
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
-        var paragraph2 = document.createElement('p');
-        paragraph2.innerHTML = `Giá: ${cpuComponent.price}</span>`;
-        paragraph2.className = 'price-prdt';
-        listItem.appendChild(paragraph2);
+        cpu = parseFloat(cpuComponent.price.replace(/[^\d]/g, ''));
+        var quanty = cpu * cpuComponent.quantity;
+        var formattedCpu = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedCpu = formattedCpu.replace('$', '') + 'đ';
 
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedCpu}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+        
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
         decreaseButton.className = 'btn-total';
@@ -138,6 +153,8 @@ function displaySelectedCpus() {
         paragraph3.innerHTML = `<span id="quantity${cpuComponent.id}">${cpuComponent.quantity}`;
         paragraph3.className = 'd-in-bl';
         listItem.appendChild(paragraph3);
+        selectedCpuList.appendChild(listItem);
+
 
         var increaseButton = document.createElement('button');
         increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
@@ -155,9 +172,11 @@ function displaySelectedCpus() {
         };
         listItem.appendChild(deleteButton);
 
-        selectedCpuList.appendChild(listItem);
-    });
+
+    });       
+    
 }
+
 
 function increaseCpuQuantity(cpuId) {
     var existingCpuIndex = selectedCpus.findIndex(function (cpuComponent) {
@@ -169,6 +188,7 @@ function increaseCpuQuantity(cpuId) {
         displaySelectedCpus();
         localStorage.setItem('selectedCpus', JSON.stringify(selectedCpus));
     }
+    displayTotalSum();
 }
 
 function decreaseCpuQuantity(cpuId) {
@@ -181,6 +201,7 @@ function decreaseCpuQuantity(cpuId) {
         displaySelectedCpus();
         localStorage.setItem('selectedCpus', JSON.stringify(selectedCpus));
     }
+    displayTotalSum();
 }
 
 function deleteCpu(cpuId) {
@@ -198,6 +219,7 @@ function deleteCpu(cpuId) {
             localStorage.setItem('selectedCpus', JSON.stringify(selectedCpus));
         }
     }
+    displayTotalSum();
 }
 
 
@@ -233,13 +255,14 @@ function addMain(mainId) {
     displaySelectedMain();
     localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
 
-    
+    displayTotalSum();
     $('#main').modal('hide');
 }
 
 function displaySelectedMain() {
     var selectedMainList = document.getElementById('selectedMain');
     selectedMainList.innerHTML = ''; 
+    var main1 = 0;
     lengthPrd = selectedMain.length;
     if (lengthPrd >= 1) {
         buttonmain.style.display = 'none';
@@ -262,10 +285,14 @@ function displaySelectedMain() {
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
-        
+        main = parseFloat(mainComponent.price.replace(/[^\d]/g, ''));
+        var quanty = main * mainComponent.quantity;
+        var formattedMain = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedMain = formattedMain.replace('$', '') + 'đ';
+
         var paragraph2 = document.createElement('p');
-        paragraph2.innerHTML = `Giá: ${mainComponent.price}</span>`;
-        paragraph2.className = 'price-prdt';
+        paragraph2.innerHTML = `${formattedMain}</span>`;
+        paragraph2.className = 'price-prdt price-total';
         listItem.appendChild(paragraph2);
 
         
@@ -283,7 +310,11 @@ function displaySelectedMain() {
         paragraph3.className = 'd-in-bl';
         listItem.appendChild(paragraph3);
 
-        
+
+
+
+
+
         var increaseButton = document.createElement('button');
         increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
         increaseButton.className = 'btn-total';
@@ -315,7 +346,7 @@ function increaseMainQuantity(mainId) {
         selectedMain[existingMainIndex].quantity++;
         displaySelectedMain();
         localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
-    }
+    }displayTotalSum();
 }
 
 function decreaseMainQuantity(mainId) {
@@ -328,7 +359,7 @@ function decreaseMainQuantity(mainId) {
         selectedMain[existingMainIndex].quantity--;
         displaySelectedMain();
         localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
-    }
+    }displayTotalSum();
 }
 
 function deleteMain(mainId) {
@@ -348,7 +379,7 @@ function deleteMain(mainId) {
             displaySelectedMain();
             localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
         }
-    }
+    }displayTotalSum();
 }
 
 
@@ -387,7 +418,7 @@ function addRam(ramId) {
     displaySelectedRam();
     localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
 
-    
+    displayTotalSum();
     $('#ram').modal('hide');
 }
 
@@ -416,10 +447,14 @@ function displaySelectedRam() {
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
-        
+        ram = parseFloat(ramComponent.price.replace(/[^\d]/g, ''));
+        var quanty = ram * ramComponent.quantity;
+        var formattedRam = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedRam = formattedRam.replace('$', '') + 'đ';
+
         var paragraph2 = document.createElement('p');
-        paragraph2.innerHTML = `Giá: ${ramComponent.price}</span>`;
-        paragraph2.className = 'price-prdt';
+        paragraph2.innerHTML = `${formattedRam}</span>`;
+        paragraph2.className = 'price-prdt price-total';
         listItem.appendChild(paragraph2);
 
         
@@ -435,6 +470,9 @@ function displaySelectedRam() {
         paragraph3.innerHTML = `<span id="quantity${ramComponent.id}">${ramComponent.quantity}`;
         paragraph3.className = 'd-in-bl';
         listItem.appendChild(paragraph3);
+
+        var a = parseFloat(ramComponent.price.replace(/[^\d]/g, ''));
+        totalram = a*ramComponent.quantity;
 
         
         var increaseButton = document.createElement('button');
@@ -468,7 +506,7 @@ function increaseRamQuantity(ramId) {
         selectedRam[existingRamIndex].quantity++;
         displaySelectedRam();
         localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
-    }
+    }displayTotalSum();
 }
 
 function decreaseRamQuantity(ramId) {
@@ -481,7 +519,7 @@ function decreaseRamQuantity(ramId) {
         selectedRam[existingRamIndex].quantity--;
         displaySelectedRam();
         localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
-    }
+    }displayTotalSum();
 }
 
 function deleteRam(ramId) {
@@ -501,7 +539,7 @@ function deleteRam(ramId) {
             displaySelectedRam();
             localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
         }
-    }
+    }displayTotalSum();
 }
 
 //VGA----------------------------------------
@@ -537,7 +575,7 @@ function addVga(vgaId) {
     displaySelectedVga();
     localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
 
-    
+    displayTotalSum();
     $('#vga').modal('hide');
 }
 
@@ -566,10 +604,14 @@ function displaySelectedVga() {
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
-        
+        vga = parseFloat(vgaComponent.price.replace(/[^\d]/g, ''));
+        var quanty = vga * vgaComponent.quantity;
+        var formattedVga = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedVga = formattedVga.replace('$', '') + 'đ';
+
         var paragraph2 = document.createElement('p');
-        paragraph2.innerHTML = `Giá: ${vgaComponent.price}</span>`;
-        paragraph2.className = 'price-prdt';
+        paragraph2.innerHTML = `${formattedVga}</span>`;
+        paragraph2.className = 'price-prdt price-total';
         listItem.appendChild(paragraph2);
 
         
@@ -586,7 +628,9 @@ function displaySelectedVga() {
         paragraph3.className = 'd-in-bl';
         listItem.appendChild(paragraph3);
 
-        
+        var a = parseFloat(vgaComponent.price.replace(/[^\d]/g, ''));
+        totalvga = a*vgaComponent.quantity;
+
         var increaseButton = document.createElement('button');
         increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
         increaseButton.className = 'btn-total';
@@ -618,7 +662,7 @@ function increaseVgaQuantity(vgaId) {
         selectedVga[existingVgaIndex].quantity++;
         displaySelectedVga();
         localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
-    }
+    }displayTotalSum();
 }
 
 function decreaseVgaQuantity(vgaId) {
@@ -631,7 +675,7 @@ function decreaseVgaQuantity(vgaId) {
         selectedVga[existingVgaIndex].quantity--;
         displaySelectedVga();
         localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
-    }
+    }displayTotalSum();
 }
 
 function deleteVga(vgaId) {
@@ -651,7 +695,7 @@ function deleteVga(vgaId) {
             displaySelectedVga();
             localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
         }
-    }
+    }displayTotalSum();
 }
 
 //SSD----------------------------------------
@@ -685,7 +729,7 @@ function addSsd(ssdId) {
     
     displaySelectedSsd();
     localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
-
+    displayTotalSum();
     $('#ssd').modal('hide');
 }
 
@@ -714,10 +758,15 @@ function displaySelectedSsd() {
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
+        ssd = parseFloat(ssdComponent.price.replace(/[^\d]/g, ''));
+        var quanty = ssd * ssdComponent.quantity;
+        var formattedSsd = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedSsd = formattedSsd.replace('$', '') + 'đ';
+
         
         var paragraph2 = document.createElement('p');
-        paragraph2.innerHTML = `Giá: ${ssdComponent.price}</span>`;
-        paragraph2.className = 'price-prdt';
+        paragraph2.innerHTML = `${formattedSsd}</span>`;
+        paragraph2.className = 'price-prdt price-total';
         listItem.appendChild(paragraph2);
 
         
@@ -734,7 +783,8 @@ function displaySelectedSsd() {
         paragraph3.className = 'd-in-bl';
         listItem.appendChild(paragraph3);
 
-        
+
+
         var increaseButton = document.createElement('button');
         increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
         increaseButton.className = 'btn-total';
@@ -766,7 +816,7 @@ function increaseSsdQuantity(ssdId) {
         selectedSsd[existingSsdIndex].quantity++;
         displaySelectedSsd();
         localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
-    }
+    }displayTotalSum();
 }
 
 function decreaseSsdQuantity(ssdId) {
@@ -779,7 +829,7 @@ function decreaseSsdQuantity(ssdId) {
         selectedSsd[existingSsdIndex].quantity--;
         displaySelectedSsd();
         localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
-    }
+    }displayTotalSum();
 }
 
 function deleteSsd(ssdId) {
@@ -799,7 +849,7 @@ function deleteSsd(ssdId) {
             displaySelectedSsd();
             localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
         }
-    }
+    }displayTotalSum();
 }
 
 
@@ -835,7 +885,7 @@ function addPsu(psuId) {
     
     displaySelectedPsu();
     localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
-
+    displayTotalSum();
     $('#psu').modal('hide');
 }
 
@@ -864,9 +914,14 @@ function displaySelectedPsu() {
         listItem.appendChild(paragraph1);
 
         
+        psu = parseFloat(psuComponent.price.replace(/[^\d]/g, ''));
+        var quanty = psu * psuComponent.quantity;
+        var formattedPsu = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedPsu = formattedPsu.replace('$', '') + 'đ';
+
         var paragraph2 = document.createElement('p');
-        paragraph2.innerHTML = `Giá: ${psuComponent.price}</span>`;
-        paragraph2.className = 'price-prdt';
+        paragraph2.innerHTML = `${formattedPsu}</span>`;
+        paragraph2.className = 'price-prdt price-total';
         listItem.appendChild(paragraph2);
 
         
@@ -883,7 +938,8 @@ function displaySelectedPsu() {
         paragraph3.className = 'd-in-bl';
         listItem.appendChild(paragraph3);
 
-        
+
+
         var increaseButton = document.createElement('button');
         increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
         increaseButton.className = 'btn-total';
@@ -914,7 +970,7 @@ function increasePsuQuantity(psuId) {
         selectedPsu[existingPsuIndex].quantity++;
         displaySelectedPsu();
         localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
-    }
+    }displayTotalSum();
 }
 
 function decreasePsuQuantity(psuId) {
@@ -927,9 +983,24 @@ function decreasePsuQuantity(psuId) {
         selectedPsu[existingPsuIndex].quantity--;
         displaySelectedPsu();
         localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
-    }
+    }displayTotalSum();
 }
+function deletePsu(psuId) {
+    var confirmDelete = window.confirm("Bạn có chắc muốn xóa PSU khỏi danh sách?");
+    if (confirmDelete) {
+        buttonpsu.style.display = 'block';
+        var existingPsuIndex = selectedPsu.findIndex(function (selectedPsu) {
+            return selectedPsu.id === psuId;
+        });
 
+        if (existingPsuIndex !== -1) {
+            selectedPsu.splice(existingPsuIndex, 1);
+
+            displaySelectedPsu();
+            localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
+        }
+    }displayTotalSum();
+}
 //CASE----------------------------------------
 
 function addVo(voId) {
@@ -962,7 +1033,7 @@ function addVo(voId) {
     
     displaySelectedVo();
     localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
-
+    displayTotalSum();
     $('#vo').modal('hide');
 }
 
@@ -990,10 +1061,14 @@ function displaySelectedVo() {
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
+        vo = parseFloat(selectedVoComponent.price.replace(/[^\d]/g, ''));
+        var quanty = vo * selectedVoComponent.quantity;
+        var formattedVo = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedVo = formattedVo.replace('$', '') + 'đ';
         
         var paragraph2 = document.createElement('p');
-        paragraph2.innerHTML = `Giá: ${selectedVoComponent.price}</span>`;
-        paragraph2.className = 'price-prdt';
+        paragraph2.innerHTML = `${formattedVo}</span>`;
+        paragraph2.className = 'price-prdt price-total';
         listItem.appendChild(paragraph2);
 
 
@@ -1012,6 +1087,8 @@ function displaySelectedVo() {
                 paragraph3.className = 'd-in-bl';
                 listItem.appendChild(paragraph3);
         
+                var a = parseFloat(selectedVoComponent.price.replace(/[^\d]/g, ''));
+                totalvo = a*selectedVoComponent.quantity;
         
         var increaseButton = document.createElement('button');
         increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
@@ -1043,7 +1120,7 @@ function increaseQuantity(voId) {
         selectedVo[existingVoIndex].quantity++;
         displaySelectedVo();
         localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
-    }
+    }displayTotalSum();
 }
 
 function decreaseQuantity(voId) {
@@ -1056,10 +1133,25 @@ function decreaseQuantity(voId) {
         selectedVo[existingVoIndex].quantity--;
         displaySelectedVo();
         localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
-    }
+    }displayTotalSum();
 }
 
+function deleteVo(voId) {
+    var confirmDelete = window.confirm("Bạn có chắc muốn xóa Case khỏi danh sách?");
+    if (confirmDelete) {
+        buttonvo.style.display = 'block';
+        var existingVoIndex = selectedVo.findIndex(function (selectedVo) {
+            return selectedVo.id === voId;
+        });
 
+        if (existingVoIndex !== -1) {
+            selectedVo.splice(existingVoIndex, 1);
+
+            displaySelectedVo();
+            localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
+        }
+    }displayTotalSum();
+}
 
 //TAN NHIET-------------------------------------------
 function addTannhiet(tannhietId) {
@@ -1087,7 +1179,7 @@ function addTannhiet(tannhietId) {
 
     displaySelectedTannhiet();
     localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
-
+    displayTotalSum();
     $('#tannhiet').modal('hide');
 }
 
@@ -1113,9 +1205,14 @@ function displaySelectedTannhiet() {
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
+        tannhiet = parseFloat(tannhietComponent.price.replace(/[^\d]/g, ''));
+        var quanty = tannhiet * tannhietComponent.quantity;
+        var formattedTn = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedTn = formattedTn.replace('$', '') + 'đ';
+
         var paragraph2 = document.createElement('p');
-        paragraph2.innerHTML = `Giá: ${tannhietComponent.price}</span>`;
-        paragraph2.className = 'price-prdt';
+        paragraph2.innerHTML = `${formattedTn}</span>`;
+        paragraph2.className = 'price-prdt price-total';
         listItem.appendChild(paragraph2);
 
         var decreaseButton = document.createElement('button');
@@ -1130,6 +1227,8 @@ function displaySelectedTannhiet() {
         paragraph3.innerHTML = `<span id="quantity${tannhietComponent.id}">${tannhietComponent.quantity}`;
         paragraph3.className = 'd-in-bl';
         listItem.appendChild(paragraph3);
+
+
 
         var increaseButton = document.createElement('button');
         increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
@@ -1160,7 +1259,7 @@ function increaseTannhietQuantity(tannhietId) {
         selectedTannhiet[existingTannhietIndex].quantity++;
         displaySelectedTannhiet();
         localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
-    }
+    }displayTotalSum();
 }
 
 function decreaseTannhietQuantity(tannhietId) {
@@ -1172,7 +1271,7 @@ function decreaseTannhietQuantity(tannhietId) {
         selectedTannhiet[existingTannhietIndex].quantity--;
         displaySelectedTannhiet();
         localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
-    }
+    }displayTotalSum();
 }
 
 function deleteTannhiet(tannhietId) {
@@ -1189,7 +1288,7 @@ function deleteTannhiet(tannhietId) {
             displaySelectedTannhiet();
             localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
         }
-    }
+    }displayTotalSum();
 }
 
 
@@ -1221,7 +1320,7 @@ function addManhinh(manhinhId) {
 
     displaySelectedManhinh();
     localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
-
+    displayTotalSum();
     $('#monitor').modal('hide');
 }
 
@@ -1247,9 +1346,14 @@ function displaySelectedManhinh() {
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
+        manhinh = parseFloat(manhinhComponent.price.replace(/[^\d]/g, ''));
+        var quanty = manhinh * manhinhComponent.quantity;
+        var formattedMh = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedMh = formattedMh.replace('$', '') + 'đ';
+
         var paragraph2 = document.createElement('p');
-        paragraph2.innerHTML = `Giá: ${manhinhComponent.price}</span>`;
-        paragraph2.className = 'price-prdt';
+        paragraph2.innerHTML = `${formattedMh}</span>`;
+        paragraph2.className = 'price-prdt price-total';
         listItem.appendChild(paragraph2);
 
         var decreaseButton = document.createElement('button');
@@ -1264,6 +1368,8 @@ function displaySelectedManhinh() {
         paragraph3.innerHTML = `<span id="quantity${manhinhComponent.id}">${manhinhComponent.quantity}`;
         paragraph3.className = 'd-in-bl';
         listItem.appendChild(paragraph3);
+
+
 
         var increaseButton = document.createElement('button');
         increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
@@ -1294,7 +1400,7 @@ function increaseManhinhQuantity(manhinhId) {
         selectedManhinh[existingManhinhIndex].quantity++;
         displaySelectedManhinh();
         localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
-    }
+    }displayTotalSum();
 }
 
 function decreaseManhinhQuantity(manhinhId) {
@@ -1306,7 +1412,7 @@ function decreaseManhinhQuantity(manhinhId) {
         selectedManhinh[existingManhinhIndex].quantity--;
         displaySelectedManhinh();
         localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
-    }
+    }displayTotalSum();
 }
 
 function deleteManhinh(manhinhId) {
@@ -1323,7 +1429,7 @@ function deleteManhinh(manhinhId) {
             displaySelectedManhinh();
             localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
         }
-    }
+    }displayTotalSum();
 }
 
 //MOUSE-----------------------------------------
@@ -1352,7 +1458,7 @@ function addChuot(chuotId) {
 
     displaySelectedChuot();
     localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
-
+    displayTotalSum();
      $('#mouse').modal('hide');
 }
 
@@ -1378,9 +1484,14 @@ function displaySelectedChuot() {
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
+        chuot = parseFloat(chuotComponent.price.replace(/[^\d]/g, ''));
+        var quanty = chuot * chuotComponent.quantity;
+        var formattedChuot = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedChuot = formattedChuot.replace('$', '') + 'đ';
+
         var paragraph2 = document.createElement('p');
-        paragraph2.innerHTML = `Giá: ${chuotComponent.price}</span>`;
-        paragraph2.className = 'price-prdt';
+        paragraph2.innerHTML = `${formattedChuot}</span>`;
+        paragraph2.className = 'price-prdt price-total';
         listItem.appendChild(paragraph2);
 
         var decreaseButton = document.createElement('button');
@@ -1395,6 +1506,8 @@ function displaySelectedChuot() {
         paragraph3.innerHTML = `<span id="quantity${chuotComponent.id}">${chuotComponent.quantity}`;
         paragraph3.className = 'd-in-bl';
         listItem.appendChild(paragraph3);
+
+
 
         var increaseButton = document.createElement('button');
         increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
@@ -1425,7 +1538,7 @@ function increaseChuotQuantity(chuotId) {
         selectedChuot[existingChuotIndex].quantity++;
         displaySelectedChuot();
         localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
-    }
+    }displayTotalSum();
 }
 
 function decreaseChuotQuantity(chuotId) {
@@ -1437,7 +1550,7 @@ function decreaseChuotQuantity(chuotId) {
         selectedChuot[existingChuotIndex].quantity--;
         displaySelectedChuot();
         localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
-    }
+    }displayTotalSum();
 }
 
 function deleteChuot(chuotId) {
@@ -1454,7 +1567,7 @@ function deleteChuot(chuotId) {
             displaySelectedChuot();
             localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
         }
-    }
+    }displayTotalSum();
 }
 
 
@@ -1484,7 +1597,7 @@ function addPhim(phimId) {
 
     displaySelectedPhim();
     localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
-
+    displayTotalSum();
      $('#keyboard').modal('hide');
 }
 
@@ -1510,9 +1623,15 @@ function displaySelectedPhim() {
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
+        phim = parseFloat(phimComponent.price.replace(/[^\d]/g, ''));
+        var quanty = phim * phimComponent.quantity;
+        var formattedPhim = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedPhim = formattedPhim.replace('$', '') + 'đ';
+
+
         var paragraph2 = document.createElement('p');
-        paragraph2.innerHTML = `Giá: ${phimComponent.price}</span>`;
-        paragraph2.className = 'price-prdt';
+        paragraph2.innerHTML = `${formattedPhim}</span>`;
+        paragraph2.className = 'price-prdt price-total';
         listItem.appendChild(paragraph2);
 
         var decreaseButton = document.createElement('button');
@@ -1527,6 +1646,8 @@ function displaySelectedPhim() {
         paragraph3.innerHTML = `<span id="quantity${phimComponent.id}">${phimComponent.quantity}`;
         paragraph3.className = 'd-in-bl';
         listItem.appendChild(paragraph3);
+
+
 
         var increaseButton = document.createElement('button');
         increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
@@ -1557,7 +1678,7 @@ function increasePhimQuantity(phimId) {
         selectedPhim[existingPhimIndex].quantity++;
         displaySelectedPhim();
         localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
-    }
+    }displayTotalSum();
 }
 
 function decreasePhimQuantity(phimId) {
@@ -1569,7 +1690,7 @@ function decreasePhimQuantity(phimId) {
         selectedPhim[existingPhimIndex].quantity--;
         displaySelectedPhim();
         localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
-    }
+    }displayTotalSum();
 }
 
 function deletePhim(phimId) {
@@ -1586,5 +1707,76 @@ function deletePhim(phimId) {
             displaySelectedPhim();
             localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
         }
-    }
+    }displayTotalSum();
 }
+
+function displayTotalSum() {
+    var totalSum = calculateTotalSum();
+    
+    var totalSumText = `${totalSum.toLocaleString({ style: 'currency', currency: 'VND' }).replace('$', '')}đ`;
+
+    $('#totalll').text(totalSumText);
+}
+
+function calculateTotalSum() {
+    var totalCpu = 0;
+    var totalMain = 0;
+    var totalRam = 0;
+    var totalVga = 0;
+    var totalSsd = 0;
+    var totalPsu = 0;
+    var totalVo = 0;
+    var totalTamnhiet = 0;
+    var totalMh = 0;
+    var totalChuot = 0;
+    var totalBanphim = 0;
+
+    selectedCpus.forEach(function (cpuComponent) {
+        var cpu = parseFloat(cpuComponent.price.replace(/[^\d]/g, ''));
+        totalCpu += cpu * cpuComponent.quantity;
+    });
+    selectedMain.forEach(function (mainComponent) {
+        var mainn = parseFloat(mainComponent.price.replace(/[^\d]/g, ''));
+        totalMain += mainn * mainComponent.quantity;
+    });
+    selectedRam.forEach(function (ramComponent) {
+        var ram = parseFloat(ramComponent.price.replace(/[^\d]/g, ''));
+        totalRam += ram * ramComponent.quantity;
+    });
+    selectedVga.forEach(function (vgaComponent) {
+        var vga = parseFloat(vgaComponent.price.replace(/[^\d]/g, ''));
+        totalVga += vga * vgaComponent.quantity;
+    });
+    selectedSsd.forEach(function (ssdComponent) {
+        var ssd = parseFloat(ssdComponent.price.replace(/[^\d]/g, ''));
+        totalSsd += ssd * ssdComponent.quantity;
+    });
+    selectedPsu.forEach(function (psuComponent) {
+        var ssd = parseFloat(psuComponent.price.replace(/[^\d]/g, ''));
+        totalPsu += ssd * psuComponent.quantity;
+    });
+    selectedVo.forEach(function (voComponent) {
+        var vo = parseFloat(voComponent.price.replace(/[^\d]/g, ''));
+        totalVo += vo * voComponent.quantity;
+    });
+    selectedTannhiet.forEach(function (tannhietComponent) {
+        var tn = parseFloat(tannhietComponent.price.replace(/[^\d]/g, ''));
+        totalTamnhiet += tn * tannhietComponent.quantity;
+    });
+    selectedManhinh.forEach(function (manhinhComponent) {
+        var mh = parseFloat(manhinhComponent.price.replace(/[^\d]/g, ''));
+        totalMh += mh * manhinhComponent.quantity;
+    });
+    selectedChuot.forEach(function (chuotComponent) {
+        var chuot = parseFloat(chuotComponent.price.replace(/[^\d]/g, ''));
+        totalChuot += chuot * chuotComponent.quantity;
+    });
+    selectedPhim.forEach(function (phimComponent) {
+        var phim = parseFloat(phimComponent.price.replace(/[^\d]/g, ''));
+        totalBanphim += phim * phimComponent.quantity;
+    });
+    var total = totalCpu +totalMain+totalRam+totalVga+totalSsd+totalPsu+totalVo+totalTamnhiet+totalMh+totalChuot+totalBanphim;
+    return total;
+}
+
+

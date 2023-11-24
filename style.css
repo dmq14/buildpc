@@ -7,6 +7,18 @@
 .line-through{
     text-decoration: line-through;
 }
+.shadowed-div {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 10px;
+  }
+.totalll{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff0000;
+    margin-bottom: 0px;
+
+}
 .price-prdt{
     font-size: 25px;
     font-weight: bold;
@@ -47,10 +59,11 @@
 .checkbox-fil{
     width: 48%;
 }
-.scroll-prdt{
-    max-height: calc(100vh - 210px);
+.scroll-prdt ,.scroll-tb{
+    max-height: calc(100vh - 200px);
     overflow-y: auto;
 }
+
 .scroll-prdt::-webkit-scrollbar {
     width: 6px;
     height: 6px;
