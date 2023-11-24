@@ -21,7 +21,7 @@
                           <i class="fa fa-plus-circle" aria-hidden="true"></i>
                           Chọn Cpu - Bộ vi xử lý
                       </button>
-                    <div id="selectedProductsList" style="list-style-type: none;"></div>
+                    <div id="selectedCpus" style="list-style-type: none;"></div>
 
                   </td>
                   </tr>
@@ -102,7 +102,7 @@
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
                             Chọn Monitor - Màn hình
                         </button>
-                        <div id="selectedMonitor" style="list-style-type: none;"></div>
+                        <div id="selectedManhinh" style="list-style-type: none;"></div>
                     </td>
                   </tr>
                   <tr>
@@ -112,7 +112,7 @@
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
                             Chọn Mouse - Chuột
                         </button>
-                        <div id="selectedMouse" style="list-style-type: none;"></div>
+                        <div id="selectedChuot" style="list-style-type: none;"></div>
                     </td>
                   </tr>
                   <tr>
@@ -122,7 +122,7 @@
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
                             Chọn KEYBOARD - Bàn phím
                         </button>
-                        <div id="selectedKeyboard" style="list-style-type: none;"></div>
+                        <div id="selectedPhim" style="list-style-type: none;"></div>
                     </td>
                   </tr>
                 </tbody>
@@ -263,8 +263,8 @@
                 </div>
         
                 <div class="col-lg-8 col-sm-12">
-                  <div class="scroll-prdt" id="productList">
-                  <div class="prdt bg-white mb-2" id="product1">
+                  <div class="scroll-prdt" id="cpuList">
+                  <div class="prdt bg-white mb-2" id="cpu1">
                     <div class="row w-100">
                       <div class="col-lg-2 col-4 ">
                         <img
@@ -286,7 +286,7 @@
                       </div>
                       <div class="col-lg-4 col-12">
                         <div class="center-div">
-                          <button type="button" class="btn btn-warning btn-mobile-add" onclick="addProductToSelectedList(1)" >
+                          <button type="button" class="btn btn-warning btn-mobile-add" onclick="addCpu(1)" >
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
                             Chọn linh kiện
                           </button>
@@ -294,7 +294,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="prdt bg-white mb-2" id="product2">
+                  <div class="prdt bg-white mb-2" id="cpu2">
                     <div class="row w-100">
                       <div class="col-lg-2 col-4 ">
                         <img
@@ -316,7 +316,7 @@
                       </div>
                       <div class="col-lg-4 col-12">
                         <div class="center-div">
-                          <button type="button" class="btn btn-warning btn-mobile-add" onclick="addProductToSelectedList(2)">
+                          <button type="button" class="btn btn-warning btn-mobile-add" onclick="addCpu(2)">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
                             Chọn linh kiện
                           </button>
@@ -1528,6 +1528,704 @@
       </div>
     </div>
     <!-- end popup vo -->     
+
+    <!-- popup tannhiet -->
+    <div class="modal fade" id="tannhiet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tản nhiệt</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body bg-light">
+            <div class="container-fluid  mb-5 ">
+              <div class="row">
+                <div class="col-lg-4 col-sm-12 ">
+                  <nav class="navbar navbar-expand-lg navbar-dark">
+                    <button
+                      class="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#navTannhiet"
+                    >
+                                            <span class=""
+                        ><i
+                          class="fa fa-bars"
+                          aria-hidden="true"
+                          style="color: black"
+                        >  Tùy chọn</i
+                      > </span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navTannhiet">
+                        <div class="scroll-prdt">
+
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Khoảng giá</h6>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Dưới 1 triệu</span>
+                              </label>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">1 - 3 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">4 - 6 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">7 - 9 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Trên 10 triệu</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Dung lượng</h6>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">4GB<hệ/span>
+                            </label>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">8GB<hệ/span>
+                            </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">32GB<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">64GB</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">128GB</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">256GB</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2">
+                            <h6 class="title-filter">Loại Ram</h6>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">DDR4<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">DDR5</span>
+                              </label>
+
+                          </div>
+                        </div>
+                    </div>
+                  </nav>
+                </div>
+        
+                <div class="col-lg-8 col-sm-12">
+                  <div class="scroll-prdt" id="tannhietlist">
+                  <div class="prdt bg-white mb-2" id="tannhiet1">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/tan-nhiet/Segotep-Be-Iced-1676107583.webp"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class=" price-prdt">2.500.000đ</p>
+                        <div class="d-flex align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning btn-mobile-add" onclick="addTannhiet(1)">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2"id="tannhiet2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/tan-nhiet/Segotep-Be-Iced-1676107583.webp"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class=" price-prdt">2.500.000đ</p>
+                        <div class="d-flex align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning btn-mobile-add" onclick="addTannhiet(2)">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- end popup tannhiet --> 
+
+    <!-- popup monitor -->
+    <div class="modal fade" id="monitor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Monitor - Màn hình máy tính</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body bg-light">
+            <div class="container-fluid  mb-5 ">
+              <div class="row">
+                <div class="col-lg-4 col-sm-12 ">
+                  <nav class="navbar navbar-expand-lg navbar-dark">
+                    <button
+                      class="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#navMonitor"
+                    >
+                                            <span class=""
+                        ><i
+                          class="fa fa-bars"
+                          aria-hidden="true"
+                          style="color: black"
+                        >  Tùy chọn</i
+                      > </span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navMonitor">
+                        <div class="scroll-prdt">
+
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Khoảng giá</h6>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Dưới 1 triệu</span>
+                              </label>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">1 - 3 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">4 - 6 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">7 - 9 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Trên 10 triệu</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Dung lượng</h6>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">4GB<hệ/span>
+                            </label>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">8GB<hệ/span>
+                            </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">32GB<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">64GB</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">128GB</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">256GB</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2">
+                            <h6 class="title-filter">Loại Ram</h6>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">DDR4<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">DDR5</span>
+                              </label>
+
+                          </div>
+                        </div>
+                    </div>
+                  </nav>
+                </div>
+        
+                <div class="col-lg-8 col-sm-12">
+                  <div class="scroll-prdt" id="manhinhlist">
+                  <div class="prdt bg-white mb-2" id="manhinh1">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/msi/14s/5420/3511%20i3/techzones-msi-optix-mag322cqrv-315inch-sieu-cong-144hz-4_0835459bac074e62b2b74f4fbc294bbc_grande-1634114819.png"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class=" price-prdt">2.500.000đ</p>
+                        <div class="d-flex align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning btn-mobile-add" onclick="addManhinh(1)">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2"id="manhinh2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/msi/14s/5420/3511%20i3/techzones-msi-optix-mag322cqrv-315inch-sieu-cong-144hz-4_0835459bac074e62b2b74f4fbc294bbc_grande-1634114819.png"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class=" price-prdt">2.500.000đ</p>
+                        <div class="d-flex align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning btn-mobile-add" onclick="addManhinh(2)">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- end popup monitor --> 
+    <!-- popup mouse -->
+    <div class="modal fade" id="mouse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Monitor - Màn hình máy tính</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body bg-light">
+            <div class="container-fluid  mb-5 ">
+              <div class="row">
+                <div class="col-lg-4 col-sm-12 ">
+                  <nav class="navbar navbar-expand-lg navbar-dark">
+                    <button
+                      class="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#navMouse"
+                    >
+                                            <span class=""
+                        ><i
+                          class="fa fa-bars"
+                          aria-hidden="true"
+                          style="color: black"
+                        >  Tùy chọn</i
+                      > </span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navMouse">
+                        <div class="scroll-prdt">
+
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Khoảng giá</h6>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Dưới 1 triệu</span>
+                              </label>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">1 - 3 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">4 - 6 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">7 - 9 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Trên 10 triệu</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Dung lượng</h6>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">4GB<hệ/span>
+                            </label>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">8GB<hệ/span>
+                            </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">32GB<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">64GB</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">128GB</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">256GB</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2">
+                            <h6 class="title-filter">Loại Ram</h6>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">DDR4<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">DDR5</span>
+                              </label>
+
+                          </div>
+                        </div>
+                    </div>
+                  </nav>
+                </div>
+        
+                <div class="col-lg-8 col-sm-12">
+                  <div class="scroll-prdt" id="chuotlist">
+                  <div class="prdt bg-white mb-2" id="chuot1">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/Toan/Other/tactical-pkg-600x-mouse-1699875408.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class=" price-prdt">2.500.000đ</p>
+                        <div class="d-flex align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning btn-mobile-add" onclick="addChuot(1)">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2"id="chuot2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/Toan/Other/tactical-pkg-600x-mouse-1699875408.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class=" price-prdt">2.500.000đ</p>
+                        <div class="d-flex align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning btn-mobile-add" onclick="addChuot(2)">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- end popup mouse --> 
+    <!-- popup keyboard -->
+    <div class="modal fade" id="keyboard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Monitor - Màn hình máy tính</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body bg-light">
+            <div class="container-fluid  mb-5 ">
+              <div class="row">
+                <div class="col-lg-4 col-sm-12 ">
+                  <nav class="navbar navbar-expand-lg navbar-dark">
+                    <button
+                      class="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#navKeyboard"
+                    >
+                                            <span class=""
+                        ><i
+                          class="fa fa-bars"
+                          aria-hidden="true"
+                          style="color: black"
+                        >  Tùy chọn</i
+                      > </span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navKeyboard">
+                        <div class="scroll-prdt">
+
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Khoảng giá</h6>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Dưới 1 triệu</span>
+                              </label>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">1 - 3 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">4 - 6 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">7 - 9 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Trên 10 triệu</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Dung lượng</h6>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">4GB<hệ/span>
+                            </label>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">8GB<hệ/span>
+                            </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">32GB<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">64GB</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">128GB</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">256GB</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2">
+                            <h6 class="title-filter">Loại Ram</h6>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">DDR4<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">DDR5</span>
+                              </label>
+
+                          </div>
+                        </div>
+                    </div>
+                  </nav>
+                </div>
+        
+                <div class="col-lg-8 col-sm-12">
+                  <div class="scroll-prdt" id="phimlist">
+                  <div class="prdt bg-white mb-2" id="phim1">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/ban-phim-co/F60/STRAWBERRY/1-1660294353.webp"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class=" price-prdt">2.500.000đ</p>
+                        <div class="d-flex align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning btn-mobile-add" onclick="addPhim(1)">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2"id="phim2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/ban-phim-co/F60/STRAWBERRY/1-1660294353.webp"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class=" price-prdt">2.500.000đ</p>
+                        <div class="d-flex align-items-center">
+                          <p class="line-through me-2">20.000.000đ</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning btn-mobile-add" onclick="addPhim(2)">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- end popup keyboard --> 
 <script src="script.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

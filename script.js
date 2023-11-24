@@ -1,24 +1,31 @@
 var lengthPrd;
-var selectedProducts = [];
+var selectedCpus = [];
 var selectedMain = [];
 var selectedRam = [];
 var selectedVga = [];
 var selectedSsd = [];
 var selectedPsu = [];
 var selectedVo = [];
-// Load danh sách sản phẩm đã chọn từ Local Storage khi trang web được load
+var selectedTannhiet = [];
+var selectedManhinh = [];
+var selectedMice = [];
+var selectedChuot = [];
+var selectedPhim = [];
 window.onload = function () {
-    var storedProducts = localStorage.getItem('selectedProducts');
+    var storedCpu = localStorage.getItem('selectedCpus');
     var storedMain = localStorage.getItem('selectedMain');
     var storedRam = localStorage.getItem('selectedRam');
     var storedVga = localStorage.getItem('selectedVga');
     var storedSsd = localStorage.getItem('selectedSsd');
     var storedPsu = localStorage.getItem('selectedPsu');
     var storedVo = localStorage.getItem('selectedVo');
-
-    if (storedProducts) {
-        selectedProducts = JSON.parse(storedProducts);
-        displaySelectedProducts();
+    var storedTannhiet = localStorage.getItem('selectedTannhiet');
+    var storedManhinh = localStorage.getItem('selectedManhinh');
+    var storedChuot = localStorage.getItem('selectedChuot');
+    var storedPhim = localStorage.getItem('selectedPhim');
+    if (storedCpu) {
+        selectedCpus = JSON.parse(storedCpu);
+        displaySelectedCpus();
     }
     if (storedMain) {
         selectedMain = JSON.parse(storedMain);
@@ -44,189 +51,253 @@ window.onload = function () {
         selectedVo = JSON.parse(storedVo);
         displaySelectedVo();
     }
+    if (storedTannhiet) {
+        selectedTannhiet = JSON.parse(storedTannhiet);
+        displaySelectedTannhiet();
+    }
+    if (storedManhinh) {
+        selectedManhinh = JSON.parse(storedManhinh);
+        displaySelectedManhinh();
+    }
+    if (storedChuot) {
+        selectedChuot = JSON.parse(storedChuot);
+        displaySelectedChuot();
+    }
+    if (storedPhim) {
+        selectedPhim = JSON.parse(storedPhim);
+        displaySelectedPhim();
+    }
 };
 
+//CPU----------------------------------------
+function addCpu(cpuId) {
+    var cpuDiv = document.getElementById('cpu' + cpuId);
+    var cpuName = cpuDiv.querySelector('.name-prdt').textContent;
+    var cpuPrice = cpuDiv.querySelector('.price-prdt').textContent;
+    var cpuImage = cpuDiv.querySelector('.img-fluid').src;
 
-function addProductToSelectedList(productId) {
-
-    // Lấy thông tin sản phẩm từ trang
-    var productDiv = document.getElementById('product' + productId);
-    var productName = productDiv.querySelector('.name-prdt').textContent;
-    var productPrice = productDiv.querySelector('.price-prdt').textContent;
-    
-    // Lấy đường dẫn hình ảnh
-    var productImage = productDiv.querySelector('.img-fluid').src;
-
-    // Kiểm tra xem sản phẩm đã tồn tại trong danh sách hay chưa
-    var existingProductIndex = selectedProducts.findIndex(function (selectedProduct) {
-        return selectedProduct.id === productId;
+    var existingCpuIndex = selectedCpus.findIndex(function (selectedCpu) {
+        return selectedCpu.id === cpuId;
     });
 
-    // Nếu sản phẩm đã tồn tại trong danh sách, thông báo và không thực hiện thêm
-    if (existingProductIndex !== -1) {
-        window.alert("Sản phẩm đã chọn rồi!");
-        return;
+    if (existingCpuIndex !== -1) {
+        selectedCpus[existingCpuIndex].quantity++;
+    } else {
+        var cpuComponent = {
+            id: cpuId,
+            name: cpuName,
+            price: cpuPrice,
+            image: cpuImage,
+            quantity: 1
+        };
+        selectedCpus.push(cpuComponent);
     }
 
-    // Thêm sản phẩm mới vào danh sách
-    var product = {
-        id: productId,
-        name: productName,
-        price: productPrice,
-        image: productImage
-    };
-    selectedProducts.push(product);
+    displaySelectedCpus();
+    localStorage.setItem('selectedCpus', JSON.stringify(selectedCpus));
 
-    // Hiển thị danh sách đã chọn và lưu vào Local Storage
-    displaySelectedProducts();
-    localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
-
-    // Tắt modal khi thêm sản phẩm
     $('#cpu').modal('hide');
 }
 
-function displaySelectedProducts() {
-    var selectedProductsList = document.getElementById('selectedProductsList');
-    selectedProductsList.innerHTML = ''; // Xóa nội dung cũ
-     lengthPrd = selectedProducts.length;
-     if(lengthPrd >=1){
+function displaySelectedCpus() {
+    var selectedCpuList = document.getElementById('selectedCpus');
+    selectedCpuList.innerHTML = ''; 
+    lengthPrd = selectedCpus.length;
+    if (lengthPrd >= 1) {
         buttoncpu.style.display = 'none';
     }
-    // Hiển thị danh sách đã chọn
-    selectedProducts.forEach(function (product) {
+
+    selectedCpus.forEach(function (cpuComponent) {
         var listItem = document.createElement('li');
 
-        // Tạo phần tử hình ảnh
         var image = document.createElement('img');
-        image.src = product.image;
-        image.alt = product.name;
-        image.style.maxWidth = '90px'; // Điều chỉnh kích thước hình ảnh tùy ý
+        image.src = cpuComponent.image;
+        image.alt = cpuComponent.name;
+        image.style.maxWidth = '90px'; 
         listItem.appendChild(image);
 
-        // Tạo phần tử đoạn văn thứ nhất
         var paragraph1 = document.createElement('p');
-        paragraph1.textContent = product.name;
+        paragraph1.textContent = cpuComponent.name;
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
-        // Tạo phần tử đoạn văn thứ hai
         var paragraph2 = document.createElement('p');
-        paragraph2.textContent = product.price;
+        paragraph2.innerHTML = `Giá: ${cpuComponent.price}</span>`;
         paragraph2.className = 'price-prdt';
         listItem.appendChild(paragraph2);
 
-        // Tạo nút xóa với biểu tượng (icon)
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseCpuQuantity(cpuComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${cpuComponent.id}">${cpuComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseCpuQuantity(cpuComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
         var deleteButton = document.createElement('button');
-        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>'; 
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
         deleteButton.className = 'delete-button';
-        deleteButton.onclick = function() {
-            deleteProduct(product.id);
+        deleteButton.onclick = function () {
+            deleteCpu(cpuComponent.id);
         };
         listItem.appendChild(deleteButton);
 
-        selectedProductsList.appendChild(listItem);
+        selectedCpuList.appendChild(listItem);
     });
 }
 
-function deleteProduct(productId) {
-    // Xác nhận xóa sản phẩm
-    var confirmDelete = window.confirm("Bạn có chắc muốn xóa sản phẩm khỏi danh sách?");
+function increaseCpuQuantity(cpuId) {
+    var existingCpuIndex = selectedCpus.findIndex(function (cpuComponent) {
+        return cpuComponent.id === cpuId;
+    });
+
+    if (existingCpuIndex !== -1) {
+        selectedCpus[existingCpuIndex].quantity++;
+        displaySelectedCpus();
+        localStorage.setItem('selectedCpus', JSON.stringify(selectedCpus));
+    }
+}
+
+function decreaseCpuQuantity(cpuId) {
+    var existingCpuIndex = selectedCpus.findIndex(function (cpuComponent) {
+        return cpuComponent.id === cpuId;
+    });
+
+    if (existingCpuIndex !== -1 && selectedCpus[existingCpuIndex].quantity > 1) {
+        selectedCpus[existingCpuIndex].quantity--;
+        displaySelectedCpus();
+        localStorage.setItem('selectedCpus', JSON.stringify(selectedCpus));
+    }
+}
+
+function deleteCpu(cpuId) {
+    var confirmDelete = window.confirm("Bạn có chắc muốn xóa CPU khỏi danh sách?");
     if (confirmDelete) {
-        // Xóa sản phẩm khỏi danh sách
-        var existingProductIndex = selectedProducts.findIndex(function (selectedProduct) {
-            return selectedProduct.id === productId;
+        buttoncpu.style.display = 'block';
+        var existingCpuIndex = selectedCpus.findIndex(function (selectedCpu) {
+            return selectedCpu.id === cpuId;
         });
 
-        if (existingProductIndex !== -1) {
-            selectedProducts.splice(existingProductIndex, 1);
-            buttoncpu.style.display = 'block';
+        if (existingCpuIndex !== -1) {
+            selectedCpus.splice(existingCpuIndex, 1);
 
-            // Hiển thị danh sách đã chọn và lưu vào Local Storage
-            displaySelectedProducts();
-            localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
+            displaySelectedCpus();
+            localStorage.setItem('selectedCpus', JSON.stringify(selectedCpus));
         }
     }
 }
 
 
-//----------------------------------------------------------------------------------------------------------------
+//MAIN----------------------------------------
 
 
-// Thêm sản phẩm Main vào danh sách đã chọn
 function addMain(mainId) {
-    // Lấy thông tin sản phẩm từ trang
     var mainDiv = document.getElementById('main' + mainId);
     var mainName = mainDiv.querySelector('.name-prdt').textContent;
     var mainPrice = mainDiv.querySelector('.price-prdt').textContent;
-
-    // Lấy đường dẫn hình ảnh
     var mainImage = mainDiv.querySelector('.img-fluid').src;
 
-    // Kiểm tra xem Main đã tồn tại trong danh sách hay chưa
     var existingMainIndex = selectedMain.findIndex(function (selectedMain) {
         return selectedMain.id === mainId;
     });
 
-    // Nếu Main đã tồn tại trong danh sách, thông báo và không thực hiện thêm
+    
     if (existingMainIndex !== -1) {
-        window.alert("Main đã chọn rồi!");
-        return;
+        selectedMain[existingMainIndex].quantity++;
+    } else {
+        
+        var mainComponent = {
+            id: mainId,
+            name: mainName,
+            price: mainPrice,
+            image: mainImage,
+            quantity: 1
+        };
+        selectedMain.push(mainComponent);
     }
 
-    // Thêm Main mới vào danh sách
-    var main = {
-        id: mainId,
-        name: mainName,
-        price: mainPrice,
-        image: mainImage
-    };
-    selectedMain.push(main);
-
-    // Hiển thị danh sách đã chọn và lưu vào Local Storage
+    
     displaySelectedMain();
     localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
 
-    // Tắt modal khi thêm Main
+    
     $('#main').modal('hide');
 }
 
-// Hiển thị danh sách Main đã chọn
 function displaySelectedMain() {
     var selectedMainList = document.getElementById('selectedMain');
-    selectedMainList.innerHTML = ''; // Xóa nội dung cũ
+    selectedMainList.innerHTML = ''; 
     lengthPrd = selectedMain.length;
-    if(lengthPrd >=1){
-       buttonmain.style.display = 'none';
-   }
-    // Hiển thị danh sách đã chọn
-    selectedMain.forEach(function (main) {
+    if (lengthPrd >= 1) {
+        buttonmain.style.display = 'none';
+    }
+
+    
+    selectedMain.forEach(function (mainComponent) {
         var listItem = document.createElement('li');
 
-        // Tạo phần tử hình ảnh
+        
         var image = document.createElement('img');
-        image.src = main.image;
-        image.alt = main.name;
-        image.style.maxWidth = '90px'; // Điều chỉnh kích thước hình ảnh tùy ý
+        image.src = mainComponent.image;
+        image.alt = mainComponent.name;
+        image.style.maxWidth = '90px'; 
         listItem.appendChild(image);
 
-        // Tạo phần tử đoạn văn thứ nhất
+        
         var paragraph1 = document.createElement('p');
-        paragraph1.textContent = main.name;
+        paragraph1.textContent = mainComponent.name;
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
-        // Tạo phần tử đoạn văn thứ hai
+        
         var paragraph2 = document.createElement('p');
-        paragraph2.textContent = main.price;
+        paragraph2.innerHTML = `Giá: ${mainComponent.price}</span>`;
         paragraph2.className = 'price-prdt';
         listItem.appendChild(paragraph2);
 
-        // Tạo nút xóa với biểu tượng (icon)
+        
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseMainQuantity(mainComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${mainComponent.id}">${mainComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseMainQuantity(mainComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        
         var deleteButton = document.createElement('button');
         deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
         deleteButton.className = 'delete-button';
         deleteButton.onclick = function () {
-            deleteMain(main.id);
+            deleteMain(mainComponent.id);
         };
         listItem.appendChild(deleteButton);
 
@@ -234,105 +305,152 @@ function displaySelectedMain() {
     });
 }
 
-// Xóa Main khỏi danh sách đã chọn
+function increaseMainQuantity(mainId) {
+    
+    var existingMainIndex = selectedMain.findIndex(function (mainComponent) {
+        return mainComponent.id === mainId;
+    });
+
+    if (existingMainIndex !== -1) {
+        selectedMain[existingMainIndex].quantity++;
+        displaySelectedMain();
+        localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
+    }
+}
+
+function decreaseMainQuantity(mainId) {
+    
+    var existingMainIndex = selectedMain.findIndex(function (mainComponent) {
+        return mainComponent.id === mainId;
+    });
+
+    if (existingMainIndex !== -1 && selectedMain[existingMainIndex].quantity > 1) {
+        selectedMain[existingMainIndex].quantity--;
+        displaySelectedMain();
+        localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
+    }
+}
+
 function deleteMain(mainId) {
-    // Xác nhận xóa Main
+    
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa Main khỏi danh sách?");
     if (confirmDelete) {
         buttonmain.style.display = 'block';
-        // Xóa Main khỏi danh sách
+        
         var existingMainIndex = selectedMain.findIndex(function (selectedMain) {
             return selectedMain.id === mainId;
-            
         });
 
         if (existingMainIndex !== -1) {
             selectedMain.splice(existingMainIndex, 1);
 
-            // Hiển thị danh sách đã chọn và lưu vào Local Storage
+            
             displaySelectedMain();
             localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
         }
     }
 }
 
-//Ram----------------------------------
+
+//RAM----------------------------------------
 
 
 
 function addRam(ramId) {
-    // Lấy thông tin sản phẩm từ trang
+    
     var ramDiv = document.getElementById('ram' + ramId);
     var ramName = ramDiv.querySelector('.name-prdt').textContent;
     var ramPrice = ramDiv.querySelector('.price-prdt').textContent;
-
-    // Lấy đường dẫn hình ảnh
     var ramImage = ramDiv.querySelector('.img-fluid').src;
 
-    // Kiểm tra xem RAM đã tồn tại trong danh sách hay chưa
+    
     var existingRamIndex = selectedRam.findIndex(function (selectedRam) {
         return selectedRam.id === ramId;
     });
 
-    // Nếu RAM đã tồn tại trong danh sách, thông báo và không thực hiện thêm
+    
     if (existingRamIndex !== -1) {
-        window.alert("RAM đã chọn rồi!");
-        return;
+        selectedRam[existingRamIndex].quantity++;
+    } else {
+        
+        var ramComponent = {
+            id: ramId,
+            name: ramName,
+            price: ramPrice,
+            image: ramImage,
+            quantity: 1
+        };
+        selectedRam.push(ramComponent);
     }
 
-    // Thêm RAM mới vào danh sách
-    var ram = {
-        id: ramId,
-        name: ramName,
-        price: ramPrice,
-        image: ramImage
-    };
-    selectedRam.push(ram);
-
-    // Hiển thị danh sách đã chọn và lưu vào Local Storage
+    
     displaySelectedRam();
     localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
+
     
-    // Tắt modal khi thêm Main
     $('#ram').modal('hide');
 }
 
 function displaySelectedRam() {
     var selectedRamList = document.getElementById('selectedRam');
-    selectedRamList.innerHTML = ''; // Xóa nội dung cũ
+    selectedRamList.innerHTML = ''; 
     lengthPrd = selectedRam.length;
-    if(lengthPrd >=1){
-       buttonram.style.display = 'none';
-   }
-    // Hiển thị danh sách đã chọn
-    selectedRam.forEach(function (ram) {
+    if (lengthPrd >= 1) {
+        buttonram.style.display = 'none';
+    }
+
+    
+    selectedRam.forEach(function (ramComponent) {
         var listItem = document.createElement('li');
 
-        // Tạo phần tử hình ảnh
+        
         var image = document.createElement('img');
-        image.src = ram.image;
-        image.alt = ram.name;
-        image.style.maxWidth = '90px'; // Điều chỉnh kích thước hình ảnh tùy ý
+        image.src = ramComponent.image;
+        image.alt = ramComponent.name;
+        image.style.maxWidth = '90px'; 
         listItem.appendChild(image);
 
-        // Tạo phần tử đoạn văn thứ nhất
+        
         var paragraph1 = document.createElement('p');
-        paragraph1.textContent = ram.name;
+        paragraph1.textContent = ramComponent.name;
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
-        // Tạo phần tử đoạn văn thứ hai
+        
         var paragraph2 = document.createElement('p');
-        paragraph2.textContent = ram.price;
+        paragraph2.innerHTML = `Giá: ${ramComponent.price}</span>`;
         paragraph2.className = 'price-prdt';
         listItem.appendChild(paragraph2);
 
-        // Tạo nút xóa với biểu tượng (icon)
+        
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseRamQuantity(ramComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+        
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${ramComponent.id}">${ramComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseRamQuantity(ramComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        
         var deleteButton = document.createElement('button');
         deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
         deleteButton.className = 'delete-button';
         deleteButton.onclick = function () {
-            deleteRam(ram.id);
+            deleteRam(ramComponent.id);
         };
         listItem.appendChild(deleteButton);
 
@@ -340,11 +458,37 @@ function displaySelectedRam() {
     });
 }
 
+function increaseRamQuantity(ramId) {
+    
+    var existingRamIndex = selectedRam.findIndex(function (ramComponent) {
+        return ramComponent.id === ramId;
+    });
+
+    if (existingRamIndex !== -1) {
+        selectedRam[existingRamIndex].quantity++;
+        displaySelectedRam();
+        localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
+    }
+}
+
+function decreaseRamQuantity(ramId) {
+    
+    var existingRamIndex = selectedRam.findIndex(function (ramComponent) {
+        return ramComponent.id === ramId;
+    });
+
+    if (existingRamIndex !== -1 && selectedRam[existingRamIndex].quantity > 1) {
+        selectedRam[existingRamIndex].quantity--;
+        displaySelectedRam();
+        localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
+    }
+}
+
 function deleteRam(ramId) {
-    // Xác nhận xóa RAM
+    
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa RAM khỏi danh sách?");
     if (confirmDelete) {
-        // Xóa RAM khỏi danh sách
+        
         buttonram.style.display = 'block';
         var existingRamIndex = selectedRam.findIndex(function (selectedRam) {
             return selectedRam.id === ramId;
@@ -353,86 +497,110 @@ function deleteRam(ramId) {
         if (existingRamIndex !== -1) {
             selectedRam.splice(existingRamIndex, 1);
 
-            // Hiển thị danh sách đã chọn và lưu vào Local Storage
+            
             displaySelectedRam();
             localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
         }
     }
 }
 
-//VGA---------------------------------
+//VGA----------------------------------------
+
 function addVga(vgaId) {
-    // Lấy thông tin sản phẩm từ trang
+    
     var vgaDiv = document.getElementById('vga' + vgaId);
     var vgaName = vgaDiv.querySelector('.name-prdt').textContent;
     var vgaPrice = vgaDiv.querySelector('.price-prdt').textContent;
-
-    // Lấy đường dẫn hình ảnh
     var vgaImage = vgaDiv.querySelector('.img-fluid').src;
 
-    // Kiểm tra xem VGA đã tồn tại trong danh sách hay chưa
+    
     var existingVgaIndex = selectedVga.findIndex(function (selectedVga) {
         return selectedVga.id === vgaId;
     });
 
-    // Nếu VGA đã tồn tại trong danh sách, thông báo và không thực hiện thêm
+    
     if (existingVgaIndex !== -1) {
-        window.alert("VGA đã chọn rồi!");
-        return;
+        selectedVga[existingVgaIndex].quantity++;
+    } else {
+        
+        var vgaComponent = {
+            id: vgaId,
+            name: vgaName,
+            price: vgaPrice,
+            image: vgaImage,
+            quantity: 1
+        };
+        selectedVga.push(vgaComponent);
     }
 
-    // Thêm VGA mới vào danh sách
-    var vga = {
-        id: vgaId,
-        name: vgaName,
-        price: vgaPrice,
-        image: vgaImage
-    };
-    selectedVga.push(vga);
-
-    // Hiển thị danh sách đã chọn và lưu vào Local Storage
+    
     displaySelectedVga();
     localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
-        // Tắt modal khi thêm Main
-        $('#vga').modal('hide');
+
+    
+    $('#vga').modal('hide');
 }
 
 function displaySelectedVga() {
     var selectedVgaList = document.getElementById('selectedVga');
-    selectedVgaList.innerHTML = ''; // Xóa nội dung cũ
+    selectedVgaList.innerHTML = ''; 
     lengthPrd = selectedVga.length;
-     if(lengthPrd >=1){
+    if (lengthPrd >= 1) {
         buttonvga.style.display = 'none';
     }
-    // Hiển thị danh sách đã chọn
-    selectedVga.forEach(function (vga) {
+
+    
+    selectedVga.forEach(function (vgaComponent) {
         var listItem = document.createElement('li');
 
-        // Tạo phần tử hình ảnh
+        
         var image = document.createElement('img');
-        image.src = vga.image;
-        image.alt = vga.name;
-        image.style.maxWidth = '90px'; // Điều chỉnh kích thước hình ảnh tùy ý
+        image.src = vgaComponent.image;
+        image.alt = vgaComponent.name;
+        image.style.maxWidth = '90px'; 
         listItem.appendChild(image);
 
-        // Tạo phần tử đoạn văn thứ nhất
+        
         var paragraph1 = document.createElement('p');
-        paragraph1.textContent = vga.name;
+        paragraph1.textContent = vgaComponent.name;
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
-        // Tạo phần tử đoạn văn thứ hai
+        
         var paragraph2 = document.createElement('p');
-        paragraph2.textContent = vga.price;
+        paragraph2.innerHTML = `Giá: ${vgaComponent.price}</span>`;
         paragraph2.className = 'price-prdt';
         listItem.appendChild(paragraph2);
 
-        // Tạo nút xóa với biểu tượng (icon)
+        
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseVgaQuantity(vgaComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+        
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${vgaComponent.id}">${vgaComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseVgaQuantity(vgaComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        
         var deleteButton = document.createElement('button');
         deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
         deleteButton.className = 'delete-button';
         deleteButton.onclick = function () {
-            deleteVga(vga.id);
+            deleteVga(vgaComponent.id);
         };
         listItem.appendChild(deleteButton);
 
@@ -440,11 +608,37 @@ function displaySelectedVga() {
     });
 }
 
+function increaseVgaQuantity(vgaId) {
+    
+    var existingVgaIndex = selectedVga.findIndex(function (vgaComponent) {
+        return vgaComponent.id === vgaId;
+    });
+
+    if (existingVgaIndex !== -1) {
+        selectedVga[existingVgaIndex].quantity++;
+        displaySelectedVga();
+        localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
+    }
+}
+
+function decreaseVgaQuantity(vgaId) {
+    
+    var existingVgaIndex = selectedVga.findIndex(function (vgaComponent) {
+        return vgaComponent.id === vgaId;
+    });
+
+    if (existingVgaIndex !== -1 && selectedVga[existingVgaIndex].quantity > 1) {
+        selectedVga[existingVgaIndex].quantity--;
+        displaySelectedVga();
+        localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
+    }
+}
+
 function deleteVga(vgaId) {
-    // Xác nhận xóa VGA
+    
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa VGA khỏi danh sách?");
     if (confirmDelete) {
-        // Xóa VGA khỏi danh sách
+        
         buttonvga.style.display = 'block';
         var existingVgaIndex = selectedVga.findIndex(function (selectedVga) {
             return selectedVga.id === vgaId;
@@ -453,86 +647,108 @@ function deleteVga(vgaId) {
         if (existingVgaIndex !== -1) {
             selectedVga.splice(existingVgaIndex, 1);
 
-            // Hiển thị danh sách đã chọn và lưu vào Local Storage
+            
             displaySelectedVga();
             localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
         }
     }
 }
 
-//SSD---------------
+//SSD----------------------------------------
 function addSsd(ssdId) {
-    // Lấy thông tin sản phẩm từ trang
+    
     var ssdDiv = document.getElementById('ssd' + ssdId);
     var ssdName = ssdDiv.querySelector('.name-prdt').textContent;
     var ssdPrice = ssdDiv.querySelector('.price-prdt').textContent;
-
-    // Lấy đường dẫn hình ảnh
     var ssdImage = ssdDiv.querySelector('.img-fluid').src;
 
-    // Kiểm tra xem SSD đã tồn tại trong danh sách hay chưa
+    
     var existingSsdIndex = selectedSsd.findIndex(function (selectedSsd) {
         return selectedSsd.id === ssdId;
     });
 
-    // Nếu SSD đã tồn tại trong danh sách, thông báo và không thực hiện thêm
+    
     if (existingSsdIndex !== -1) {
-        window.alert("SSD đã chọn rồi!");
-        return;
+        selectedSsd[existingSsdIndex].quantity++;
+    } else {
+        
+        var ssdComponent = {
+            id: ssdId,
+            name: ssdName,
+            price: ssdPrice,
+            image: ssdImage,
+            quantity: 1
+        };
+        selectedSsd.push(ssdComponent);
     }
 
-    // Thêm SSD mới vào danh sách
-    var ssd = {
-        id: ssdId,
-        name: ssdName,
-        price: ssdPrice,
-        image: ssdImage
-    };
-    selectedSsd.push(ssd);
-
-    // Hiển thị danh sách đã chọn và lưu vào Local Storage
+    
     displaySelectedSsd();
     localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
+
     $('#ssd').modal('hide');
 }
 
 function displaySelectedSsd() {
     var selectedSsdList = document.getElementById('selectedSsd');
-    selectedSsdList.innerHTML = ''; // Xóa nội dung cũ
+    selectedSsdList.innerHTML = ''; 
     lengthPrd = selectedSsd.length;
-     if(lengthPrd >=1){
+    if (lengthPrd >= 1) {
         buttonssd.style.display = 'none';
     }
+
     
-    // Hiển thị danh sách đã chọn
-    selectedSsd.forEach(function (ssd) {
+    selectedSsd.forEach(function (ssdComponent) {
         var listItem = document.createElement('li');
 
-        // Tạo phần tử hình ảnh
+        
         var image = document.createElement('img');
-        image.src = ssd.image;
-        image.alt = ssd.name;
-        image.style.maxWidth = '90px'; // Điều chỉnh kích thước hình ảnh tùy ý
+        image.src = ssdComponent.image;
+        image.alt = ssdComponent.name;
+        image.style.maxWidth = '90px'; 
         listItem.appendChild(image);
 
-        // Tạo phần tử đoạn văn thứ nhất
+        
         var paragraph1 = document.createElement('p');
-        paragraph1.textContent = ssd.name;
+        paragraph1.textContent = ssdComponent.name;
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
-        // Tạo phần tử đoạn văn thứ hai
+        
         var paragraph2 = document.createElement('p');
-        paragraph2.textContent = ssd.price;
+        paragraph2.innerHTML = `Giá: ${ssdComponent.price}</span>`;
         paragraph2.className = 'price-prdt';
         listItem.appendChild(paragraph2);
 
-        // Tạo nút xóa với biểu tượng (icon)
+        
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseSsdQuantity(ssdComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+        
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${ssdComponent.id}">${ssdComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseSsdQuantity(ssdComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        
         var deleteButton = document.createElement('button');
         deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
         deleteButton.className = 'delete-button';
         deleteButton.onclick = function () {
-            deleteSsd(ssd.id);
+            deleteSsd(ssdComponent.id);
         };
         listItem.appendChild(deleteButton);
 
@@ -540,11 +756,37 @@ function displaySelectedSsd() {
     });
 }
 
+function increaseSsdQuantity(ssdId) {
+    
+    var existingSsdIndex = selectedSsd.findIndex(function (ssdComponent) {
+        return ssdComponent.id === ssdId;
+    });
+
+    if (existingSsdIndex !== -1) {
+        selectedSsd[existingSsdIndex].quantity++;
+        displaySelectedSsd();
+        localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
+    }
+}
+
+function decreaseSsdQuantity(ssdId) {
+    
+    var existingSsdIndex = selectedSsd.findIndex(function (ssdComponent) {
+        return ssdComponent.id === ssdId;
+    });
+
+    if (existingSsdIndex !== -1 && selectedSsd[existingSsdIndex].quantity > 1) {
+        selectedSsd[existingSsdIndex].quantity--;
+        displaySelectedSsd();
+        localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
+    }
+}
+
 function deleteSsd(ssdId) {
-    // Xác nhận xóa SSD
+    
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa SSD khỏi danh sách?");
     if (confirmDelete) {
-        // Xóa SSD khỏi danh sách
+        
         buttonssd.style.display = 'block';
         var existingSsdIndex = selectedSsd.findIndex(function (selectedSsd) {
             return selectedSsd.id === ssdId;
@@ -553,7 +795,7 @@ function deleteSsd(ssdId) {
         if (existingSsdIndex !== -1) {
             selectedSsd.splice(existingSsdIndex, 1);
 
-            // Hiển thị danh sách đã chọn và lưu vào Local Storage
+            
             displaySelectedSsd();
             localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
         }
@@ -561,37 +803,36 @@ function deleteSsd(ssdId) {
 }
 
 
-//PSU---------------------------------------
+//PSU----------------------------------------
+
 function addPsu(psuId) {
-    // Lấy thông tin sản phẩm từ trang
+    
     var psuDiv = document.getElementById('psu' + psuId);
     var psuName = psuDiv.querySelector('.name-prdt').textContent;
     var psuPrice = psuDiv.querySelector('.price-prdt').textContent;
-
-    // Lấy đường dẫn hình ảnh
     var psuImage = psuDiv.querySelector('.img-fluid').src;
 
-    // Kiểm tra xem PSU đã tồn tại trong danh sách hay chưa
+    
     var existingPsuIndex = selectedPsu.findIndex(function (selectedPsu) {
         return selectedPsu.id === psuId;
     });
 
-    // Nếu PSU đã tồn tại trong danh sách, thông báo và không thực hiện thêm
+    
     if (existingPsuIndex !== -1) {
-        window.alert("PSU đã chọn rồi!");
-        return;
+        selectedPsu[existingPsuIndex].quantity++;
+    } else {
+        
+        var psuComponent = {
+            id: psuId,
+            name: psuName,
+            price: psuPrice,
+            image: psuImage,
+            quantity: 1
+        };
+        selectedPsu.push(psuComponent);
     }
 
-    // Thêm PSU mới vào danh sách
-    var psu = {
-        id: psuId,
-        name: psuName,
-        price: psuPrice,
-        image: psuImage
-    };
-    selectedPsu.push(psu);
-
-    // Hiển thị danh sách đã chọn và lưu vào Local Storage
+    
     displaySelectedPsu();
     localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
 
@@ -600,40 +841,62 @@ function addPsu(psuId) {
 
 function displaySelectedPsu() {
     var selectedPsuList = document.getElementById('selectedPsu');
-    selectedPsuList.innerHTML = ''; // Xóa nội dung cũ
+    selectedPsuList.innerHTML = ''; 
     lengthPrd = selectedPsu.length;
-     if(lengthPrd >=1){
+    if (lengthPrd >= 1) {
         buttonpsu.style.display = 'none';
     }
-    // Hiển thị danh sách đã chọn
-    selectedPsu.forEach(function (psu) {
+    
+    selectedPsu.forEach(function (psuComponent) {
         var listItem = document.createElement('li');
 
-        // Tạo phần tử hình ảnh
+        
         var image = document.createElement('img');
-        image.src = psu.image;
-        image.alt = psu.name;
-        image.style.maxWidth = '90px'; // Điều chỉnh kích thước hình ảnh tùy ý
+        image.src = psuComponent.image;
+        image.alt = psuComponent.name;
+        image.style.maxWidth = '90px'; 
         listItem.appendChild(image);
 
-        // Tạo phần tử đoạn văn thứ nhất
+        
         var paragraph1 = document.createElement('p');
-        paragraph1.textContent = psu.name;
+        paragraph1.textContent = psuComponent.name;
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
-        // Tạo phần tử đoạn văn thứ hai
+        
         var paragraph2 = document.createElement('p');
-        paragraph2.textContent = psu.price;
+        paragraph2.innerHTML = `Giá: ${psuComponent.price}</span>`;
         paragraph2.className = 'price-prdt';
         listItem.appendChild(paragraph2);
 
-        // Tạo nút xóa với biểu tượng (icon)
+        
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreasePsuQuantity(psuComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+        
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${psuComponent.id}">${psuComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increasePsuQuantity(psuComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+        
         var deleteButton = document.createElement('button');
         deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
         deleteButton.className = 'delete-button';
         deleteButton.onclick = function () {
-            deletePsu(psu.id);
+            deletePsu(psuComponent.id);
         };
         listItem.appendChild(deleteButton);
 
@@ -641,57 +904,62 @@ function displaySelectedPsu() {
     });
 }
 
-function deletePsu(psuId) {
-    // Xác nhận xóa PSU
-    var confirmDelete = window.confirm("Bạn có chắc muốn xóa PSU khỏi danh sách?");
-    if (confirmDelete) {
-        // Xóa PSU khỏi danh sách
-        buttonpsu.style.display = 'block';
-        var existingPsuIndex = selectedPsu.findIndex(function (selectedPsu) {
-            return selectedPsu.id === psuId;
-        });
+function increasePsuQuantity(psuId) {
+    
+    var existingPsuIndex = selectedPsu.findIndex(function (psuComponent) {
+        return psuComponent.id === psuId;
+    });
 
-        if (existingPsuIndex !== -1) {
-            selectedPsu.splice(existingPsuIndex, 1);
-
-            // Hiển thị danh sách đã chọn và lưu vào Local Storage
-            displaySelectedPsu();
-            localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
-        }
+    if (existingPsuIndex !== -1) {
+        selectedPsu[existingPsuIndex].quantity++;
+        displaySelectedPsu();
+        localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
     }
 }
 
-//CASE--------------------------------------------
+function decreasePsuQuantity(psuId) {
+    
+    var existingPsuIndex = selectedPsu.findIndex(function (psuComponent) {
+        return psuComponent.id === psuId;
+    });
 
+    if (existingPsuIndex !== -1 && selectedPsu[existingPsuIndex].quantity > 1) {
+        selectedPsu[existingPsuIndex].quantity--;
+        displaySelectedPsu();
+        localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
+    }
+}
+
+//CASE----------------------------------------
 
 function addVo(voId) {
-    // Get information about the selected Vo component from the page
+    
     var voDiv = document.getElementById('vo' + voId);
     var voName = voDiv.querySelector('.name-prdt').textContent;
     var voPrice = voDiv.querySelector('.price-prdt').textContent;
     var voImage = voDiv.querySelector('.img-fluid').src;
 
-    // Check if the Vo component is already in the selected list
+    
     var existingVoIndex = selectedVo.findIndex(function (selectedVo) {
         return selectedVo.id === voId;
     });
 
-    // If the Vo component is already in the list, show an alert and do not add it again
+    
     if (existingVoIndex !== -1) {
-        window.alert("Vo đã chọn rồi!");
-        return;
+        selectedVo[existingVoIndex].quantity++;
+    } else {
+        
+        var selectedVoComponent = {
+            id: voId,
+            name: voName,
+            price: voPrice,
+            image: voImage,
+            quantity: 1
+        };
+        selectedVo.push(selectedVoComponent);
     }
 
-    // Add the selected Vo component to the list
-    var selectedVoComponent = {
-        id: voId,
-        name: voName,
-        price: voPrice,
-        image: voImage
-    };
-    selectedVo.push(selectedVoComponent);
-
-    // Display the selected Vo components and save to Local Storage
+    
     displaySelectedVo();
     localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
 
@@ -700,35 +968,59 @@ function addVo(voId) {
 
 function displaySelectedVo() {
     var selectedVoList = document.getElementById('selectedVo');
-    selectedVoList.innerHTML = ''; // Clear the old content
+    selectedVoList.innerHTML = ''; 
     lengthPrd = selectedVo.length;
-     if(lengthPrd >=1){
-        buttonvo.style.display = 'none';
-    }
-    // Display the selected Vo components
+    if(lengthPrd >=1){
+       buttonvo.style.display = 'none';
+   }
+    
     selectedVo.forEach(function (selectedVoComponent) {
         var listItem = document.createElement('li');
 
-        // Create the image element
+        
         var image = document.createElement('img');
         image.src = selectedVoComponent.image;
         image.alt = selectedVoComponent.name;
-        image.style.maxWidth = '90px'; // Adjust image size as needed
+        image.style.maxWidth = '90px'; 
         listItem.appendChild(image);
 
-        // Create the first paragraph element
+        
         var paragraph1 = document.createElement('p');
         paragraph1.textContent = selectedVoComponent.name;
         paragraph1.className = 'name-prdt';
         listItem.appendChild(paragraph1);
 
-        // Create the second paragraph element
+        
         var paragraph2 = document.createElement('p');
-        paragraph2.textContent = selectedVoComponent.price;
+        paragraph2.innerHTML = `Giá: ${selectedVoComponent.price}</span>`;
         paragraph2.className = 'price-prdt';
         listItem.appendChild(paragraph2);
 
-        // Create the delete button with the trash icon
+
+
+        
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseQuantity(selectedVoComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+                
+                var paragraph3 = document.createElement('p');
+                paragraph3.innerHTML = `<span id="quantity${selectedVoComponent.id}">${selectedVoComponent.quantity}`;
+                paragraph3.className = 'd-in-bl';
+                listItem.appendChild(paragraph3);
+        
+        
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseQuantity(selectedVoComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+        
         var deleteButton = document.createElement('button');
         deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
         deleteButton.className = 'delete-button';
@@ -741,22 +1033,558 @@ function displaySelectedVo() {
     });
 }
 
-function deleteVo(voId) {
-    // Confirm the deletion of the Vo component
-    var confirmDelete = window.confirm("Bạn có chắc muốn xóa Vo khỏi danh sách?");
+function increaseQuantity(voId) {
+    
+    var existingVoIndex = selectedVo.findIndex(function (selectedVoComponent) {
+        return selectedVoComponent.id === voId;
+    });
+
+    if (existingVoIndex !== -1) {
+        selectedVo[existingVoIndex].quantity++;
+        displaySelectedVo();
+        localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
+    }
+}
+
+function decreaseQuantity(voId) {
+    
+    var existingVoIndex = selectedVo.findIndex(function (selectedVoComponent) {
+        return selectedVoComponent.id === voId;
+    });
+
+    if (existingVoIndex !== -1 && selectedVo[existingVoIndex].quantity > 1) {
+        selectedVo[existingVoIndex].quantity--;
+        displaySelectedVo();
+        localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
+    }
+}
+
+
+
+//TAN NHIET-------------------------------------------
+function addTannhiet(tannhietId) {
+    var tannhietDiv = document.getElementById('tannhiet' + tannhietId);
+    var tannhietName = tannhietDiv.querySelector('.name-prdt').textContent;
+    var tannhietPrice = tannhietDiv.querySelector('.price-prdt').textContent;
+    var tannhietImage = tannhietDiv.querySelector('.img-fluid').src;
+
+    var existingTannhietIndex = selectedTannhiet.findIndex(function (selectedTannhiet) {
+        return selectedTannhiet.id === tannhietId;
+    });
+
+    if (existingTannhietIndex !== -1) {
+        selectedTannhiet[existingTannhietIndex].quantity++;
+    } else {
+        var tannhietComponent = {
+            id: tannhietId,
+            name: tannhietName,
+            price: tannhietPrice,
+            image: tannhietImage,
+            quantity: 1
+        };
+        selectedTannhiet.push(tannhietComponent);
+    }
+
+    displaySelectedTannhiet();
+    localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
+
+    $('#tannhiet').modal('hide');
+}
+
+function displaySelectedTannhiet() {
+    var selectedTannhietList = document.getElementById('selectedTannhiet');
+    selectedTannhietList.innerHTML = ''; 
+    lengthPrd = selectedTannhiet.length;
+    if (lengthPrd >= 1) {
+        buttontannhiet.style.display = 'none';
+    }
+
+    selectedTannhiet.forEach(function (tannhietComponent) {
+        var listItem = document.createElement('li');
+
+        var image = document.createElement('img');
+        image.src = tannhietComponent.image;
+        image.alt = tannhietComponent.name;
+        image.style.maxWidth = '90px'; 
+        listItem.appendChild(image);
+
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = tannhietComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `Giá: ${tannhietComponent.price}</span>`;
+        paragraph2.className = 'price-prdt';
+        listItem.appendChild(paragraph2);
+
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseTannhietQuantity(tannhietComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${tannhietComponent.id}">${tannhietComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseTannhietQuantity(tannhietComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteTannhiet(tannhietComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedTannhietList.appendChild(listItem);
+    });
+}
+
+function increaseTannhietQuantity(tannhietId) {
+    var existingTannhietIndex = selectedTannhiet.findIndex(function (tannhietComponent) {
+        return tannhietComponent.id === tannhietId;
+    });
+
+    if (existingTannhietIndex !== -1) {
+        selectedTannhiet[existingTannhietIndex].quantity++;
+        displaySelectedTannhiet();
+        localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
+    }
+}
+
+function decreaseTannhietQuantity(tannhietId) {
+    var existingTannhietIndex = selectedTannhiet.findIndex(function (tannhietComponent) {
+        return tannhietComponent.id === tannhietId;
+    });
+
+    if (existingTannhietIndex !== -1 && selectedTannhiet[existingTannhietIndex].quantity > 1) {
+        selectedTannhiet[existingTannhietIndex].quantity--;
+        displaySelectedTannhiet();
+        localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
+    }
+}
+
+function deleteTannhiet(tannhietId) {
+    var confirmDelete = window.confirm("Bạn có chắc muốn xóa Tannhiet khỏi danh sách?");
     if (confirmDelete) {
-        // Delete the Vo component from the list
-        buttonvo.style.display = 'block';
-        var existingVoIndex = selectedVo.findIndex(function (selectedVoComponent) {
-            return selectedVoComponent.id === voId;
+        buttontannhiet.style.display = 'block';
+        var existingTannhietIndex = selectedTannhiet.findIndex(function (selectedTannhiet) {
+            return selectedTannhiet.id === tannhietId;
         });
 
-        if (existingVoIndex !== -1) {
-            selectedVo.splice(existingVoIndex, 1);
+        if (existingTannhietIndex !== -1) {
+            selectedTannhiet.splice(existingTannhietIndex, 1);
 
-            // Display the selected Vo components and save to Local Storage
-            displaySelectedVo();
-            localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
+            displaySelectedTannhiet();
+            localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
+        }
+    }
+}
+
+
+//MONITTOR-----------------------------------------
+
+
+function addManhinh(manhinhId) {
+    var manhinhDiv = document.getElementById('manhinh' + manhinhId);
+    var manhinhName = manhinhDiv.querySelector('.name-prdt').textContent;
+    var manhinhPrice = manhinhDiv.querySelector('.price-prdt').textContent;
+    var manhinhImage = manhinhDiv.querySelector('.img-fluid').src;
+
+    var existingManhinhIndex = selectedManhinh.findIndex(function (selectedManhinh) {
+        return selectedManhinh.id === manhinhId;
+    });
+
+    if (existingManhinhIndex !== -1) {
+        selectedManhinh[existingManhinhIndex].quantity++;
+    } else {
+        var manhinhComponent = {
+            id: manhinhId,
+            name: manhinhName,
+            price: manhinhPrice,
+            image: manhinhImage,
+            quantity: 1
+        };
+        selectedManhinh.push(manhinhComponent);
+    }
+
+    displaySelectedManhinh();
+    localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
+
+    $('#monitor').modal('hide');
+}
+
+function displaySelectedManhinh() {
+    var selectedManhinhList = document.getElementById('selectedManhinh');
+    selectedManhinhList.innerHTML = '';
+    lengthPrd = selectedManhinh.length;
+    if (lengthPrd >= 1) {
+        buttonmonitor.style.display = 'none';
+    }
+
+    selectedManhinh.forEach(function (manhinhComponent) {
+        var listItem = document.createElement('li');
+
+        var image = document.createElement('img');
+        image.src = manhinhComponent.image;
+        image.alt = manhinhComponent.name;
+        image.style.maxWidth = '90px'; 
+        listItem.appendChild(image);
+
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = manhinhComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `Giá: ${manhinhComponent.price}</span>`;
+        paragraph2.className = 'price-prdt';
+        listItem.appendChild(paragraph2);
+
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseManhinhQuantity(manhinhComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${manhinhComponent.id}">${manhinhComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseManhinhQuantity(manhinhComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteManhinh(manhinhComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedManhinhList.appendChild(listItem);
+    });
+}
+
+function increaseManhinhQuantity(manhinhId) {
+    var existingManhinhIndex = selectedManhinh.findIndex(function (manhinhComponent) {
+        return manhinhComponent.id === manhinhId;
+    });
+
+    if (existingManhinhIndex !== -1) {
+        selectedManhinh[existingManhinhIndex].quantity++;
+        displaySelectedManhinh();
+        localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
+    }
+}
+
+function decreaseManhinhQuantity(manhinhId) {
+    var existingManhinhIndex = selectedManhinh.findIndex(function (manhinhComponent) {
+        return manhinhComponent.id === manhinhId;
+    });
+
+    if (existingManhinhIndex !== -1 && selectedManhinh[existingManhinhIndex].quantity > 1) {
+        selectedManhinh[existingManhinhIndex].quantity--;
+        displaySelectedManhinh();
+        localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
+    }
+}
+
+function deleteManhinh(manhinhId) {
+    var confirmDelete = window.confirm("Bạn có chắc muốn xóa Màn hình khỏi danh sách?");
+    if (confirmDelete) {
+        buttonmonitor.style.display = 'block';
+        var existingManhinhIndex = selectedManhinh.findIndex(function (selectedManhinh) {
+            return selectedManhinh.id === manhinhId;
+        });
+
+        if (existingManhinhIndex !== -1) {
+            selectedManhinh.splice(existingManhinhIndex, 1);
+
+            displaySelectedManhinh();
+            localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
+        }
+    }
+}
+
+//MOUSE-----------------------------------------
+function addChuot(chuotId) {
+    var chuotDiv = document.getElementById('chuot' + chuotId);
+    var chuotName = chuotDiv.querySelector('.name-prdt').textContent;
+    var chuotPrice = chuotDiv.querySelector('.price-prdt').textContent;
+    var chuotImage = chuotDiv.querySelector('.img-fluid').src;
+
+    var existingChuotIndex = selectedChuot.findIndex(function (selectedChuot) {
+        return selectedChuot.id === chuotId;
+    });
+
+    if (existingChuotIndex !== -1) {
+        selectedChuot[existingChuotIndex].quantity++;
+    } else {
+        var chuotComponent = {
+            id: chuotId,
+            name: chuotName,
+            price: chuotPrice,
+            image: chuotImage,
+            quantity: 1
+        };
+        selectedChuot.push(chuotComponent);
+    }
+
+    displaySelectedChuot();
+    localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
+
+     $('#mouse').modal('hide');
+}
+
+function displaySelectedChuot() {
+    var selectedChuotList = document.getElementById('selectedChuot');
+    selectedChuotList.innerHTML = '';
+    lengthPrd = selectedChuot.length;
+    if (lengthPrd >= 1) {
+        buttonmouse.style.display = 'none';
+    }
+
+    selectedChuot.forEach(function (chuotComponent) {
+        var listItem = document.createElement('li');
+
+        var image = document.createElement('img');
+        image.src = chuotComponent.image;
+        image.alt = chuotComponent.name;
+        image.style.maxWidth = '90px'; 
+        listItem.appendChild(image);
+
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = chuotComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `Giá: ${chuotComponent.price}</span>`;
+        paragraph2.className = 'price-prdt';
+        listItem.appendChild(paragraph2);
+
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseChuotQuantity(chuotComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${chuotComponent.id}">${chuotComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseChuotQuantity(chuotComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteChuot(chuotComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedChuotList.appendChild(listItem);
+    });
+}
+
+function increaseChuotQuantity(chuotId) {
+    var existingChuotIndex = selectedChuot.findIndex(function (chuotComponent) {
+        return chuotComponent.id === chuotId;
+    });
+
+    if (existingChuotIndex !== -1) {
+        selectedChuot[existingChuotIndex].quantity++;
+        displaySelectedChuot();
+        localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
+    }
+}
+
+function decreaseChuotQuantity(chuotId) {
+    var existingChuotIndex = selectedChuot.findIndex(function (chuotComponent) {
+        return chuotComponent.id === chuotId;
+    });
+
+    if (existingChuotIndex !== -1 && selectedChuot[existingChuotIndex].quantity > 1) {
+        selectedChuot[existingChuotIndex].quantity--;
+        displaySelectedChuot();
+        localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
+    }
+}
+
+function deleteChuot(chuotId) {
+    var confirmDelete = window.confirm("Bạn có chắc muốn xóa Chuột khỏi danh sách?");
+    if (confirmDelete) {
+        buttonmouse.style.display = 'block';
+        var existingChuotIndex = selectedChuot.findIndex(function (selectedChuot) {
+            return selectedChuot.id === chuotId;
+        });
+
+        if (existingChuotIndex !== -1) {
+            selectedChuot.splice(existingChuotIndex, 1);
+
+            displaySelectedChuot();
+            localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
+        }
+    }
+}
+
+
+//KEYBOARD------------------------------------
+function addPhim(phimId) {
+    var phimDiv = document.getElementById('phim' + phimId);
+    var phimName = phimDiv.querySelector('.name-prdt').textContent;
+    var phimPrice = phimDiv.querySelector('.price-prdt').textContent;
+    var phimImage = phimDiv.querySelector('.img-fluid').src;
+
+    var existingPhimIndex = selectedPhim.findIndex(function (selectedPhim) {
+        return selectedPhim.id === phimId;
+    });
+
+    if (existingPhimIndex !== -1) {
+        selectedPhim[existingPhimIndex].quantity++;
+    } else {
+        var phimComponent = {
+            id: phimId,
+            name: phimName,
+            price: phimPrice,
+            image: phimImage,
+            quantity: 1
+        };
+        selectedPhim.push(phimComponent);
+    }
+
+    displaySelectedPhim();
+    localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
+
+     $('#keyboard').modal('hide');
+}
+
+function displaySelectedPhim() {
+    var selectedPhimList = document.getElementById('selectedPhim');
+    selectedPhimList.innerHTML = '';
+    lengthPrd = selectedPhim.length;
+    if (lengthPrd >= 1) {
+        buttonkeyboard.style.display = 'none';
+    }
+
+    selectedPhim.forEach(function (phimComponent) {
+        var listItem = document.createElement('li');
+
+        var image = document.createElement('img');
+        image.src = phimComponent.image;
+        image.alt = phimComponent.name;
+        image.style.maxWidth = '90px'; 
+        listItem.appendChild(image);
+
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = phimComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `Giá: ${phimComponent.price}</span>`;
+        paragraph2.className = 'price-prdt';
+        listItem.appendChild(paragraph2);
+
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreasePhimQuantity(phimComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${phimComponent.id}">${phimComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increasePhimQuantity(phimComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deletePhim(phimComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedPhimList.appendChild(listItem);
+    });
+}
+
+function increasePhimQuantity(phimId) {
+    var existingPhimIndex = selectedPhim.findIndex(function (phimComponent) {
+        return phimComponent.id === phimId;
+    });
+
+    if (existingPhimIndex !== -1) {
+        selectedPhim[existingPhimIndex].quantity++;
+        displaySelectedPhim();
+        localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
+    }
+}
+
+function decreasePhimQuantity(phimId) {
+    var existingPhimIndex = selectedPhim.findIndex(function (phimComponent) {
+        return phimComponent.id === phimId;
+    });
+
+    if (existingPhimIndex !== -1 && selectedPhim[existingPhimIndex].quantity > 1) {
+        selectedPhim[existingPhimIndex].quantity--;
+        displaySelectedPhim();
+        localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
+    }
+}
+
+function deletePhim(phimId) {
+    var confirmDelete = window.confirm("Bạn có chắc muốn xóa Phím khỏi danh sách?");
+    if (confirmDelete) {
+        buttonkeyboard.style.display = 'block';
+        var existingPhimIndex = selectedPhim.findIndex(function (selectedPhim) {
+            return selectedPhim.id === phimId;
+        });
+
+        if (existingPhimIndex !== -1) {
+            selectedPhim.splice(existingPhimIndex, 1);
+
+            displaySelectedPhim();
+            localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
         }
     }
 }
