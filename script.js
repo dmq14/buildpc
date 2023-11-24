@@ -78,7 +78,50 @@ window.onload = function () {
   
 };
 
+function deleteAll() {
+    var confirmDelete = window.confirm("Bạn có chắc muốn xóa tất cả các linh kiện đã chọn?");
+    if (confirmDelete) {
 
+
+        displaySelectedTannhiet();
+        displaySelectedManhinh();
+        displaySelectedChuot();
+        displaySelectedPhim();
+        displaySelectedPsu();
+        displaySelectedVo();
+        displaySelectedRam();
+        displaySelectedMain();
+        displaySelectedCpus();
+        displaySelectedSsd();
+        displaySelectedVga();
+
+        localStorage.removeItem('selectedTannhiet');
+        localStorage.removeItem('selectedManhinh');
+        localStorage.removeItem('selectedChuot');
+        localStorage.removeItem('selectedPhim');
+        localStorage.removeItem('selectedPsu');
+        localStorage.removeItem('selectedVo');
+        localStorage.removeItem('selectedRam');
+        localStorage.removeItem('selectedMain');
+        localStorage.removeItem('selectedCpus');
+        localStorage.removeItem('selectedSsd');
+        localStorage.removeItem('selectedVga');
+        
+        buttontannhiet.style.display = 'block';
+        buttonmonitor.style.display = 'block';
+        buttonmouse.style.display = 'block';
+        buttonkeyboard.style.display = 'block';
+        buttonpsu.style.display = 'block';
+        buttonvo.style.display = 'block';
+        buttonram.style.display = 'block';
+        buttonmain.style.display = 'block';
+        buttoncpu.style.display = 'block';
+        buttonssd.style.display = 'block';
+        buttonvga.style.display = 'block';
+        
+        location.reload();
+    }
+}
 //CPU----------------------------------------
 function addCpu(cpuId) {
     var cpuDiv = document.getElementById('cpu' + cpuId);
