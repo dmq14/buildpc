@@ -58,7 +58,7 @@
       </div>
     </div>
   </div>
-    <h2 class="text-center mb-3"> XÂY DỰNG CẤU HÌNH PC THEO MONG MUỐN CỦA BẠN! </h2>
+    <h2 class="container text-center mb-3"> XÂY DỰNG CẤU HÌNH PC THEO MONG MUỐN CỦA BẠN! </h2>
     <div class="container mb-5">
 
       <div class="row">
@@ -109,17 +109,27 @@
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row" class="title-prd">5. Ổ CỨNG - SSD - HDD</th>
+                    <th scope="row" class="title-prd">5. Ổ CỨNG - SSD</th>
                     <td>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ssd"id="buttonssd">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                            Chọn Ổ cứng - SSD - HDD
+                            Chọn Ổ cứng - SSD
                         </button>
                         <div id="selectedSsd" style="list-style-type: none;"></div>
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row" class="title-prd">6. PSU - NGUỒN MÁY TÍNH</th>
+                    <th scope="row" class="title-prd">6. Ổ CỨNG - HDD</th>
+                    <td>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#hdd"id="buttonhdd">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn Ổ cứng - HDD
+                        </button>
+                        <div id="selectedHdd" style="list-style-type: none;"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="title-prd">7. PSU - NGUỒN MÁY TÍNH</th>
                     <td>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#psu"id="buttonpsu">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -129,7 +139,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row" class="title-prd">7. CASE - VỎ MÁY TÍNH</th>
+                    <th scope="row" class="title-prd">8. CASE - VỎ MÁY TÍNH</th>
                     <td>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#vo"id="buttonvo">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -139,7 +149,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row" class="title-prd">8. TẢN NHIỆT</th>
+                    <th scope="row" class="title-prd">9. TẢN NHIỆT</th>
                     <td>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#tannhiet"id="buttontannhiet">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -149,7 +159,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row" class="title-prd">9. MONITOR - MÀN HÌNH</th>
+                    <th scope="row" class="title-prd">10. MONITOR - MÀN HÌNH</th>
                     <td>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#monitor"id="buttonmonitor">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -159,7 +169,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row" class="title-prd">10. MOUSE - CHUỘT</th>
+                    <th scope="row" class="title-prd">11. MOUSE - CHUỘT</th>
                     <td>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#mouse"id="buttonmouse">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -169,7 +179,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row" class="title-prd">11. KEYBOARD - BÀN PHÍM</th>
+                    <th scope="row" class="title-prd">12. KEYBOARD - BÀN PHÍM</th>
                     <td>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#keyboard"id="buttonkeyboard">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -968,6 +978,10 @@
                             <h6 class="title-filter">Dung lượng</h6>
                             <label class="checkbox-fil">
                               <input type="checkbox" />
+                              <span class="value-filter">2GB</span>
+                            </label>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
                               <span class="value-filter">4GB<hệ/span>
                             </label>
                             <label class="checkbox-fil">
@@ -982,25 +996,19 @@
                                 <input type="checkbox" />
                                 <span class="value-filter">64GB</span>
                               </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">128GB</span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">256GB</span>
-                              </label>
+
+
                           </div>
                           <div class="brand-prdt mt-2">
-                            <h6 class="title-filter">Loại Ram</h6>
+                            <h6 class="title-filter">Dòng VGA</h6>
                             
                               <label class="checkbox-fil">
                                 <input type="checkbox" />
-                                <span class="value-filter">DDR4<hệ/span>
+                                <span class="value-filter">NVIDIA<hệ/span>
                               </label>
                               <label class="checkbox-fil">
                                 <input type="checkbox" />
-                                <span class="value-filter">DDR5</span>
+                                <span class="value-filter">AMD</span>
                               </label>
 
                           </div>
@@ -1087,7 +1095,7 @@
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ổ cứng - SSD - HDD</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Ổ cứng - SSD</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -1142,41 +1150,24 @@
                             <h6 class="title-filter">Dung lượng</h6>
                             <label class="checkbox-fil">
                               <input type="checkbox" />
-                              <span class="value-filter">4GB<hệ/span>
+                              <span class="value-filter">128GB<hệ/span>
                             </label>
                             <label class="checkbox-fil">
                               <input type="checkbox" />
-                              <span class="value-filter">8GB<hệ/span>
+                              <span class="value-filter">256GB<hệ/span>
                             </label>
                               <label class="checkbox-fil">
                                 <input type="checkbox" />
-                                <span class="value-filter">32GB<hệ/span>
+                                <span class="value-filter">512GB<hệ/span>
                               </label>
                               <label class="checkbox-fil">
                                 <input type="checkbox" />
-                                <span class="value-filter">64GB</span>
+                                <span class="value-filter">1TB</span>
                               </label>
                               <label class="checkbox-fil">
                                 <input type="checkbox" />
-                                <span class="value-filter">128GB</span>
+                                <span class="value-filter">Trên 1TB</span>
                               </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">256GB</span>
-                              </label>
-                          </div>
-                          <div class="brand-prdt mt-2">
-                            <h6 class="title-filter">Loại Ram</h6>
-                            
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">DDR4<hệ/span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">DDR5</span>
-                              </label>
-
                           </div>
                         </div>
                     </div>
@@ -1255,7 +1246,165 @@
         </div>
       </div>
     </div>
-    <!-- end popup ssd -->      
+    <!-- end popup ssd -->    
+    <!-- popup hdd -->
+    <div class="modal fade" id="hdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ổ cứng - HDD</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body bg-light">
+            <div class="container-fluid  mb-5 ">
+              <div class="row">
+                <div class="col-lg-4 col-sm-12 ">
+                  <nav class="navbar navbar-expand-lg navbar-dark">
+                    <button
+                      class="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#navHdd"
+                    >
+                                            <span class=""
+                        ><i
+                          class="fa fa-bars"
+                          aria-hidden="true"
+                          style="color: black"
+                        >  Tùy chọn</i
+                      > </span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navHdd">
+                        <div class="scroll-prdt">
+
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Khoảng giá</h6>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Dưới 1 triệu</span>
+                              </label>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">1 - 3 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">4 - 6 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">7 - 9 triệu</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Trên 10 triệu</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2 border-bottom">
+                            <h6 class="title-filter">Dung lượng</h6>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">128GB<hệ/span>
+                            </label>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">256GB<hệ/span>
+                            </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">512GB<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">1TB</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Trên 1TB</span>
+                              </label>
+                          </div>
+
+                        </div>
+                    </div>
+                  </nav>
+                </div>
+        
+                <div class="col-lg-8 col-sm-12">
+                  <div class="scroll-prdt" id="hddlist">
+                  <div class="prdt bg-white mb-2" id="hdd1">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/SDD/Samsung-980-pro/ssd-samsung-980-pro-1tb-1-_1659430295-1681101579.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class=" price-prdt">2.500.000đ</p>
+                        <div class="d-flex align-items-center">
+                          <p class="line-through me-2">20.000.000</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning btn-mobile-add" onclick="addHdd(1)">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="prdt bg-white mb-2"id="hdd2">
+                    <div class="row w-100">
+                      <div class="col-lg-2 col-4 ">
+                        <img
+                          class="img-fluid"
+                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/SDD/Samsung-980-pro/ssd-samsung-980-pro-1tb-1-_1659430295-1681101579.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-6 col-8 info-prdt">
+                        <p class="name-prdt">
+                          CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24 Luồng, 25M
+                          Cache, Raptor Lake)
+                        </p>
+                        <p class=" price-prdt">2.500.000đ</p>
+                        <div class="d-flex align-items-center">
+                          <p class="line-through me-2">20.000.000</p>
+                          <p class="percent float-left percent">-25%</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-12">
+                        <div class="center-div">
+                          <button type="button" class="btn btn-warning btn-mobile-add" onclick="addHdd(2)">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Chọn linh kiện
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- end popup hdd -->  
     <!-- popup psu -->
     <div class="modal fade" id="psu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -1311,46 +1460,6 @@
                                 <input type="checkbox" />
                                 <span class="value-filter">Trên 10 triệu</span>
                               </label>
-                          </div>
-                          <div class="brand-prdt mt-2 border-bottom">
-                            <h6 class="title-filter">Dung lượng</h6>
-                            <label class="checkbox-fil">
-                              <input type="checkbox" />
-                              <span class="value-filter">4GB<hệ/span>
-                            </label>
-                            <label class="checkbox-fil">
-                              <input type="checkbox" />
-                              <span class="value-filter">8GB<hệ/span>
-                            </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">32GB<hệ/span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">64GB</span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">128GB</span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">256GB</span>
-                              </label>
-                          </div>
-                          <div class="brand-prdt mt-2">
-                            <h6 class="title-filter">Loại Ram</h6>
-                            
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">DDR4<hệ/span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">DDR5</span>
-                              </label>
-
                           </div>
                         </div>
                     </div>
@@ -1485,46 +1594,6 @@
                                 <input type="checkbox" />
                                 <span class="value-filter">Trên 10 triệu</span>
                               </label>
-                          </div>
-                          <div class="brand-prdt mt-2 border-bottom">
-                            <h6 class="title-filter">Dung lượng</h6>
-                            <label class="checkbox-fil">
-                              <input type="checkbox" />
-                              <span class="value-filter">4GB<hệ/span>
-                            </label>
-                            <label class="checkbox-fil">
-                              <input type="checkbox" />
-                              <span class="value-filter">8GB<hệ/span>
-                            </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">32GB<hệ/span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">64GB</span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">128GB</span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">256GB</span>
-                              </label>
-                          </div>
-                          <div class="brand-prdt mt-2">
-                            <h6 class="title-filter">Loại Ram</h6>
-                            
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">DDR4<hệ/span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">DDR5</span>
-                              </label>
-
                           </div>
                         </div>
                     </div>
@@ -1662,44 +1731,32 @@
                               </label>
                           </div>
                           <div class="brand-prdt mt-2 border-bottom">
-                            <h6 class="title-filter">Dung lượng</h6>
+                            <h6 class="title-filter">Loại tản nhiệt</h6>
                             <label class="checkbox-fil">
                               <input type="checkbox" />
-                              <span class="value-filter">4GB<hệ/span>
+                              <span class="value-filter">Tản nhiệt khí<hệ/span>
                             </label>
                             <label class="checkbox-fil">
                               <input type="checkbox" />
-                              <span class="value-filter">8GB<hệ/span>
+                              <span class="value-filter">Tản nhiệt nước<hệ/span>
                             </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">32GB<hệ/span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">64GB</span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">128GB</span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">256GB</span>
-                              </label>
+
                           </div>
                           <div class="brand-prdt mt-2">
-                            <h6 class="title-filter">Loại Ram</h6>
+                            <h6 class="title-filter">Số lượng quạt</h6>
                             
                               <label class="checkbox-fil">
                                 <input type="checkbox" />
-                                <span class="value-filter">DDR4<hệ/span>
+                                <span class="value-filter">1<hệ/span>
                               </label>
                               <label class="checkbox-fil">
                                 <input type="checkbox" />
-                                <span class="value-filter">DDR5</span>
+                                <span class="value-filter">2</span>
                               </label>
-
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">3</span>
+                              </label>
                           </div>
                         </div>
                     </div>
@@ -1837,42 +1894,104 @@
                               </label>
                           </div>
                           <div class="brand-prdt mt-2 border-bottom">
-                            <h6 class="title-filter">Dung lượng</h6>
+                            <h6 class="title-filter">Nhu cầu</h6>
                             <label class="checkbox-fil">
                               <input type="checkbox" />
-                              <span class="value-filter">4GB<hệ/span>
+                              <span class="value-filter">Học tập<hệ/span>
                             </label>
                             <label class="checkbox-fil">
                               <input type="checkbox" />
-                              <span class="value-filter">8GB<hệ/span>
+                              <span class="value-filter">Văn phòng<hệ/span>
                             </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">32GB<hệ/span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">64GB</span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">128GB</span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">256GB</span>
-                              </label>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">Đồ họa<hệ/span>
+                            </label>
+                            <label class="checkbox-fil">
+                              <input type="checkbox" />
+                              <span class="value-filter">Gaming<hệ/span>
+                            </label>
                           </div>
                           <div class="brand-prdt mt-2">
-                            <h6 class="title-filter">Loại Ram</h6>
+                            <h6 class="title-filter">Kiểu màn hình</h6>
                             
                               <label class="checkbox-fil">
                                 <input type="checkbox" />
-                                <span class="value-filter">DDR4<hệ/span>
+                                <span class="value-filter">Màn hình phẳng<hệ/span>
                               </label>
                               <label class="checkbox-fil">
                                 <input type="checkbox" />
-                                <span class="value-filter">DDR5</span>
+                                <span class="value-filter">Màn hình cong</span>
+                              </label>
+
+                          </div>
+                          <div class="brand-prdt mt-2">
+                            <h6 class="title-filter">Tần số quét</h6>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">60Hz<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">75Hz</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">100Hz</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">165Hz</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Trên 165Hz</span>
+                              </label>
+                          </div>
+                          <div class="brand-prdt mt-2">
+                            <h6 class="title-filter">Kích thước</h6>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Dưới 24 inch<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">24 inch</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">27 inch</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Trên 27 inch</span>
+                              </label>
+
+                          </div>
+                          <div class="brand-prdt mt-2">
+                            <h6 class="title-filter">Độ phân giải</h6>
+                            
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">HD<hệ/span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">Full HD</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">QHD</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">2K</span>
+                              </label>
+                              <label class="checkbox-fil">
+                                <input type="checkbox" />
+                                <span class="value-filter">4K</span>
                               </label>
 
                           </div>
@@ -2010,46 +2129,7 @@
                                 <span class="value-filter">Trên 10 triệu</span>
                               </label>
                           </div>
-                          <div class="brand-prdt mt-2 border-bottom">
-                            <h6 class="title-filter">Dung lượng</h6>
-                            <label class="checkbox-fil">
-                              <input type="checkbox" />
-                              <span class="value-filter">4GB<hệ/span>
-                            </label>
-                            <label class="checkbox-fil">
-                              <input type="checkbox" />
-                              <span class="value-filter">8GB<hệ/span>
-                            </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">32GB<hệ/span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">64GB</span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">128GB</span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">256GB</span>
-                              </label>
-                          </div>
-                          <div class="brand-prdt mt-2">
-                            <h6 class="title-filter">Loại Ram</h6>
-                            
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">DDR4<hệ/span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">DDR5</span>
-                              </label>
-
-                          </div>
+                          
                         </div>
                     </div>
                   </nav>
@@ -2184,46 +2264,7 @@
                                 <span class="value-filter">Trên 10 triệu</span>
                               </label>
                           </div>
-                          <div class="brand-prdt mt-2 border-bottom">
-                            <h6 class="title-filter">Dung lượng</h6>
-                            <label class="checkbox-fil">
-                              <input type="checkbox" />
-                              <span class="value-filter">4GB<hệ/span>
-                            </label>
-                            <label class="checkbox-fil">
-                              <input type="checkbox" />
-                              <span class="value-filter">8GB<hệ/span>
-                            </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">32GB<hệ/span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">64GB</span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">128GB</span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">256GB</span>
-                              </label>
-                          </div>
-                          <div class="brand-prdt mt-2">
-                            <h6 class="title-filter">Loại Ram</h6>
-                            
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">DDR4<hệ/span>
-                              </label>
-                              <label class="checkbox-fil">
-                                <input type="checkbox" />
-                                <span class="value-filter">DDR5</span>
-                              </label>
-
-                          </div>
+                         
                         </div>
                     </div>
                   </nav>

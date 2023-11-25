@@ -4,6 +4,7 @@ var selectedMain = [];
 var selectedRam = [];
 var selectedVga = [];
 var selectedSsd = [];
+var selectedHdd = [];
 var selectedPsu = [];
 var selectedVo = [];
 var selectedTannhiet = [];
@@ -23,6 +24,7 @@ window.onload = function () {
     var storedRam = localStorage.getItem('selectedRam');
     var storedVga = localStorage.getItem('selectedVga');
     var storedSsd = localStorage.getItem('selectedSsd');
+    var storedHdd = localStorage.getItem('selectedHdd');
     var storedPsu = localStorage.getItem('selectedPsu');
     var storedVo = localStorage.getItem('selectedVo');
     var storedTannhiet = localStorage.getItem('selectedTannhiet');
@@ -48,6 +50,10 @@ window.onload = function () {
     if (storedSsd) {
         selectedSsd = JSON.parse(storedSsd);
         displaySelectedSsd();
+    }
+    if (storedHdd) {
+        selectedHdd = JSON.parse(storedHdd);
+        displaySelectedHdd();
     }
     if (storedPsu) {
         selectedPsu = JSON.parse(storedPsu);
@@ -93,6 +99,7 @@ function deleteAll() {
         displaySelectedMain();
         displaySelectedCpus();
         displaySelectedSsd();
+        displaySelectedHdd();
         displaySelectedVga();
 
         localStorage.removeItem('selectedTannhiet');
@@ -105,6 +112,7 @@ function deleteAll() {
         localStorage.removeItem('selectedMain');
         localStorage.removeItem('selectedCpus');
         localStorage.removeItem('selectedSsd');
+        localStorage.removeItem('selectedHdd');
         localStorage.removeItem('selectedVga');
         
         buttontannhiet.style.display = 'block';
@@ -117,6 +125,7 @@ function deleteAll() {
         buttonmain.style.display = 'block';
         buttoncpu.style.display = 'block';
         buttonssd.style.display = 'block';
+        buttonhdd.style.display = 'block';
         buttonvga.style.display = 'block';
         
         location.reload();
@@ -895,7 +904,141 @@ function deleteSsd(ssdId) {
     }displayTotalSum();
 }
 
+//HDD-------------------------------------
+function addHdd(hddId) {
+    var hddDiv = document.getElementById('hdd' + hddId);
+    var hddName = hddDiv.querySelector('.name-prdt').textContent;
+    var hddPrice = hddDiv.querySelector('.price-prdt').textContent;
+    var hddImage = hddDiv.querySelector('.img-fluid').src;
 
+    var existingHddIndex = selectedHdd.findIndex(function (selectedHdd) {
+        return selectedHdd.id === hddId;
+    });
+
+    if (existingHddIndex !== -1) {
+        selectedHdd[existingHddIndex].quantity++;
+    } else {
+        var hddComponent = {
+            id: hddId,
+            name: hddName,
+            price: hddPrice,
+            image: hddImage,
+            quantity: 1
+        };
+        selectedHdd.push(hddComponent);
+    }
+
+    displaySelectedHdd();
+    localStorage.setItem('selectedHdd', JSON.stringify(selectedHdd));
+    displayTotalSum();
+    $('#hdd').modal('hide');
+}
+
+function displaySelectedHdd() {
+    var selectedHddList = document.getElementById('selectedHdd');
+    selectedHddList.innerHTML = '';
+    lengthPrd = selectedHdd.length;
+    if (lengthPrd >= 1) {
+        buttonhdd.style.display = 'none';
+    }
+    selectedHdd.forEach(function (hddComponent) {
+        var listItem = document.createElement('li');
+        var image = document.createElement('img');
+        image.src = hddComponent.image;
+        image.alt = hddComponent.name;
+        image.style.maxWidth = '90px';
+        listItem.appendChild(image);
+
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = hddComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        var hdd = parseFloat(hddComponent.price.replace(/[^\d]/g, ''));
+        var quanty = hdd * hddComponent.quantity;
+        var formattedHdd = quanty.toLocaleString({ style: 'currency', currency: 'VND' });
+        formattedHdd = formattedHdd.replace('$', '') + 'đ';
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedHdd}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseHddQuantity(hddComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${hddComponent.id}">${hddComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseHddQuantity(hddComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteHdd(hddComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedHddList.appendChild(listItem);
+    });
+}
+
+function increaseHddQuantity(hddId) {
+    var existingHddIndex = selectedHdd.findIndex(function (hddComponent) {
+        return hddComponent.id === hddId;
+    });
+
+    if (existingHddIndex !== -1) {
+        selectedHdd[existingHddIndex].quantity++;
+        displaySelectedHdd();
+        localStorage.setItem('selectedHdd', JSON.stringify(selectedHdd));
+    }
+    displayTotalSum();
+}
+
+function decreaseHddQuantity(hddId) {
+    var existingHddIndex = selectedHdd.findIndex(function (hddComponent) {
+        return hddComponent.id === hddId;
+    });
+
+    if (existingHddIndex !== -1 && selectedHdd[existingHddIndex].quantity > 1) {
+        selectedHdd[existingHddIndex].quantity--;
+        displaySelectedHdd();
+        localStorage.setItem('selectedHdd', JSON.stringify(selectedHdd));
+    }
+    displayTotalSum();
+}
+
+function deleteHdd(hddId) {
+    var confirmDelete = window.confirm("Bạn có chắc muốn xóa HDD khỏi danh sách?");
+    buttonhdd.style.display = 'block';
+    if (confirmDelete) {
+        var existingHddIndex = selectedHdd.findIndex(function (selectedHdd) {
+            return selectedHdd.id === hddId;
+        });
+
+        if (existingHddIndex !== -1) {
+            selectedHdd.splice(existingHddIndex, 1);
+            displaySelectedHdd();
+            localStorage.setItem('selectedHdd', JSON.stringify(selectedHdd));
+        }
+    }
+    displayTotalSum();
+}
 //PSU----------------------------------------
 
 function addPsu(psuId) {
@@ -1767,6 +1910,7 @@ function calculateTotalSum() {
     var totalRam = 0;
     var totalVga = 0;
     var totalSsd = 0;
+    var totalHdd = 0;
     var totalPsu = 0;
     var totalVo = 0;
     var totalTamnhiet = 0;
@@ -1794,6 +1938,10 @@ function calculateTotalSum() {
         var ssd = parseFloat(ssdComponent.price.replace(/[^\d]/g, ''));
         totalSsd += ssd * ssdComponent.quantity;
     });
+    selectedHdd.forEach(function (hddComponent) {
+        var hdd = parseFloat(hddComponent.price.replace(/[^\d]/g, ''));
+        totalHdd += hdd * hddComponent.quantity;
+    });
     selectedPsu.forEach(function (psuComponent) {
         var ssd = parseFloat(psuComponent.price.replace(/[^\d]/g, ''));
         totalPsu += ssd * psuComponent.quantity;
@@ -1818,7 +1966,7 @@ function calculateTotalSum() {
         var phim = parseFloat(phimComponent.price.replace(/[^\d]/g, ''));
         totalBanphim += phim * phimComponent.quantity;
     });
-    var total = totalCpu +totalMain+totalRam+totalVga+totalSsd+totalPsu+totalVo+totalTamnhiet+totalMh+totalChuot+totalBanphim;
+    var total = totalCpu +totalMain+totalRam+totalVga+totalSsd+totalPsu+totalVo+totalTamnhiet+totalMh+totalChuot+totalBanphim+totalHdd;
     return total;
 }
 
