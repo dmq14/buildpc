@@ -6,6 +6,8 @@
     <title>Build PC</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script> -->  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
@@ -64,8 +66,14 @@
       <div class="row">
 
       <div class="col-md-10">
-        <div class="scroll-prdt ">
-            <table class="table table-striped table-bordered">
+        <div class="scroll-prdt " id="content">
+            <table class="table table-striped table-bordered" id="tbl_exporttable_to_xls">
+              <thead>
+                <tr>
+                    <th>Tên</th>
+                    <th>Loại</th>
+                </tr>
+            </thead>
                 <tbody>
                   <tr>
                     <th scope="row" class="title-prd">1. CPU - BỘ VI XỬ LÝ</th>
@@ -204,12 +212,12 @@
             <button type="button" class="btn btn-info w-100 mb-1"><i class="fa fa-phone" aria-hidden="true"></i> Liên hệ tư vấn</button>
           </div>
           <div class="d-flex justify-content-center mt-1">
-            <button type="button" class="btn btn-secondary w-100 mb-1"><i class="fa fa-download" aria-hidden="true"></i> Tải cấu hình(PDF)</button>
+            <button type="button" class="btn btn-secondary w-100 mb-1" onclick="ExportToExcel('xlsx')"><i class="fa fa-download" aria-hidden="true" ></i>Tải cấu hình(PDF)</button>
+
           </div>
           <div class="d-flex justify-content-center mt-1">
             <button type="button" class="btn btn-danger w-100" onclick="deleteAll()"><i class="fa fa-trash" aria-hidden="true"></i> Xóa cấu hình</button>
           </div>
-
         </div>
       </div>
     </div>
@@ -355,7 +363,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/CPU/i7-13700k-1665035090.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178526000666132540/111.webp?ex=657676de&is=656401de&hm=9ae2c21bad84cb9387a77ed79ec993a634468aee6ec0aa4940b759e8c32e61f9&"
                           alt=""
                         />
                       </div>
@@ -385,7 +393,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/CPU/i7-13700k-1665035090.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178526000666132540/111.webp?ex=657676de&is=656401de&hm=9ae2c21bad84cb9387a77ed79ec993a634468aee6ec0aa4940b759e8c32e61f9&"
                           alt=""
                         />
                       </div>
@@ -415,7 +423,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/CPU/i7-13700k-1665035090.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178526000666132540/111.webp?ex=657676de&is=656401de&hm=9ae2c21bad84cb9387a77ed79ec993a634468aee6ec0aa4940b759e8c32e61f9&"
                           alt=""
                         />
                       </div>
@@ -445,7 +453,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/CPU/i7-13700k-1665035090.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178526000666132540/111.webp?ex=657676de&is=656401de&hm=9ae2c21bad84cb9387a77ed79ec993a634468aee6ec0aa4940b759e8c32e61f9&"
                           alt=""
                         />
                       </div>
@@ -475,7 +483,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/CPU/i7-13700k-1665035090.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178526000666132540/111.webp?ex=657676de&is=656401de&hm=9ae2c21bad84cb9387a77ed79ec993a634468aee6ec0aa4940b759e8c32e61f9&"
                           alt=""
                         />
                       </div>
@@ -647,7 +655,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/NewFolder/NewFolder/z590_Gigabyte_Khoa_Vang-1663995451.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525799771553792/z590_Gigabyte_Khoa_Vang-1663995451.webp?ex=657676ae&is=656401ae&hm=28f63a63af8435300e61e736d2bc0dac2ebca61a393d709af99bfa2986f736c1&"
                           alt=""
                         />
                       </div>
@@ -677,7 +685,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/NewFolder/NewFolder/z590_Gigabyte_Khoa_Vang-1663995451.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525799771553792/z590_Gigabyte_Khoa_Vang-1663995451.webp?ex=657676ae&is=656401ae&hm=28f63a63af8435300e61e736d2bc0dac2ebca61a393d709af99bfa2986f736c1&"
                           alt=""
                         />
                       </div>
@@ -707,7 +715,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/NewFolder/NewFolder/z590_Gigabyte_Khoa_Vang-1663995451.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525799771553792/z590_Gigabyte_Khoa_Vang-1663995451.webp?ex=657676ae&is=656401ae&hm=28f63a63af8435300e61e736d2bc0dac2ebca61a393d709af99bfa2986f736c1&"
                           alt=""
                         />
                       </div>
@@ -852,7 +860,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/1-1683273146.jpg"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525797355622530/3080Ti_khoavang_1-1664974577.jpg?ex=657676ae&is=656401ae&hm=1634f57d017cde6c0fc003ea5390cf2b6adc996ba31480eb24466e2901017be7&"
                           alt=""
                         />
                       </div>
@@ -882,7 +890,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/1-1683273146.jpg"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525797355622530/3080Ti_khoavang_1-1664974577.jpg?ex=657676ae&is=656401ae&hm=1634f57d017cde6c0fc003ea5390cf2b6adc996ba31480eb24466e2901017be7&"
                           alt=""
                         />
                       </div>
@@ -1024,7 +1032,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/Card/iGame%20GeForce%20RTX%203080%20Ti%20Advanced%20OC-V/3080Ti_khoavang_1-1664974577.jpg"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525798865567844/ssd-samsung-980-pro-1tb-1-_1659430295-1681101579_1.jpg?ex=657676ae&is=656401ae&hm=bc1a023c45d1f91777bf02b52c8bd88cf0e5a273cd1b40a0d3457b8ce37b3649&"
                           alt=""
                         />
                       </div>
@@ -1054,7 +1062,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/Card/iGame%20GeForce%20RTX%203080%20Ti%20Advanced%20OC-V/3080Ti_khoavang_1-1664974577.jpg"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525798865567844/ssd-samsung-980-pro-1tb-1-_1659430295-1681101579_1.jpg?ex=657676ae&is=656401ae&hm=bc1a023c45d1f91777bf02b52c8bd88cf0e5a273cd1b40a0d3457b8ce37b3649&"
                           alt=""
                         />
                       </div>
@@ -1181,7 +1189,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/SDD/Samsung-980-pro/ssd-samsung-980-pro-1tb-1-_1659430295-1681101579.jpg"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525798865567844/ssd-samsung-980-pro-1tb-1-_1659430295-1681101579_1.jpg?ex=657676ae&is=656401ae&hm=bc1a023c45d1f91777bf02b52c8bd88cf0e5a273cd1b40a0d3457b8ce37b3649&"
                           alt=""
                         />
                       </div>
@@ -1211,7 +1219,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/SDD/Samsung-980-pro/ssd-samsung-980-pro-1tb-1-_1659430295-1681101579.jpg"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525798865567844/ssd-samsung-980-pro-1tb-1-_1659430295-1681101579_1.jpg?ex=657676ae&is=656401ae&hm=bc1a023c45d1f91777bf02b52c8bd88cf0e5a273cd1b40a0d3457b8ce37b3649&"
                           alt=""
                         />
                       </div>
@@ -1339,7 +1347,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/SDD/Samsung-980-pro/ssd-samsung-980-pro-1tb-1-_1659430295-1681101579.jpg"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525798865567844/ssd-samsung-980-pro-1tb-1-_1659430295-1681101579_1.jpg?ex=657676ae&is=656401ae&hm=bc1a023c45d1f91777bf02b52c8bd88cf0e5a273cd1b40a0d3457b8ce37b3649&"
                           alt=""
                         />
                       </div>
@@ -1369,7 +1377,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/SDD/Samsung-980-pro/ssd-samsung-980-pro-1tb-1-_1659430295-1681101579.jpg"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525798865567844/ssd-samsung-980-pro-1tb-1-_1659430295-1681101579_1.jpg?ex=657676ae&is=656401ae&hm=bc1a023c45d1f91777bf02b52c8bd88cf0e5a273cd1b40a0d3457b8ce37b3649&"
                           alt=""
                         />
                       </div>
@@ -1473,7 +1481,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/data/psu/PSU-Phantek-EVOLV-X-1200W---80-Plus-Platinum-1620460626.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525797548572672/PSU-Phantek-EVOLV-X-1200W---80-Plus-Platinum-1620460626.webp?ex=657676ae&is=656401ae&hm=7628b778768a9576be859e9eef06003531dc3415fd3f6e9e8af92129a0aa1248&"
                           alt=""
                         />
                       </div>
@@ -1503,7 +1511,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/data/psu/PSU-Phantek-EVOLV-X-1200W---80-Plus-Platinum-1620460626.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525797548572672/PSU-Phantek-EVOLV-X-1200W---80-Plus-Platinum-1620460626.webp?ex=657676ae&is=656401ae&hm=7628b778768a9576be859e9eef06003531dc3415fd3f6e9e8af92129a0aa1248&"
                           alt=""
                         />
                       </div>
@@ -1607,7 +1615,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/500x500x3/data/Case/Segotep-GANK-360-Case---khoavang-1623130226.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525798475501588/Segotep-GANK-360-Case---khoavang-1623130226.webp?ex=657676ae&is=656401ae&hm=65e103e730a6ce718f5d9b7fe425fec9026f3612787ee96f4a34e2e51fb8056d&"
                           alt=""
                         />
                       </div>
@@ -1637,7 +1645,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/500x500x3/data/Case/Segotep-GANK-360-Case---khoavang-1623130226.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525798475501588/Segotep-GANK-360-Case---khoavang-1623130226.webp?ex=657676ae&is=656401ae&hm=65e103e730a6ce718f5d9b7fe425fec9026f3612787ee96f4a34e2e51fb8056d&"
                           alt=""
                         />
                       </div>
@@ -1770,7 +1778,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/tan-nhiet/Segotep-Be-Iced-1676107583.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178527470325084180/Segotep-Be-Iced-1676107583.webp?ex=6576783c&is=6564033c&hm=004a572226e0e0422919295b985a40b08c2fc4a4c9ff3153d02342576413a566&"
                           alt=""
                         />
                       </div>
@@ -1800,7 +1808,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/DuongPV/Linh-kien/tan-nhiet/Segotep-Be-Iced-1676107583.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178527470325084180/Segotep-Be-Iced-1676107583.webp?ex=6576783c&is=6564033c&hm=004a572226e0e0422919295b985a40b08c2fc4a4c9ff3153d02342576413a566&"
                           alt=""
                         />
                       </div>
@@ -2007,7 +2015,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/msi/14s/5420/3511%20i3/techzones-msi-optix-mag322cqrv-315inch-sieu-cong-144hz-4_0835459bac074e62b2b74f4fbc294bbc_grande-1634114819.png"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525799557627934/techzones-msi-optix-mag322cqrv-315inch-sieu-cong-144hz-4_0835459bac074e62b2b74f4fbc294bbc_grande-1634114819.png?ex=657676ae&is=656401ae&hm=776d79322a8137693127c94501531e7e8550096186de0a2bb1c35acf44c372fc&"
                           alt=""
                         />
                       </div>
@@ -2037,7 +2045,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/msi/14s/5420/3511%20i3/techzones-msi-optix-mag322cqrv-315inch-sieu-cong-144hz-4_0835459bac074e62b2b74f4fbc294bbc_grande-1634114819.png"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525799557627934/techzones-msi-optix-mag322cqrv-315inch-sieu-cong-144hz-4_0835459bac074e62b2b74f4fbc294bbc_grande-1634114819.png?ex=657676ae&is=656401ae&hm=776d79322a8137693127c94501531e7e8550096186de0a2bb1c35acf44c372fc&"
                           alt=""
                         />
                       </div>
@@ -2142,7 +2150,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/Toan/Other/tactical-pkg-600x-mouse-1699875408.jpg"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525799335346236/tactical-pkg-600x-mouse-1699875408.jpg?ex=657676ae&is=656401ae&hm=cf14ad4b987eec81efbd39d86edc4828e9c8b74076a0b911e7e9300dcadf6398&"
                           alt=""
                         />
                       </div>
@@ -2172,7 +2180,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/Toan/Other/tactical-pkg-600x-mouse-1699875408.jpg"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178525799335346236/tactical-pkg-600x-mouse-1699875408.jpg?ex=657676ae&is=656401ae&hm=cf14ad4b987eec81efbd39d86edc4828e9c8b74076a0b911e7e9300dcadf6398&"
                           alt=""
                         />
                       </div>
@@ -2277,7 +2285,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/ban-phim-co/F60/STRAWBERRY/1-1660294353.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178527177373929595/1-1660294353.webp?ex=657677f7&is=656402f7&hm=8f6b29098baa30bc4b7db337d747b490ef07bf52131bff34e3889660a70fbd34&"
                           alt=""
                         />
                       </div>
@@ -2307,7 +2315,7 @@
                       <div class="col-lg-2 col-4 ">
                         <img
                           class="img-fluid"
-                          src="https://khoavang.vn/resources/cache/195x195x3/ban-phim-co/F60/STRAWBERRY/1-1660294353.webp"
+                          src="https://cdn.discordapp.com/attachments/991289858150649947/1178527177373929595/1-1660294353.webp?ex=657677f7&is=656402f7&hm=8f6b29098baa30bc4b7db337d747b490ef07bf52131bff34e3889660a70fbd34&"
                           alt=""
                         />
                       </div>
@@ -2344,6 +2352,7 @@
     </div>
     <!-- end popup keyboard --> 
 <script src="script.js"></script>
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

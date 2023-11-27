@@ -1970,4 +1970,51 @@ function calculateTotalSum() {
     return total;
 }
 
+// //expdf------------------
+// // Define specialElementHandlers
+// var specialElementHandlers = {
+//     '#bypassme': function (element, renderer) {
+//         return true;
+//     }
+// };
 
+// // Thêm hàm xử lý sự kiện khi nút được nhấp
+// document.getElementById("export").addEventListener("click", function () {
+//     exportPDF('content');
+// });
+
+// // Hàm xuất PDF
+// function exportPDF(id) {
+//     var doc = new jsPDF('p', 'pt', 'a4');
+//     var source = document.getElementById(id);
+
+//     var margins = {
+//         top: 10,
+//         bottom: 10,
+//         left: 10,
+//         width: 10,
+//     };
+
+//     doc.fromHTML(
+//         source,
+//         margins.left,
+//         margins.top, {
+//             'width': margins.width,
+//             'elementHandlers': specialElementHandlers,
+//         },
+//         function (dispose) {
+//             doc.save('CauHinh.pdf');
+//         },
+//         margins
+//     );
+// }
+
+
+//export to exel
+function ExportToExcel(type, fn, dl) {
+    var elt = document.getElementById('tbl_exporttable_to_xls');
+    var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+    return dl ?
+      XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+      XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
+ }
