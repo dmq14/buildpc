@@ -194,7 +194,7 @@ function displaySelectedCpus() {
         listItem.appendChild(paragraph2);
         
         var decreaseButton = document.createElement('button');
-        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
         decreaseButton.className = 'btn-total';
         decreaseButton.onclick = function () {
             decreaseCpuQuantity(cpuComponent.id);
@@ -349,7 +349,7 @@ function displaySelectedMain() {
 
         
         var decreaseButton = document.createElement('button');
-        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
         decreaseButton.className = 'btn-total';
         decreaseButton.onclick = function () {
             decreaseMainQuantity(mainComponent.id);
@@ -511,7 +511,7 @@ function displaySelectedRam() {
 
         
         var decreaseButton = document.createElement('button');
-        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
         decreaseButton.className = 'btn-total';
         decreaseButton.onclick = function () {
             decreaseRamQuantity(ramComponent.id);
@@ -668,7 +668,7 @@ function displaySelectedVga() {
 
         
         var decreaseButton = document.createElement('button');
-        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
         decreaseButton.className = 'btn-total';
         decreaseButton.onclick = function () {
             decreaseVgaQuantity(vgaComponent.id);
@@ -823,7 +823,7 @@ function displaySelectedSsd() {
 
         
         var decreaseButton = document.createElement('button');
-        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
         decreaseButton.className = 'btn-total';
         decreaseButton.onclick = function () {
             decreaseSsdQuantity(ssdComponent.id);
@@ -965,7 +965,7 @@ function displaySelectedHdd() {
         listItem.appendChild(paragraph2);
 
         var decreaseButton = document.createElement('button');
-        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
         decreaseButton.className = 'btn-total';
         decreaseButton.onclick = function () {
             decreaseHddQuantity(hddComponent.id);
@@ -1112,7 +1112,7 @@ function displaySelectedPsu() {
 
         
         var decreaseButton = document.createElement('button');
-        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
         decreaseButton.className = 'btn-total';
         decreaseButton.onclick = function () {
             decreasePsuQuantity(psuComponent.id);
@@ -1261,7 +1261,7 @@ function displaySelectedVo() {
 
         
         var decreaseButton = document.createElement('button');
-        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
         decreaseButton.className = 'btn-total';
         decreaseButton.onclick = function () {
             decreaseQuantity(selectedVoComponent.id);
@@ -1402,7 +1402,7 @@ function displaySelectedTannhiet() {
         listItem.appendChild(paragraph2);
 
         var decreaseButton = document.createElement('button');
-        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
         decreaseButton.className = 'btn-total';
         decreaseButton.onclick = function () {
             decreaseTannhietQuantity(tannhietComponent.id);
@@ -1543,7 +1543,7 @@ function displaySelectedManhinh() {
         listItem.appendChild(paragraph2);
 
         var decreaseButton = document.createElement('button');
-        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
         decreaseButton.className = 'btn-total';
         decreaseButton.onclick = function () {
             decreaseManhinhQuantity(manhinhComponent.id);
@@ -1681,7 +1681,7 @@ function displaySelectedChuot() {
         listItem.appendChild(paragraph2);
 
         var decreaseButton = document.createElement('button');
-        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
         decreaseButton.className = 'btn-total';
         decreaseButton.onclick = function () {
             decreaseChuotQuantity(chuotComponent.id);
@@ -1821,7 +1821,7 @@ function displaySelectedPhim() {
         listItem.appendChild(paragraph2);
 
         var decreaseButton = document.createElement('button');
-        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
         decreaseButton.className = 'btn-total';
         decreaseButton.onclick = function () {
             decreasePhimQuantity(phimComponent.id);
@@ -2010,11 +2010,31 @@ function calculateTotalSum() {
 // }
 
 
-//export to exel
 function ExportToExcel(type, fn, dl) {
     var elt = document.getElementById('tbl_exporttable_to_xls');
-    var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+
+ 
+    var wscols = [
+      { wch: 1 }, 
+      { wch: 1 }, 
+      { wch: 1 }, 
+
+    ];
+    
+    // Thêm dòng mới cho tổng tiền
+    var totalRow = elt.insertRow(-1);
+    var totalCell = totalRow.insertCell(0);
+    var totalSum = calculateTotalSum();
+    totalCell.innerHTML = 'Tổng tiền: '+ totalSum;
+ 
+    var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1", cols: wscols });
+
+    var ws = wb.Sheets["sheet1"];
+    var cell = ws['A1']; 
+    cell.s = { font: { sz: 144, bold: true } };
+ 
     return dl ?
       XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
-      XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
+      XLSX.writeFile(wb, fn || ('BuildPCKV.' + (type || 'xlsx')));
  }
+ 
