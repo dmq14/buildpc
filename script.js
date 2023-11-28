@@ -15,6 +15,20 @@ var selectedPhim = [];
 
 
 
+function exportToPDF() {
+    var content = document.getElementById('content');
+    
+    var options = {
+        top:0,
+        margin: 5, 
+        filename: 'BuildPCKV.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', autoPaging: false }
+    };
+      
+    html2pdf(content, options);
+}
 
 
 
@@ -1970,71 +1984,3 @@ function calculateTotalSum() {
     return total;
 }
 
-// //expdf------------------
-// // Define specialElementHandlers
-// var specialElementHandlers = {
-//     '#bypassme': function (element, renderer) {
-//         return true;
-//     }
-// };
-
-// // Thêm hàm xử lý sự kiện khi nút được nhấp
-// document.getElementById("export").addEventListener("click", function () {
-//     exportPDF('content');
-// });
-
-// // Hàm xuất PDF
-// function exportPDF(id) {
-//     var doc = new jsPDF('p', 'pt', 'a4');
-//     var source = document.getElementById(id);
-
-//     var margins = {
-//         top: 10,
-//         bottom: 10,
-//         left: 10,
-//         width: 10,
-//     };
-
-//     doc.fromHTML(
-//         source,
-//         margins.left,
-//         margins.top, {
-//             'width': margins.width,
-//             'elementHandlers': specialElementHandlers,
-//         },
-//         function (dispose) {
-//             doc.save('CauHinh.pdf');
-//         },
-//         margins
-//     );
-// }
-
-
-function ExportToExcel(type, fn, dl) {
-    var elt = document.getElementById('tbl_exporttable_to_xls');
-
- 
-    var wscols = [
-      { wch: 1 }, 
-      { wch: 1 }, 
-      { wch: 1 }, 
-
-    ];
-    
-    // Thêm dòng mới cho tổng tiền
-    var totalRow = elt.insertRow(-1);
-    var totalCell = totalRow.insertCell(0);
-    var totalSum = calculateTotalSum();
-    totalCell.innerHTML = 'Tổng tiền: '+ totalSum;
- 
-    var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1", cols: wscols });
-
-    var ws = wb.Sheets["sheet1"];
-    var cell = ws['A1']; 
-    cell.s = { font: { sz: 144, bold: true } };
- 
-    return dl ?
-      XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
-      XLSX.writeFile(wb, fn || ('BuildPCKV.' + (type || 'xlsx')));
- }
- 
