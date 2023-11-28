@@ -125,15 +125,15 @@
     </div>
 
     <div class="container mb-5" >
-      <h2 class="text-center">
-        XÂY DỰNG CẤU HÌNH PC THEO MONG MUỐN CỦA BẠN!
-      </h2>
+
       <div class="row">
         <div class="col-md-10" >
-          <div >
+          <div id="content" >
+            <h3 class="text-center">
+              XÂY DỰNG CẤU HÌNH PC THEO MONG MUỐN CỦA BẠN!
+            </h3>
             <table
               class="table table-striped table-bordered" 
-              id="content"
             >
             <tbody>
               <tr>
@@ -293,27 +293,30 @@
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row" class="title-prd">12. KEYBOARD - BÀN PHÍM</th>
+                    <th scope="row" class="title-prd">13. HEADPHONE - TAI NGHE</th>
                     <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#keyboard"id="buttonsđkeyboard">
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#tai"id="buttontai">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                             Keyboard - Bàn phím: 
+                             Headphone - Tai nghe 
                         </button>
-                        <div id="selectedPhsdim" style="list-style-type: none;"></div>
-                        <p>áđâsd</p>
-                        <p>áđâsd</p>
-                        <p>áđâsd</p>
-                        <p>áđâsd</p>
+                        <div id="selectedTai" style="list-style-type: none;"></div>
                     </td>
                   </tr>
-                  <td colspan="2" style="height: 60px; text-align: center;">Xem thêm các phụ kiện dành cho PC tại <a href="https://khoavang.vn/phu-kien/c416">Khoavang.vn</a></td>
+                  <td colspan="2" style="height: 40px; text-align: center;">Xem thêm các phụ kiện dành cho PC tại <a href="https://khoavang.vn/phu-kien/c416">Khoavang.vn</a></td>
                 </tbody>
 
             </table>
+          
+          <div class="shadowed-div rounded" id="total-tam">
+            <p class="text-center" style="margin-bottom: 0px">
+              Tổng tiền tạm tính:
+            </p>
+            <p class="totalll" id="totallll">0đ</p>
           </div>
         </div>
+        </div>
         <div class="col-md-2">
-          <div class="shadowed-div rounded">
+          <div class="shadowed-div rounded" id="total-tam">
             <p class="text-center" style="margin-bottom: 0px">
               Tổng tiền tạm tính:
             </p>
@@ -2942,7 +2945,167 @@
       </div>
     </div>
     <!-- end popup keyboard -->
+    <!-- popup tainghe -->
+    <div
+      class="modal fade"
+      id="tai"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Headphone - Tai nghe
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body bg-light">
+            <div class="container-fluid mb-5">
+              <div class="row">
+                <div class="col-lg-4 col-sm-12">
+                  <nav class="navbar navbar-expand-lg navbar-dark">
+                    <button
+                      class="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#navTai"
+                    >
+                      <span class=""
+                        ><i
+                          class="fa fa-bars"
+                          aria-hidden="true"
+                          style="color: black"
+                        >
+                          Tùy chọn</i
+                        >
+                      </span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navTai">
+                      <div class="scroll-prdt">
+                        <div class="brand-prdt mt-2 border-bottom">
+                          <h6 class="title-filter">Khoảng giá</h6>
+                          <label class="checkbox-fil">
+                            <input type="checkbox" />
+                            <span class="value-filter">Dưới 1 triệu</span>
+                          </label>
 
+                          <label class="checkbox-fil">
+                            <input type="checkbox" />
+                            <span class="value-filter">1 - 3 triệu</span>
+                          </label>
+                          <label class="checkbox-fil">
+                            <input type="checkbox" />
+                            <span class="value-filter">4 - 6 triệu</span>
+                          </label>
+                          <label class="checkbox-fil">
+                            <input type="checkbox" />
+                            <span class="value-filter">7 - 9 triệu</span>
+                          </label>
+                          <label class="checkbox-fil">
+                            <input type="checkbox" />
+                            <span class="value-filter">Trên 10 triệu</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </nav>
+                </div>
+
+                <div class="col-lg-8 col-sm-12">
+                  <div class="scroll-prdt" id="tailist">
+                    <div class="prdt bg-white mb-2" id="tai1">
+                      <div class="row w-100">
+                        <div class="col-lg-2 col-4">
+                          <img
+                            class="img-fluid"
+                            src="img/12.png"
+                            alt=""
+                          />
+                        </div>
+                        <div class="col-lg-6 col-8 info-prdt">
+                          <p class="name-prdt">
+                            CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24
+                            Luồng, 25M Cache, Raptor Lake)
+                          </p>
+                          <p class="price-prdt">2.500.000đ</p>
+                          <div class="d-flex align-items-center">
+                            <p class="line-through me-2">20.000.000</p>
+                            <p class="percent float-left percent">-25%</p>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                          <div class="center-div">
+                            <button
+                              type="button"
+                              class="btn btn-warning btn-mobile-add"
+                              onclick="addTai(1)"
+                            >
+                              <i
+                                class="fa fa-plus-circle"
+                                aria-hidden="true"
+                              ></i>
+                              Chọn linh kiện
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="prdt bg-white mb-2" id="tai2">
+                      <div class="row w-100">
+                        <div class="col-lg-2 col-4">
+                          <img
+                            class="img-fluid"
+                            src="img/12.png"
+                            alt=""
+                          />
+                        </div>
+                        <div class="col-lg-6 col-8 info-prdt">
+                          <p class="name-prdt">
+                            CPU Intel Core i7-13700KF (Up To 5.40GHz, 16 Nhân 24
+                            Luồng, 25M Cache, Raptor Lake)
+                          </p>
+                          <p class="price-prdt">2.500.000đ</p>
+                          <div class="d-flex align-items-center">
+                            <p class="line-through me-2">20.000.000</p>
+                            <p class="percent float-left percent">-25%</p>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                          <div class="center-div">
+                            <button
+                              type="button"
+                              class="btn btn-warning btn-mobile-add"
+                              onclick="addTai(2)"
+                            >
+                              <i
+                                class="fa fa-plus-circle"
+                                aria-hidden="true"
+                              ></i>
+                              Chọn linh kiện
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end popup tainghe -->
     <script src="script.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -2954,5 +3117,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    
   </body>
 </html>

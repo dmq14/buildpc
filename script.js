@@ -12,7 +12,7 @@ var selectedManhinh = [];
 var selectedMice = [];
 var selectedChuot = [];
 var selectedPhim = [];
-
+var selectedTai = [];
 
 
 function exportToPDF() {
@@ -45,6 +45,7 @@ window.onload = function () {
     var storedManhinh = localStorage.getItem('selectedManhinh');
     var storedChuot = localStorage.getItem('selectedChuot');
     var storedPhim = localStorage.getItem('selectedPhim');
+    var storedTai = localStorage.getItem('selectedTai');
     if (storedCpu) {
         selectedCpus = JSON.parse(storedCpu);
         displaySelectedCpus();
@@ -93,7 +94,10 @@ window.onload = function () {
         selectedPhim = JSON.parse(storedPhim);
         displaySelectedPhim();
     }
-    
+    if (storedTai) {
+        selectedTai = JSON.parse(storedTai);
+        displaySelectedTai();
+    }
     displayTotalSum();
   
 };
@@ -115,6 +119,7 @@ function deleteAll() {
         displaySelectedSsd();
         displaySelectedHdd();
         displaySelectedVga();
+        displaySelectedTai();
 
         localStorage.removeItem('selectedTannhiet');
         localStorage.removeItem('selectedManhinh');
@@ -128,6 +133,7 @@ function deleteAll() {
         localStorage.removeItem('selectedSsd');
         localStorage.removeItem('selectedHdd');
         localStorage.removeItem('selectedVga');
+        localStorage.removeItem('selectedTai');
         
         buttontannhiet.style.display = 'block';
         buttonmonitor.style.display = 'block';
@@ -141,6 +147,7 @@ function deleteAll() {
         buttonssd.style.display = 'block';
         buttonhdd.style.display = 'block';
         buttonvga.style.display = 'block';
+        buttontai.style.display = 'block';
         
         location.reload();
     }
@@ -1039,8 +1046,8 @@ function decreaseHddQuantity(hddId) {
 
 function deleteHdd(hddId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa HDD khỏi danh sách?");
-    buttonhdd.style.display = 'block';
     if (confirmDelete) {
+    buttonhdd.style.display = 'block';
         var existingHddIndex = selectedHdd.findIndex(function (selectedHdd) {
             return selectedHdd.id === hddId;
         });
@@ -1909,13 +1916,149 @@ function deletePhim(phimId) {
         }
     }displayTotalSum();
 }
+///tai nghe-------------
+function addTai(taiId) {
+    var taiDiv = document.getElementById('tai' + taiId);
+    var taiName = taiDiv.querySelector('.name-prdt').textContent;
+    var taiPrice = taiDiv.querySelector('.price-prdt').textContent;
+    var taiImage = taiDiv.querySelector('.img-fluid').src;
 
+    var existingTaiIndex = selectedTai.findIndex(function (selectedTai) {
+        return selectedTai.id === taiId;
+    });
+
+    if (existingTaiIndex !== -1) {
+        selectedTai[existingTaiIndex].quantity++;
+    } else {
+        var taiComponent = {
+            id: taiId,
+            name: taiName,
+            price: taiPrice,
+            image: taiImage,
+            quantity: 1
+        };
+        selectedTai.push(taiComponent);
+    }
+
+    displaySelectedTai();
+    localStorage.setItem('selectedTai', JSON.stringify(selectedTai));
+    displayTotalSum();
+    $('#tai').modal('hide'); 
+}
+
+function displaySelectedTai() {
+    var selectedTaiList = document.getElementById('selectedTai');
+    selectedTaiList.innerHTML = '';
+    lengthPrd = selectedTai.length;
+     if(lengthPrd >=1){
+        buttontai.style.display = 'none';
+    }
+    selectedTai.forEach(function (taiComponent) {
+        var listItem = document.createElement('li');
+        var image = document.createElement('img');
+        image.src = taiComponent.image;
+        image.alt = taiComponent.name;
+        image.style.maxWidth = '90px';
+        listItem.appendChild(image);
+
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = taiComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        var tai = parseFloat(taiComponent.price.replace(/[^\d]/g, ''));
+        var quanty = tai * taiComponent.quantity;
+        var formattedTai = quanty.toLocaleString({ style: 'currency', currency: 'VND' });
+        formattedTai = formattedTai.replace('$', '') + 'đ';
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedTai}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseTaiQuantity(taiComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${taiComponent.id}">${taiComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseTaiQuantity(taiComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteTai(taiComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedTaiList.appendChild(listItem);
+    });
+}
+
+function increaseTaiQuantity(taiId) {
+    var existingTaiIndex = selectedTai.findIndex(function (taiComponent) {
+        return taiComponent.id === taiId;
+    });
+
+    if (existingTaiIndex !== -1) {
+        selectedTai[existingTaiIndex].quantity++;
+        displaySelectedTai();
+        localStorage.setItem('selectedTai', JSON.stringify(selectedTai));
+    }
+    displayTotalSum();
+}
+
+function decreaseTaiQuantity(taiId) {
+    var existingTaiIndex = selectedTai.findIndex(function (taiComponent) {
+        return taiComponent.id === taiId;
+    });
+
+    if (existingTaiIndex !== -1 && selectedTai[existingTaiIndex].quantity > 1) {
+        selectedTai[existingTaiIndex].quantity--;
+        displaySelectedTai();
+        localStorage.setItem('selectedTai', JSON.stringify(selectedTai));
+    }
+    displayTotalSum();
+}
+
+function deleteTai(taiId) {
+    var confirmDelete = window.confirm("Bạn có chắc muốn xóa tai nghe khỏi danh sách?");
+    if (confirmDelete) {
+        buttontai.style.display = 'block';
+        var existingTaiIndex = selectedTai.findIndex(function (selectedTai) {
+            return selectedTai.id === taiId;
+        });
+
+        if (existingTaiIndex !== -1) {
+            selectedTai.splice(existingTaiIndex, 1);
+            displaySelectedTai();
+            localStorage.setItem('selectedTai', JSON.stringify(selectedTai));
+        }
+    }
+    displayTotalSum();
+}
+//------------------
 function displayTotalSum() {
     var totalSum = calculateTotalSum();
     
     var totalSumText = `${totalSum.toLocaleString({ style: 'currency', currency: 'VND' }).replace('$', '')}đ`;
 
     $('#totalll').text(totalSumText);
+    $('#totallll').text(totalSumText);
 }
 
 function calculateTotalSum() {
@@ -1931,6 +2074,7 @@ function calculateTotalSum() {
     var totalMh = 0;
     var totalChuot = 0;
     var totalBanphim = 0;
+    var totalTai = 0;
 
     selectedCpus.forEach(function (cpuComponent) {
         var cpu = parseFloat(cpuComponent.price.replace(/[^\d]/g, ''));
@@ -1980,7 +2124,11 @@ function calculateTotalSum() {
         var phim = parseFloat(phimComponent.price.replace(/[^\d]/g, ''));
         totalBanphim += phim * phimComponent.quantity;
     });
-    var total = totalCpu +totalMain+totalRam+totalVga+totalSsd+totalPsu+totalVo+totalTamnhiet+totalMh+totalChuot+totalBanphim+totalHdd;
+    selectedTai.forEach(function (taiComponent) {
+        var tai = parseFloat(taiComponent.price.replace(/[^\d]/g, ''));
+        totalTai += tai * taiComponent.quantity;
+    });
+    var total = totalCpu +totalMain+totalRam+totalVga+totalSsd+totalPsu+totalVo+totalTamnhiet+totalMh+totalChuot+totalBanphim+totalHdd+totalTai;
     return total;
 }
 
