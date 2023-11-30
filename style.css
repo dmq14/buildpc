@@ -87,6 +87,13 @@
   .scroll-prdt::-webkit-scrollbar-thumb:hover {
     background: #aa8130;
   }
+
+.title-h1{
+    font-weight: bolder;
+    font-size: 26px;
+    color: #F8B300;
+
+}  
 @media (min-width: 992px){
 .modal-lg {
     max-width: 85% !important;
@@ -111,5 +118,8 @@
 @media (max-width: 768px){
     .moblie-mg{
         margin-top: 20px;
+    }
+    .mb-none{
+        display: none;
     }
 }
