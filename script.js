@@ -2057,8 +2057,8 @@ function displayTotalSum() {
     
     var totalSumText = `${totalSum.toLocaleString({ style: 'currency', currency: 'VND' }).replace('$', '')}đ`;
 
-    $('#totalll').text(totalSumText);
-    $('#totallll').text(totalSumText);
+    $('#total-prdt').text(totalSumText);
+    $('#total-prdtl').text(totalSumText);
 }
 
 function calculateTotalSum() {
