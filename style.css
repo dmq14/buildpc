@@ -10,6 +10,9 @@
 .line-through{
     text-decoration: line-through;
 }
+.carousel-control-next, .carousel-control-prev{
+    width: 10px !important;
+}
 .shadowed-div {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     padding: 10px;
@@ -105,3 +108,8 @@
         font-size: 14px;
     }
     }
+@media (max-width: 768px){
+    .moblie-mg{
+        margin-top: 20px;
+    }
+}
