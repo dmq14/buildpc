@@ -135,19 +135,19 @@ function deleteAll() {
         localStorage.removeItem('selectedVga');
         localStorage.removeItem('selectedTai');
         
-        buttontannhiet.style.display = 'block';
-        buttonmonitor.style.display = 'block';
-        buttonmouse.style.display = 'block';
-        buttonkeyboard.style.display = 'block';
-        buttonpsu.style.display = 'block';
-        buttonvo.style.display = 'block';
-        buttonram.style.display = 'block';
-        buttonmain.style.display = 'block';
-        buttoncpu.style.display = 'block';
-        buttonssd.style.display = 'block';
-        buttonhdd.style.display = 'block';
-        buttonvga.style.display = 'block';
-        buttontai.style.display = 'block';
+        buttontannhiet.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonmonitor.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonmouse.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonkeyboard.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonpsu.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonvo.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonram.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonmain.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttoncpu.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonssd.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonhdd.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonvga.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttontai.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
         
         location.reload();
     }
@@ -166,6 +166,7 @@ function addCpu(cpuId) {
     if (existingCpuIndex !== -1) {
         selectedCpus[existingCpuIndex].quantity++;
     } else {
+        selectedCpus = [];
         var cpuComponent = {
             id: cpuId,
             name: cpuName,
@@ -187,10 +188,10 @@ function displaySelectedCpus() {
     selectedCpuList.innerHTML = ''; 
     lengthPrd = selectedCpus.length;
     if (lengthPrd >= 1) {
-        buttoncpu.style.display = 'none';
+        buttoncpu.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
     }
-
     selectedCpus.forEach(function (cpuComponent) {
+    
         var listItem = document.createElement('li');
 
         var image = document.createElement('img');
@@ -280,7 +281,7 @@ function decreaseCpuQuantity(cpuId) {
 function deleteCpu(cpuId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa CPU khỏi danh sách?");
     if (confirmDelete) {
-        buttoncpu.style.display = 'block';
+        buttoncpu.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
         var existingCpuIndex = selectedCpus.findIndex(function (selectedCpu) {
             return selectedCpu.id === cpuId;
         });
@@ -338,7 +339,7 @@ function displaySelectedMain() {
     var main1 = 0;
     lengthPrd = selectedMain.length;
     if (lengthPrd >= 1) {
-        buttonmain.style.display = 'none';
+        buttonmain.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
     }
 
     
@@ -439,7 +440,8 @@ function deleteMain(mainId) {
     
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa Main khỏi danh sách?");
     if (confirmDelete) {
-        buttonmain.style.display = 'block';
+        buttonmain.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        
         
         var existingMainIndex = selectedMain.findIndex(function (selectedMain) {
             return selectedMain.id === mainId;
@@ -500,7 +502,7 @@ function displaySelectedRam() {
     selectedRamList.innerHTML = ''; 
     lengthPrd = selectedRam.length;
     if (lengthPrd >= 1) {
-        buttonram.style.display = 'none';
+        buttonram.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
     }
 
     
@@ -600,7 +602,7 @@ function deleteRam(ramId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa RAM khỏi danh sách?");
     if (confirmDelete) {
         
-        buttonram.style.display = 'block';
+        buttonram.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
         var existingRamIndex = selectedRam.findIndex(function (selectedRam) {
             return selectedRam.id === ramId;
         });
@@ -657,7 +659,7 @@ function displaySelectedVga() {
     selectedVgaList.innerHTML = ''; 
     lengthPrd = selectedVga.length;
     if (lengthPrd >= 1) {
-        buttonvga.style.display = 'none';
+        buttonvga.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
     }
 
     
@@ -756,7 +758,7 @@ function deleteVga(vgaId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa VGA khỏi danh sách?");
     if (confirmDelete) {
         
-        buttonvga.style.display = 'block';
+        buttonvga.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
         var existingVgaIndex = selectedVga.findIndex(function (selectedVga) {
             return selectedVga.id === vgaId;
         });
@@ -811,7 +813,7 @@ function displaySelectedSsd() {
     selectedSsdList.innerHTML = ''; 
     lengthPrd = selectedSsd.length;
     if (lengthPrd >= 1) {
-        buttonssd.style.display = 'none';
+        buttonssd.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
     }
 
     
@@ -910,7 +912,7 @@ function deleteSsd(ssdId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa SSD khỏi danh sách?");
     if (confirmDelete) {
         
-        buttonssd.style.display = 'block';
+        buttonssd.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
         var existingSsdIndex = selectedSsd.findIndex(function (selectedSsd) {
             return selectedSsd.id === ssdId;
         });
@@ -960,7 +962,7 @@ function displaySelectedHdd() {
     selectedHddList.innerHTML = '';
     lengthPrd = selectedHdd.length;
     if (lengthPrd >= 1) {
-        buttonhdd.style.display = 'none';
+        buttonhdd.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
     }
     selectedHdd.forEach(function (hddComponent) {
         var listItem = document.createElement('li');
@@ -1047,7 +1049,7 @@ function decreaseHddQuantity(hddId) {
 function deleteHdd(hddId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa HDD khỏi danh sách?");
     if (confirmDelete) {
-    buttonhdd.style.display = 'block';
+    buttonhdd.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
         var existingHddIndex = selectedHdd.findIndex(function (selectedHdd) {
             return selectedHdd.id === hddId;
         });
@@ -1101,7 +1103,7 @@ function displaySelectedPsu() {
     selectedPsuList.innerHTML = ''; 
     lengthPrd = selectedPsu.length;
     if (lengthPrd >= 1) {
-        buttonpsu.style.display = 'none';
+        buttonpsu.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
     }
     
     selectedPsu.forEach(function (psuComponent) {
@@ -1195,7 +1197,7 @@ function decreasePsuQuantity(psuId) {
 function deletePsu(psuId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa PSU khỏi danh sách?");
     if (confirmDelete) {
-        buttonpsu.style.display = 'block';
+        buttonpsu.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
         var existingPsuIndex = selectedPsu.findIndex(function (selectedPsu) {
             return selectedPsu.id === psuId;
         });
@@ -1249,7 +1251,7 @@ function displaySelectedVo() {
     selectedVoList.innerHTML = ''; 
     lengthPrd = selectedVo.length;
     if(lengthPrd >=1){
-       buttonvo.style.display = 'none';
+       buttonvo.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
    }
     
     selectedVo.forEach(function (selectedVoComponent) {
@@ -1346,7 +1348,7 @@ function decreaseQuantity(voId) {
 function deleteVo(voId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa Case khỏi danh sách?");
     if (confirmDelete) {
-        buttonvo.style.display = 'block';
+        buttonvo.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
         var existingVoIndex = selectedVo.findIndex(function (selectedVo) {
             return selectedVo.id === voId;
         });
@@ -1395,7 +1397,7 @@ function displaySelectedTannhiet() {
     selectedTannhietList.innerHTML = ''; 
     lengthPrd = selectedTannhiet.length;
     if (lengthPrd >= 1) {
-        buttontannhiet.style.display = 'none';
+        buttontannhiet.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
     }
 
     selectedTannhiet.forEach(function (tannhietComponent) {
@@ -1484,7 +1486,7 @@ function decreaseTannhietQuantity(tannhietId) {
 function deleteTannhiet(tannhietId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa Tannhiet khỏi danh sách?");
     if (confirmDelete) {
-        buttontannhiet.style.display = 'block';
+        buttontannhiet.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
         var existingTannhietIndex = selectedTannhiet.findIndex(function (selectedTannhiet) {
             return selectedTannhiet.id === tannhietId;
         });
@@ -1536,7 +1538,7 @@ function displaySelectedManhinh() {
     selectedManhinhList.innerHTML = '';
     lengthPrd = selectedManhinh.length;
     if (lengthPrd >= 1) {
-        buttonmonitor.style.display = 'none';
+        buttonmonitor.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
     }
 
     selectedManhinh.forEach(function (manhinhComponent) {
@@ -1625,7 +1627,7 @@ function decreaseManhinhQuantity(manhinhId) {
 function deleteManhinh(manhinhId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa Màn hình khỏi danh sách?");
     if (confirmDelete) {
-        buttonmonitor.style.display = 'block';
+        buttonmonitor.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
         var existingManhinhIndex = selectedManhinh.findIndex(function (selectedManhinh) {
             return selectedManhinh.id === manhinhId;
         });
@@ -1674,7 +1676,7 @@ function displaySelectedChuot() {
     selectedChuotList.innerHTML = '';
     lengthPrd = selectedChuot.length;
     if (lengthPrd >= 1) {
-        buttonmouse.style.display = 'none';
+        buttonmouse.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
     }
 
     selectedChuot.forEach(function (chuotComponent) {
@@ -1763,7 +1765,7 @@ function decreaseChuotQuantity(chuotId) {
 function deleteChuot(chuotId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa Chuột khỏi danh sách?");
     if (confirmDelete) {
-        buttonmouse.style.display = 'block';
+        buttonmouse.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
         var existingChuotIndex = selectedChuot.findIndex(function (selectedChuot) {
             return selectedChuot.id === chuotId;
         });
@@ -1813,7 +1815,7 @@ function displaySelectedPhim() {
     selectedPhimList.innerHTML = '';
     lengthPrd = selectedPhim.length;
     if (lengthPrd >= 1) {
-        buttonkeyboard.style.display = 'none';
+        buttonkeyboard.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
     }
 
     selectedPhim.forEach(function (phimComponent) {
@@ -1903,7 +1905,7 @@ function decreasePhimQuantity(phimId) {
 function deletePhim(phimId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa Phím khỏi danh sách?");
     if (confirmDelete) {
-        buttonkeyboard.style.display = 'block';
+        buttonkeyboard.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
         var existingPhimIndex = selectedPhim.findIndex(function (selectedPhim) {
             return selectedPhim.id === phimId;
         });
@@ -1951,7 +1953,7 @@ function displaySelectedTai() {
     selectedTaiList.innerHTML = '';
     lengthPrd = selectedTai.length;
      if(lengthPrd >=1){
-        buttontai.style.display = 'none';
+        buttontai.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
     }
     selectedTai.forEach(function (taiComponent) {
         var listItem = document.createElement('li');
@@ -2038,7 +2040,7 @@ function decreaseTaiQuantity(taiId) {
 function deleteTai(taiId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa tai nghe khỏi danh sách?");
     if (confirmDelete) {
-        buttontai.style.display = 'block';
+        buttontai.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
         var existingTaiIndex = selectedTai.findIndex(function (selectedTai) {
             return selectedTai.id === taiId;
         });
