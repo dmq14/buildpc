@@ -9,7 +9,6 @@ var selectedPsu = [];
 var selectedVo = [];
 var selectedTannhiet = [];
 var selectedManhinh = [];
-var selectedMice = [];
 var selectedChuot = [];
 var selectedPhim = [];
 var selectedTai = [];
@@ -17,7 +16,6 @@ var selectedTai = [];
 
 function exportToPDF() {
     var content = document.getElementById('content');
-    
     var options = {
         top: 0,
         margin: 5, 
@@ -28,6 +26,7 @@ function exportToPDF() {
     };
       
     html2pdf(content, options);
+
 }
 
 
@@ -188,7 +187,7 @@ function displaySelectedCpus() {
     selectedCpuList.innerHTML = ''; 
     lengthPrd = selectedCpus.length;
     if (lengthPrd >= 1) {
-        buttoncpu.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
+        buttoncpu.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
     }
     selectedCpus.forEach(function (cpuComponent) {
     
@@ -314,7 +313,7 @@ function addMain(mainId) {
     if (existingMainIndex !== -1) {
         selectedMain[existingMainIndex].quantity++;
     } else {
-        
+        selectedMain = [];
         var mainComponent = {
             id: mainId,
             name: mainName,
@@ -339,7 +338,7 @@ function displaySelectedMain() {
     var main1 = 0;
     lengthPrd = selectedMain.length;
     if (lengthPrd >= 1) {
-        buttonmain.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
+        buttonmain.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
     }
 
     
@@ -478,7 +477,7 @@ function addRam(ramId) {
     if (existingRamIndex !== -1) {
         selectedRam[existingRamIndex].quantity++;
     } else {
-        
+        selectedRam = [];
         var ramComponent = {
             id: ramId,
             name: ramName,
@@ -502,7 +501,7 @@ function displaySelectedRam() {
     selectedRamList.innerHTML = ''; 
     lengthPrd = selectedRam.length;
     if (lengthPrd >= 1) {
-        buttonram.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
+        buttonram.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
     }
 
     
@@ -631,11 +630,10 @@ function addVga(vgaId) {
         return selectedVga.id === vgaId;
     });
 
-    
     if (existingVgaIndex !== -1) {
         selectedVga[existingVgaIndex].quantity++;
     } else {
-        
+        selectedVga = [];
         var vgaComponent = {
             id: vgaId,
             name: vgaName,
@@ -659,7 +657,7 @@ function displaySelectedVga() {
     selectedVgaList.innerHTML = ''; 
     lengthPrd = selectedVga.length;
     if (lengthPrd >= 1) {
-        buttonvga.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
+        buttonvga.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
     }
 
     
@@ -790,7 +788,7 @@ function addSsd(ssdId) {
     if (existingSsdIndex !== -1) {
         selectedSsd[existingSsdIndex].quantity++;
     } else {
-        
+        selectedSsd = [];
         var ssdComponent = {
             id: ssdId,
             name: ssdName,
@@ -813,7 +811,7 @@ function displaySelectedSsd() {
     selectedSsdList.innerHTML = ''; 
     lengthPrd = selectedSsd.length;
     if (lengthPrd >= 1) {
-        buttonssd.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
+        buttonssd.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
     }
 
     
@@ -941,6 +939,7 @@ function addHdd(hddId) {
     if (existingHddIndex !== -1) {
         selectedHdd[existingHddIndex].quantity++;
     } else {
+        selectedHdd = [];
         var hddComponent = {
             id: hddId,
             name: hddName,
@@ -962,7 +961,7 @@ function displaySelectedHdd() {
     selectedHddList.innerHTML = '';
     lengthPrd = selectedHdd.length;
     if (lengthPrd >= 1) {
-        buttonhdd.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
+        buttonhdd.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
     }
     selectedHdd.forEach(function (hddComponent) {
         var listItem = document.createElement('li');
@@ -1080,7 +1079,7 @@ function addPsu(psuId) {
     if (existingPsuIndex !== -1) {
         selectedPsu[existingPsuIndex].quantity++;
     } else {
-        
+        selectedPsu = [];
         var psuComponent = {
             id: psuId,
             name: psuName,
@@ -1103,7 +1102,7 @@ function displaySelectedPsu() {
     selectedPsuList.innerHTML = ''; 
     lengthPrd = selectedPsu.length;
     if (lengthPrd >= 1) {
-        buttonpsu.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
+        buttonpsu.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
     }
     
     selectedPsu.forEach(function (psuComponent) {
@@ -1228,7 +1227,7 @@ function addVo(voId) {
     if (existingVoIndex !== -1) {
         selectedVo[existingVoIndex].quantity++;
     } else {
-        
+        selectedVo = [];
         var selectedVoComponent = {
             id: voId,
             name: voName,
@@ -1251,7 +1250,7 @@ function displaySelectedVo() {
     selectedVoList.innerHTML = ''; 
     lengthPrd = selectedVo.length;
     if(lengthPrd >=1){
-       buttonvo.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
+       buttonvo.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
    }
     
     selectedVo.forEach(function (selectedVoComponent) {
@@ -1376,6 +1375,7 @@ function addTannhiet(tannhietId) {
     if (existingTannhietIndex !== -1) {
         selectedTannhiet[existingTannhietIndex].quantity++;
     } else {
+        selectedTannhiet = [];
         var tannhietComponent = {
             id: tannhietId,
             name: tannhietName,
@@ -1397,7 +1397,7 @@ function displaySelectedTannhiet() {
     selectedTannhietList.innerHTML = ''; 
     lengthPrd = selectedTannhiet.length;
     if (lengthPrd >= 1) {
-        buttontannhiet.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
+        buttontannhiet.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
     }
 
     selectedTannhiet.forEach(function (tannhietComponent) {
@@ -1517,6 +1517,7 @@ function addManhinh(manhinhId) {
     if (existingManhinhIndex !== -1) {
         selectedManhinh[existingManhinhIndex].quantity++;
     } else {
+        selectedManhinh = [];
         var manhinhComponent = {
             id: manhinhId,
             name: manhinhName,
@@ -1538,7 +1539,7 @@ function displaySelectedManhinh() {
     selectedManhinhList.innerHTML = '';
     lengthPrd = selectedManhinh.length;
     if (lengthPrd >= 1) {
-        buttonmonitor.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
+        buttonmonitor.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
     }
 
     selectedManhinh.forEach(function (manhinhComponent) {
@@ -1655,6 +1656,7 @@ function addChuot(chuotId) {
     if (existingChuotIndex !== -1) {
         selectedChuot[existingChuotIndex].quantity++;
     } else {
+        selectedChuot = [];
         var chuotComponent = {
             id: chuotId,
             name: chuotName,
@@ -1676,7 +1678,7 @@ function displaySelectedChuot() {
     selectedChuotList.innerHTML = '';
     lengthPrd = selectedChuot.length;
     if (lengthPrd >= 1) {
-        buttonmouse.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
+        buttonmouse.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
     }
 
     selectedChuot.forEach(function (chuotComponent) {
@@ -1794,6 +1796,7 @@ function addPhim(phimId) {
     if (existingPhimIndex !== -1) {
         selectedPhim[existingPhimIndex].quantity++;
     } else {
+        selectedPhim = [];
         var phimComponent = {
             id: phimId,
             name: phimName,
@@ -1815,7 +1818,7 @@ function displaySelectedPhim() {
     selectedPhimList.innerHTML = '';
     lengthPrd = selectedPhim.length;
     if (lengthPrd >= 1) {
-        buttonkeyboard.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
+        buttonkeyboard.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
     }
 
     selectedPhim.forEach(function (phimComponent) {
@@ -1932,6 +1935,7 @@ function addTai(taiId) {
     if (existingTaiIndex !== -1) {
         selectedTai[existingTaiIndex].quantity++;
     } else {
+        selectedTai = [];
         var taiComponent = {
             id: taiId,
             name: taiName,
@@ -1953,7 +1957,7 @@ function displaySelectedTai() {
     selectedTaiList.innerHTML = '';
     lengthPrd = selectedTai.length;
      if(lengthPrd >=1){
-        buttontai.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn lại';
+        buttontai.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
     }
     selectedTai.forEach(function (taiComponent) {
         var listItem = document.createElement('li');

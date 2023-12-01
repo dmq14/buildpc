@@ -123,4 +123,7 @@
     .mb-none{
         display: none;
     }
+    .title-h1{
+        font-size: 20px;
+    }
 }
