@@ -1122,14 +1122,28 @@ function addVga(vgaId) {
     var vgaImage = vgaDiv.querySelector('.img-fluid').src;
 
     
-    var existingVgaIndex = selectedVga.findIndex(function (selectedVga) {
-        return selectedVga.id === vgaId;
-    });
 
+    var existingVgaIndex;
+    if (cauhinh == 1) {
+        existingVgaIndex = selectedVga.findIndex(function (selectedVga) {
+            return selectedVga.id === vgaId;
+        });
+    } else if (cauhinh == 2) {
+        existingVgaIndex = selectedVga2.findIndex(function (selectedVga) {
+            return selectedVga.id === vgaId;
+        });
+    }
     if (existingVgaIndex !== -1) {
-        selectedVga[existingVgaIndex].quantity++;
+        
+        if (cauhinh == 1) {
+            selectedVga[existingVgaIndex].quantity++;
+
+        }else if (cauhinh == 2) {
+            selectedVga2[existingVgaIndex].quantity++;
+
+        }
     } else {
-        selectedVga = [];
+        
         var vgaComponent = {
             id: vgaId,
             name: vgaName,
@@ -1137,12 +1151,24 @@ function addVga(vgaId) {
             image: vgaImage,
             quantity: 1
         };
-        selectedVga.push(vgaComponent);
+        
+        if (cauhinh == 1) {
+            selectedVga = [];
+            selectedVga.push(vgaComponent);
+        } else if (cauhinh == 2) {
+            selectedVga2 = [];
+            selectedVga2.push(vgaComponent);
+        }
     }
-
+    if(cauhinh==1){
     
-    displaySelectedVga();
-    localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
+        displaySelectedVga();
+        localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
+        }else if(cauhinh==2){
+        displaySelectedVga2();
+        localStorage.setItem('selectedVga2', JSON.stringify(selectedVga2));
+        }
+
 
     displayTotalSum();
     $('#vga').modal('hide');
@@ -1220,50 +1246,158 @@ function displaySelectedVga() {
         selectedVgaList.appendChild(listItem);
     });
 }
+function displaySelectedVga2() {
+    var selectedVgaList = document.getElementById('selectedVga2');
+    selectedVgaList.innerHTML = ''; 
+    lengthPrd = selectedVga2.length;
+    if (lengthPrd >= 1) {
+        buttonvga2.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
+    }
 
-function increaseVgaQuantity(vgaId) {
     
-    var existingVgaIndex = selectedVga.findIndex(function (vgaComponent) {
-        return vgaComponent.id === vgaId;
-    });
+    selectedVga2.forEach(function (vgaComponent) {
+        var listItem = document.createElement('li');
 
-    if (existingVgaIndex !== -1) {
-        selectedVga[existingVgaIndex].quantity++;
-        displaySelectedVga();
-        localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
-    }displayTotalSum();
+        
+        var image = document.createElement('img');
+        image.src = vgaComponent.image;
+        image.alt = vgaComponent.name;
+        image.style.maxWidth = '90px'; 
+        listItem.appendChild(image);
+
+        
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = vgaComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        vga = parseFloat(vgaComponent.price.replace(/[^\d]/g, ''));
+        var quanty = vga * vgaComponent.quantity;
+        var formattedVga = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedVga = formattedVga.replace('$', '') + 'đ';
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedVga}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+
+        
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseVgaQuantity(vgaComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+        
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${vgaComponent.id}">${vgaComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        var a = parseFloat(vgaComponent.price.replace(/[^\d]/g, ''));
+        totalvga = a*vgaComponent.quantity;
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseVgaQuantity(vgaComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteVga(vgaComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedVgaList.appendChild(listItem);
+    });
+}
+function increaseVgaQuantity(vgaId) {
+    if(cauhinh==1){
+        var existingVgaIndex = selectedVga.findIndex(function (vgaComponent) {
+            return vgaComponent.id === vgaId;
+        });
+    
+        if (existingVgaIndex !== -1) {
+            selectedVga[existingVgaIndex].quantity++;
+            displaySelectedVga();
+            localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingVgaIndex = selectedVga2.findIndex(function (vgaComponent) {
+            return vgaComponent.id === vgaId;
+        });
+    
+        if (existingVgaIndex !== -1) {
+            selectedVga2[existingVgaIndex].quantity++;
+            displaySelectedVga2();
+            localStorage.setItem('selectedVga2', JSON.stringify(selectedVga2));
+        }displayTotalSum();
+    }
+
 }
 
 function decreaseVgaQuantity(vgaId) {
+    if(cauhinh==1){
+        var existingVgaIndex = selectedVga.findIndex(function (vgaComponent) {
+            return vgaComponent.id === vgaId;
+        });
     
-    var existingVgaIndex = selectedVga.findIndex(function (vgaComponent) {
-        return vgaComponent.id === vgaId;
-    });
+        if (existingVgaIndex !== -1 && selectedVga[existingVgaIndex].quantity > 1) {
+            selectedVga[existingVgaIndex].quantity--;
+            displaySelectedVga();
+            localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingVgaIndex = selectedVga2.findIndex(function (vgaComponent) {
+            return vgaComponent.id === vgaId;
+        });
+    
+        if (existingVgaIndex !== -1 && selectedVga2[existingVgaIndex].quantity > 1) {
+            selectedVga2[existingVgaIndex].quantity--;
+            displaySelectedVga2();
+            localStorage.setItem('selectedVga2', JSON.stringify(selectedVga2));
+        }displayTotalSum();
+    }
 
-    if (existingVgaIndex !== -1 && selectedVga[existingVgaIndex].quantity > 1) {
-        selectedVga[existingVgaIndex].quantity--;
-        displaySelectedVga();
-        localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
-    }displayTotalSum();
 }
 
 function deleteVga(vgaId) {
     
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa VGA khỏi danh sách?");
     if (confirmDelete) {
-        
-        buttonvga.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
-        var existingVgaIndex = selectedVga.findIndex(function (selectedVga) {
-            return selectedVga.id === vgaId;
-        });
-
-        if (existingVgaIndex !== -1) {
-            selectedVga.splice(existingVgaIndex, 1);
-
-            
-            displaySelectedVga();
-            localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
+        if(cauhinh==1){
+            buttonvga.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingVgaIndex = selectedVga.findIndex(function (selectedVga) {
+                return selectedVga.id === vgaId;
+            });
+    
+            if (existingVgaIndex !== -1) {
+                selectedVga.splice(existingVgaIndex, 1);
+    
+                
+                displaySelectedVga();
+                localStorage.setItem('selectedVga', JSON.stringify(selectedVga));
+            }
+        }else if(cauhinh ==2){
+            buttonvga2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingVgaIndex = selectedVga2.findIndex(function (selectedVga) {
+                return selectedVga.id === vgaId;
+            });
+    
+            if (existingVgaIndex !== -1) {
+                selectedVga2.splice(existingVgaIndex, 1);
+                displaySelectedVga2();
+                localStorage.setItem('selectedVga2', JSON.stringify(selectedVga2));
+            }
         }
+
     }displayTotalSum();
 }
 
@@ -1276,15 +1410,23 @@ function addSsd(ssdId) {
     var ssdImage = ssdDiv.querySelector('.img-fluid').src;
 
     
-    var existingSsdIndex = selectedSsd.findIndex(function (selectedSsd) {
-        return selectedSsd.id === ssdId;
-    });
-
-    
+    var existingSsdIndex;
+    if (cauhinh == 1) {
+        existingSsdIndex =  selectedSsd.findIndex(function (selectedSsd) {
+            return selectedSsd.id === ssdId;
+        });
+    } else if (cauhinh == 2) {
+        existingSsdIndex =  selectedSsd2.findIndex(function (selectedSsd) {
+            return selectedSsd.id === ssdId;
+        });
+    }
     if (existingSsdIndex !== -1) {
-        selectedSsd[existingSsdIndex].quantity++;
+        if (cauhinh == 1) {
+            selectedSsd[existingSsdIndex].quantity++;
+        }else if (cauhinh == 2) {
+            selectedSsd2[existingSsdIndex].quantity++;
+        }
     } else {
-        selectedSsd = [];
         var ssdComponent = {
             id: ssdId,
             name: ssdName,
@@ -1292,12 +1434,24 @@ function addSsd(ssdId) {
             image: ssdImage,
             quantity: 1
         };
-        selectedSsd.push(ssdComponent);
+        if (cauhinh == 1) {
+            selectedSsd = [];
+            selectedSsd.push(ssdComponent);
+        } else if (cauhinh == 2) {
+            selectedSsd2 = [];
+            selectedSsd2.push(ssdComponent);
+        }
+        
     }
-
+    if(cauhinh==1){
+        displaySelectedSsd();
+        localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
+        }else if(cauhinh==2){
+            displaySelectedSsd2();
+            localStorage.setItem('selectedSsd2', JSON.stringify(selectedSsd2));
+        }
     
-    displaySelectedSsd();
-    localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
+
     displayTotalSum();
     $('#ssd').modal('hide');
 }
@@ -1374,50 +1528,160 @@ function displaySelectedSsd() {
         selectedSsdList.appendChild(listItem);
     });
 }
+function displaySelectedSsd2() {
+    var selectedSsdList = document.getElementById('selectedSsd2');
+    selectedSsdList.innerHTML = ''; 
+    lengthPrd = selectedSsd2.length;
+    if (lengthPrd >= 1) {
+        buttonssd2.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
+    }
 
-function increaseSsdQuantity(ssdId) {
     
-    var existingSsdIndex = selectedSsd.findIndex(function (ssdComponent) {
-        return ssdComponent.id === ssdId;
-    });
+    selectedSsd2.forEach(function (ssdComponent) {
+        var listItem = document.createElement('li');
 
-    if (existingSsdIndex !== -1) {
-        selectedSsd[existingSsdIndex].quantity++;
-        displaySelectedSsd();
-        localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
-    }displayTotalSum();
+        
+        var image = document.createElement('img');
+        image.src = ssdComponent.image;
+        image.alt = ssdComponent.name;
+        image.style.maxWidth = '90px'; 
+        listItem.appendChild(image);
+
+        
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = ssdComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        ssd = parseFloat(ssdComponent.price.replace(/[^\d]/g, ''));
+        var quanty = ssd * ssdComponent.quantity;
+        var formattedSsd = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedSsd = formattedSsd.replace('$', '') + 'đ';
+
+        
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedSsd}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+
+        
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseSsdQuantity(ssdComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+        
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${ssdComponent.id}">${ssdComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseSsdQuantity(ssdComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteSsd(ssdComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedSsdList.appendChild(listItem);
+    });
+}
+function increaseSsdQuantity(ssdId) {
+    if(cauhinh==1){
+        var existingSsdIndex = selectedSsd.findIndex(function (ssdComponent) {
+            return ssdComponent.id === ssdId;
+        });
+    
+        if (existingSsdIndex !== -1) {
+            selectedSsd[existingSsdIndex].quantity++;
+            displaySelectedSsd();
+            localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingSsdIndex = selectedSsd2.findIndex(function (ssdComponent) {
+            return ssdComponent.id === ssdId;
+        });
+    
+        if (existingSsdIndex !== -1) {
+            selectedSsd2[existingSsdIndex].quantity++;
+            displaySelectedSsd2();
+            localStorage.setItem('selectedSsd2', JSON.stringify(selectedSsd2));
+        }displayTotalSum();
+    }
+
 }
 
 function decreaseSsdQuantity(ssdId) {
+    if(cauhinh==1){
+        var existingSsdIndex = selectedSsd.findIndex(function (ssdComponent) {
+            return ssdComponent.id === ssdId;
+        });
     
-    var existingSsdIndex = selectedSsd.findIndex(function (ssdComponent) {
-        return ssdComponent.id === ssdId;
-    });
+        if (existingSsdIndex !== -1 && selectedSsd[existingSsdIndex].quantity > 1) {
+            selectedSsd[existingSsdIndex].quantity--;
+            displaySelectedSsd();
+            localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingSsdIndex = selectedSsd2.findIndex(function (ssdComponent) {
+            return ssdComponent.id === ssdId;
+        });
+    
+        if (existingSsdIndex !== -1 && selectedSsd2[existingSsdIndex].quantity > 1) {
+            selectedSsd2[existingSsdIndex].quantity--;
+            displaySelectedSsd2();
+            localStorage.setItem('selectedSsd2', JSON.stringify(selectedSsd2));
+        }displayTotalSum();
+    }
 
-    if (existingSsdIndex !== -1 && selectedSsd[existingSsdIndex].quantity > 1) {
-        selectedSsd[existingSsdIndex].quantity--;
-        displaySelectedSsd();
-        localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
-    }displayTotalSum();
 }
 
 function deleteSsd(ssdId) {
     
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa SSD khỏi danh sách?");
     if (confirmDelete) {
-        
-        buttonssd.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
-        var existingSsdIndex = selectedSsd.findIndex(function (selectedSsd) {
-            return selectedSsd.id === ssdId;
-        });
-
-        if (existingSsdIndex !== -1) {
-            selectedSsd.splice(existingSsdIndex, 1);
-
-            
-            displaySelectedSsd();
-            localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
+        if(cauhinh==1){
+            buttonssd.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingSsdIndex = selectedSsd.findIndex(function (selectedSsd) {
+                return selectedSsd.id === ssdId;
+            });
+    
+            if (existingSsdIndex !== -1) {
+                selectedSsd.splice(existingSsdIndex, 1);
+    
+                
+                displaySelectedSsd();
+                localStorage.setItem('selectedSsd', JSON.stringify(selectedSsd));
+            }
+        }else if(cauhinh ==2){
+            buttonssd2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingSsdIndex = selectedSsd2.findIndex(function (selectedSsd) {
+                return selectedSsd.id === ssdId;
+            });
+    
+            if (existingSsdIndex !== -1) {
+                selectedSsd2.splice(existingSsdIndex, 1);
+    
+                
+                displaySelectedSsd2();
+                localStorage.setItem('selectedSsd2', JSON.stringify(selectedSsd2));
+            }
         }
+
     }displayTotalSum();
 }
 
@@ -1428,14 +1692,24 @@ function addHdd(hddId) {
     var hddPrice = hddDiv.querySelector('.price-prdt').textContent;
     var hddImage = hddDiv.querySelector('.img-fluid').src;
 
-    var existingHddIndex = selectedHdd.findIndex(function (selectedHdd) {
-        return selectedHdd.id === hddId;
-    });
-
+    var existingHddIndex;
+    if (cauhinh == 1) {
+        existingHddIndex = selectedHdd.findIndex(function (selectedHdd) {
+            return selectedHdd.id === hddId;
+        });
+    } else if (cauhinh == 2) {
+        existingHddIndex = selectedHdd2.findIndex(function (selectedHdd) {
+            return selectedHdd.id === hddId;
+        });
+    }
     if (existingHddIndex !== -1) {
-        selectedHdd[existingHddIndex].quantity++;
+        if(cauhinh==1){
+            selectedHdd[existingHddIndex].quantity++;
+        }else if(cauhinh ==2){
+            selectedHdd2[existingHddIndex].quantity++;
+        }
     } else {
-        selectedHdd = [];
+        
         var hddComponent = {
             id: hddId,
             name: hddName,
@@ -1443,11 +1717,23 @@ function addHdd(hddId) {
             image: hddImage,
             quantity: 1
         };
-        selectedHdd.push(hddComponent);
+        
+        if (cauhinh == 1) {
+            selectedHdd = [];
+            selectedHdd.push(hddComponent);
+        } else if (cauhinh == 2) {
+            selectedHdd2 = [];
+            selectedHdd2.push(hddComponent);
+        }
+    }
+    if(cauhinh==1){
+        displaySelectedHdd();
+        localStorage.setItem('selectedHdd', JSON.stringify(selectedHdd));
+    }else if(cauhinh==2){
+        displaySelectedHdd2();
+        localStorage.setItem('selectedHdd2', JSON.stringify(selectedHdd2));
     }
 
-    displaySelectedHdd();
-    localStorage.setItem('selectedHdd', JSON.stringify(selectedHdd));
     displayTotalSum();
     $('#hdd').modal('hide');
 }
@@ -1514,46 +1800,149 @@ function displaySelectedHdd() {
         selectedHddList.appendChild(listItem);
     });
 }
-
-function increaseHddQuantity(hddId) {
-    var existingHddIndex = selectedHdd.findIndex(function (hddComponent) {
-        return hddComponent.id === hddId;
-    });
-
-    if (existingHddIndex !== -1) {
-        selectedHdd[existingHddIndex].quantity++;
-        displaySelectedHdd();
-        localStorage.setItem('selectedHdd', JSON.stringify(selectedHdd));
+function displaySelectedHdd2() {
+    var selectedHddList = document.getElementById('selectedHdd2');
+    selectedHddList.innerHTML = '';
+    lengthPrd = selectedHdd2.length;
+    if (lengthPrd >= 1) {
+        buttonhdd2.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
     }
-    displayTotalSum();
+    selectedHdd2.forEach(function (hddComponent) {
+        var listItem = document.createElement('li');
+        var image = document.createElement('img');
+        image.src = hddComponent.image;
+        image.alt = hddComponent.name;
+        image.style.maxWidth = '90px';
+        listItem.appendChild(image);
+
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = hddComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        var hdd = parseFloat(hddComponent.price.replace(/[^\d]/g, ''));
+        var quanty = hdd * hddComponent.quantity;
+        var formattedHdd = quanty.toLocaleString({ style: 'currency', currency: 'VND' });
+        formattedHdd = formattedHdd.replace('$', '') + 'đ';
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedHdd}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseHddQuantity(hddComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${hddComponent.id}">${hddComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseHddQuantity(hddComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteHdd(hddComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedHddList.appendChild(listItem);
+    });
+}
+function increaseHddQuantity(hddId) {
+    if(cauhinh==1){
+        var existingHddIndex = selectedHdd.findIndex(function (hddComponent) {
+            return hddComponent.id === hddId;
+        });
+    
+        if (existingHddIndex !== -1) {
+            selectedHdd[existingHddIndex].quantity++;
+            displaySelectedHdd();
+            localStorage.setItem('selectedHdd', JSON.stringify(selectedHdd));
+        }
+        displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingHddIndex = selectedHdd2.findIndex(function (hddComponent) {
+            return hddComponent.id === hddId;
+        });
+    
+        if (existingHddIndex !== -1) {
+            selectedHdd2[existingHddIndex].quantity++;
+            displaySelectedHdd2();
+            localStorage.setItem('selectedHdd2', JSON.stringify(selectedHdd2));
+        }
+        displayTotalSum();
+    }
+
 }
 
 function decreaseHddQuantity(hddId) {
-    var existingHddIndex = selectedHdd.findIndex(function (hddComponent) {
-        return hddComponent.id === hddId;
-    });
-
-    if (existingHddIndex !== -1 && selectedHdd[existingHddIndex].quantity > 1) {
-        selectedHdd[existingHddIndex].quantity--;
-        displaySelectedHdd();
-        localStorage.setItem('selectedHdd', JSON.stringify(selectedHdd));
+    if(cauhinh==1){
+        var existingHddIndex = selectedHdd.findIndex(function (hddComponent) {
+            return hddComponent.id === hddId;
+        });
+    
+        if (existingHddIndex !== -1 && selectedHdd[existingHddIndex].quantity > 1) {
+            selectedHdd[existingHddIndex].quantity--;
+            displaySelectedHdd();
+            localStorage.setItem('selectedHdd', JSON.stringify(selectedHdd));
+        }
+        displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingHddIndex = selectedHdd2.findIndex(function (hddComponent) {
+            return hddComponent.id === hddId;
+        });
+    
+        if (existingHddIndex !== -1 && selectedHdd2[existingHddIndex].quantity > 1) {
+            selectedHdd2[existingHddIndex].quantity--;
+            displaySelectedHdd2();
+            localStorage.setItem('selectedHdd2', JSON.stringify(selectedHdd2));
+        }
+        displayTotalSum();
     }
-    displayTotalSum();
+
 }
 
 function deleteHdd(hddId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa HDD khỏi danh sách?");
     if (confirmDelete) {
-    buttonhdd.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
-        var existingHddIndex = selectedHdd.findIndex(function (selectedHdd) {
-            return selectedHdd.id === hddId;
-        });
-
-        if (existingHddIndex !== -1) {
-            selectedHdd.splice(existingHddIndex, 1);
-            displaySelectedHdd();
-            localStorage.setItem('selectedHdd', JSON.stringify(selectedHdd));
+        if(cauhinh==1){
+            buttonhdd.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingHddIndex = selectedHdd.findIndex(function (selectedHdd) {
+                return selectedHdd.id === hddId;
+            });
+    
+            if (existingHddIndex !== -1) {
+                selectedHdd.splice(existingHddIndex, 1);
+                displaySelectedHdd();
+                localStorage.setItem('selectedHdd', JSON.stringify(selectedHdd));
+            }
+        }else if(cauhinh ==2){
+            buttonhdd2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingHddIndex = selectedHdd2.findIndex(function (selectedHdd) {
+                return selectedHdd.id === hddId;
+            });
+    
+            if (existingHddIndex !== -1) {
+                selectedHdd2.splice(existingHddIndex, 1);
+                displaySelectedHdd2();
+                localStorage.setItem('selectedHdd2', JSON.stringify(selectedHdd2));
+            }
         }
+
     }
     displayTotalSum();
 }
