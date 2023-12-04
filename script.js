@@ -12,6 +12,29 @@ var selectedManhinh = [];
 var selectedChuot = [];
 var selectedPhim = [];
 var selectedTai = [];
+var selectedCpus2 = [];
+var selectedMain2 = [];
+var selectedRam2 = [];
+var selectedVga2 = [];
+var selectedSsd2 = [];
+var selectedHdd2 = [];
+var selectedPsu2 = [];
+var selectedVo2 = [];
+var selectedTannhiet2 = [];
+var selectedManhinh2 = [];
+var selectedChuot2 = [];
+var selectedPhim2 = [];
+var selectedTai2 = [];
+var cauhinh = 1;
+
+function printMessage(selectedBtn) {
+    if (selectedBtn == 'cauhinh1') {
+      cauhinh = 1;
+    } else if (selectedBtn == 'cauhinh2') {
+      cauhinh = 2;
+    }
+  }
+
 
 
 function exportToPDF() {
@@ -45,6 +68,19 @@ window.onload = function () {
     var storedChuot = localStorage.getItem('selectedChuot');
     var storedPhim = localStorage.getItem('selectedPhim');
     var storedTai = localStorage.getItem('selectedTai');
+    var storedCpu2 = localStorage.getItem('selectedCpus2');
+    var storedMain2 = localStorage.getItem('selectedMain2');
+    var storedRam2 = localStorage.getItem('selectedRam2');
+    var storedVga2 = localStorage.getItem('selectedVga2');
+    var storedSsd2 = localStorage.getItem('selectedSsd2');
+    var storedHdd2 = localStorage.getItem('selectedHdd2');
+    var storedPsu2 = localStorage.getItem('selectedPsu2');
+    var storedVo2 = localStorage.getItem('selectedVo2');
+    var storedTannhiet2 = localStorage.getItem('selectedTannhiet2');
+    var storedManhinh2 = localStorage.getItem('selectedManhinh2');
+    var storedChuot2 = localStorage.getItem('selectedChuot2');
+    var storedPhim2 = localStorage.getItem('selectedPhim2');
+    var storedTai2 = localStorage.getItem('selectedTai2');
     if (storedCpu) {
         selectedCpus = JSON.parse(storedCpu);
         displaySelectedCpus();
@@ -97,9 +133,64 @@ window.onload = function () {
         selectedTai = JSON.parse(storedTai);
         displaySelectedTai();
     }
+    // cau hinh 2
+    if (storedCpu2) {
+        selectedCpus2 = JSON.parse(storedCpu2);
+        displaySelectedCpus2();
+    }
+    if (storedMain2) {
+        selectedMain2 = JSON.parse(storedMain2);
+        displaySelectedMain2();
+    }
+    if (storedRam2) {
+        selectedRam2 = JSON.parse(storedRam2);
+        displaySelectedRam2();
+    }
+    if (storedVga2) {
+        selectedVga2 = JSON.parse(storedVga2);
+        displaySelectedVga2();
+    }
+    if (storedSsd2) {
+        selectedSsd2 = JSON.parse(storedSsd2);
+        displaySelectedSsd2();
+    }
+    if (storedHdd2) {
+        selectedHdd2 = JSON.parse(storedHdd2);
+        displaySelectedHdd2();
+    }
+    if (storedPsu2) {
+        selectedPsu2 = JSON.parse(storedPsu2);
+        displaySelectedPsu2();
+    }
+    if (storedVo2) {
+        selectedVo2 = JSON.parse(storedVo2);
+        displaySelectedVo2();
+    }
+    if (storedTannhiet2) {
+        selectedTannhiet2 = JSON.parse(storedTannhiet2);
+        displaySelectedTannhiet2();
+    }
+    if (storedManhinh2) {
+        selectedManhinh2 = JSON.parse(storedManhinh2);
+        displaySelectedManhinh2();
+    }
+    if (storedChuot2) {
+        selectedChuot2 = JSON.parse(storedChuot2);
+        displaySelectedChuot2();
+    }
+    if (storedPhim2) {
+        selectedPhim2 = JSON.parse(storedPhim2);
+        displaySelectedPhim2();
+    }
+    if (storedTai2) {
+        selectedTai2 = JSON.parse(storedTai2);
+        displaySelectedTai2();
+    }
     displayTotalSum();
   
 };
+
+
 
 function deleteAll() {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa tất cả các linh kiện đã chọn?");
@@ -158,14 +249,25 @@ function addCpu(cpuId) {
     var cpuPrice = cpuDiv.querySelector('.price-prdt').textContent;
     var cpuImage = cpuDiv.querySelector('.img-fluid').src;
 
-    var existingCpuIndex = selectedCpus.findIndex(function (selectedCpu) {
-        return selectedCpu.id === cpuId;
-    });
+    var existingCpuIndex;
+
+    if (cauhinh == 1) {
+        existingCpuIndex = selectedCpus.findIndex(function (selectedCpu) {
+            return selectedCpu.id === cpuId;
+        });
+    } else if (cauhinh == 2) {
+        existingCpuIndex = selectedCpus2.findIndex(function (selectedCpu) {
+            return selectedCpu.id === cpuId;
+        });
+    }
 
     if (existingCpuIndex !== -1) {
-        selectedCpus[existingCpuIndex].quantity++;
+        if (cauhinh == 1) {
+            selectedCpus[existingCpuIndex].quantity++;
+        }else if (cauhinh == 2) {
+            selectedCpus2[existingCpuIndex].quantity++;
+        }
     } else {
-        selectedCpus = [];
         var cpuComponent = {
             id: cpuId,
             name: cpuName,
@@ -173,11 +275,22 @@ function addCpu(cpuId) {
             image: cpuImage,
             quantity: 1
         };
-        selectedCpus.push(cpuComponent);
-    }
 
+        if (cauhinh == 1) {
+            selectedCpus = [];
+            selectedCpus.push(cpuComponent);
+        } else if (cauhinh == 2) {
+            selectedCpus2 = [];
+            selectedCpus2.push(cpuComponent);
+        }
+    }
+    if(cauhinh==1){
     displaySelectedCpus();
     localStorage.setItem('selectedCpus', JSON.stringify(selectedCpus));
+    }else if(cauhinh==2){
+    displaySelectedCpus2();
+    localStorage.setItem('selectedCpus2', JSON.stringify(selectedCpus2));
+    }
     displayTotalSum();
     $('#cpu').modal('hide');
 }
@@ -250,47 +363,158 @@ function displaySelectedCpus() {
     
 }
 
-
-function increaseCpuQuantity(cpuId) {
-    var existingCpuIndex = selectedCpus.findIndex(function (cpuComponent) {
-        return cpuComponent.id === cpuId;
-    });
-
-    if (existingCpuIndex !== -1) {
-        selectedCpus[existingCpuIndex].quantity++;
-        displaySelectedCpus();
-        localStorage.setItem('selectedCpus', JSON.stringify(selectedCpus));
+function displaySelectedCpus2() {
+    var selectedCpuList = document.getElementById('selectedCpus2');
+    selectedCpuList.innerHTML = ''; 
+    lengthPrd = selectedCpus2.length;
+    if (lengthPrd >= 1) {
+        buttoncpu2.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
     }
-    displayTotalSum();
+    selectedCpus2.forEach(function (cpuComponent) {
+    
+        var listItem = document.createElement('li');
+
+        var image = document.createElement('img');
+        image.src = cpuComponent.image;
+        image.alt = cpuComponent.name;
+        image.style.maxWidth = '90px'; 
+        listItem.appendChild(image);
+
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = cpuComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        cpu = parseFloat(cpuComponent.price.replace(/[^\d]/g, ''));
+        var quanty = cpu * cpuComponent.quantity;
+        var formattedCpu = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedCpu = formattedCpu.replace('$', '') + 'đ';
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedCpu}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+        
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseCpuQuantity(cpuComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${cpuComponent.id}">${cpuComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+        selectedCpuList.appendChild(listItem);
+
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseCpuQuantity(cpuComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteCpu(cpuComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+
+    });       
+    
+}
+function increaseCpuQuantity(cpuId) {
+    if(cauhinh==1){
+        var existingCpuIndex = selectedCpus.findIndex(function (cpuComponent) {
+            return cpuComponent.id === cpuId;
+        });
+    
+        if (existingCpuIndex !== -1) {
+            selectedCpus[existingCpuIndex].quantity++;
+            displaySelectedCpus();
+            localStorage.setItem('selectedCpus', JSON.stringify(selectedCpus));
+        }
+        displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingCpuIndex = selectedCpus2.findIndex(function (cpuComponent) {
+            return cpuComponent.id === cpuId;
+        });
+    
+        if (existingCpuIndex !== -1) {
+            selectedCpus2[existingCpuIndex].quantity++;
+            displaySelectedCpus2();
+            localStorage.setItem('selectedCpus2', JSON.stringify(selectedCpus2));
+        }
+        displayTotalSum();
+    }
+
 }
 
 function decreaseCpuQuantity(cpuId) {
-    var existingCpuIndex = selectedCpus.findIndex(function (cpuComponent) {
-        return cpuComponent.id === cpuId;
-    });
-
-    if (existingCpuIndex !== -1 && selectedCpus[existingCpuIndex].quantity > 1) {
-        selectedCpus[existingCpuIndex].quantity--;
-        displaySelectedCpus();
-        localStorage.setItem('selectedCpus', JSON.stringify(selectedCpus));
+    if(cauhinh==1){
+        var existingCpuIndex = selectedCpus.findIndex(function (cpuComponent) {
+            return cpuComponent.id === cpuId;
+        });
+    
+        if (existingCpuIndex !== -1 && selectedCpus[existingCpuIndex].quantity > 1) {
+            selectedCpus[existingCpuIndex].quantity--;
+            displaySelectedCpus();
+            localStorage.setItem('selectedCpus', JSON.stringify(selectedCpus));
+        }
+        displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingCpuIndex = selectedCpus2.findIndex(function (cpuComponent) {
+            return cpuComponent.id === cpuId;
+        });
+    
+        if (existingCpuIndex !== -1 && selectedCpus2[existingCpuIndex].quantity > 1) {
+            selectedCpus2[existingCpuIndex].quantity--;
+            displaySelectedCpus2();
+            localStorage.setItem('selectedCpus2', JSON.stringify(selectedCpus2));
+        }
+        displayTotalSum();
     }
-    displayTotalSum();
+
 }
 
 function deleteCpu(cpuId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa CPU khỏi danh sách?");
     if (confirmDelete) {
+        if(cauhinh==1){
         buttoncpu.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
-        var existingCpuIndex = selectedCpus.findIndex(function (selectedCpu) {
-            return selectedCpu.id === cpuId;
-        });
 
-        if (existingCpuIndex !== -1) {
-            selectedCpus.splice(existingCpuIndex, 1);
+            var existingCpuIndex = selectedCpus.findIndex(function (selectedCpu) {
+                return selectedCpu.id === cpuId;
+            });
+    
+            if (existingCpuIndex !== -1) {
+                selectedCpus.splice(existingCpuIndex, 1);
+    
+                displaySelectedCpus();
+                localStorage.setItem('selectedCpus', JSON.stringify(selectedCpus));
+            }
+        }else if(cauhinh ==2){
+            buttoncpu2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sádsadản phẩm';
 
-            displaySelectedCpus();
-            localStorage.setItem('selectedCpus', JSON.stringify(selectedCpus));
+            var existingCpuIndex = selectedCpus2.findIndex(function (selectedCpu2) {
+                return selectedCpu2.id === cpuId;
+            });
+    
+            if (existingCpuIndex !== -1) {
+                selectedCpus2.splice(existingCpuIndex, 1);
+    
+                displaySelectedCpus2();
+                localStorage.setItem('selectedCpus2', JSON.stringify(selectedCpus2));
+            }
         }
+
     }
     displayTotalSum();
 }
@@ -305,15 +529,26 @@ function addMain(mainId) {
     var mainPrice = mainDiv.querySelector('.price-prdt').textContent;
     var mainImage = mainDiv.querySelector('.img-fluid').src;
 
-    var existingMainIndex = selectedMain.findIndex(function (selectedMain) {
-        return selectedMain.id === mainId;
-    });
-
+    var existingMainIndex;
+    if (cauhinh == 1) {
+        existingMainIndex = selectedMain.findIndex(function (selectedMain) {
+            return selectedMain.id === mainId;
+        });
+    } else if (cauhinh == 2) {
+        existingMainIndex = selectedMain2.findIndex(function (selectedMain) {
+            return selectedMain.id === mainId;
+        });
+    }
     
     if (existingMainIndex !== -1) {
-        selectedMain[existingMainIndex].quantity++;
+        if (cauhinh == 1) {
+            selectedMain[existingMainIndex].quantity++;
+
+        }else if (cauhinh == 2) {
+            selectedMain2[existingMainIndex].quantity++;
+
+        }
     } else {
-        selectedMain = [];
         var mainComponent = {
             id: mainId,
             name: mainName,
@@ -321,12 +556,23 @@ function addMain(mainId) {
             image: mainImage,
             quantity: 1
         };
-        selectedMain.push(mainComponent);
+        if (cauhinh == 1) {
+            selectedMain = [];
+            selectedMain.push(mainComponent);
+        } else if (cauhinh == 2) {
+            selectedMain2 = [];
+            selectedMain2.push(mainComponent);
+        }
     }
 
-    
-    displaySelectedMain();
-    localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
+    if(cauhinh==1){
+        displaySelectedMain();
+        localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
+        }else if(cauhinh==2){
+        displaySelectedMain2();
+        localStorage.setItem('selectedMain2', JSON.stringify(selectedMain2));
+        }
+
 
     displayTotalSum();
     $('#main').modal('hide');
@@ -408,51 +654,169 @@ function displaySelectedMain() {
         selectedMainList.appendChild(listItem);
     });
 }
+function displaySelectedMain2() {
+    var selectedMainList = document.getElementById('selectedMain2');
+    selectedMainList.innerHTML = ''; 
+    var main1 = 0;
+    lengthPrd = selectedMain2.length;
+    if (lengthPrd >= 1) {
+        buttonmain2.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
+    }
 
+    
+    selectedMain2.forEach(function (mainComponent) {
+        var listItem = document.createElement('li');
+
+        
+        var image = document.createElement('img');
+        image.src = mainComponent.image;
+        image.alt = mainComponent.name;
+        image.style.maxWidth = '90px'; 
+        listItem.appendChild(image);
+
+        
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = mainComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        main = parseFloat(mainComponent.price.replace(/[^\d]/g, ''));
+        var quanty = main * mainComponent.quantity;
+        var formattedMain = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedMain = formattedMain.replace('$', '') + 'đ';
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedMain}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+
+        
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseMainQuantity(mainComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${mainComponent.id}">${mainComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+
+
+
+
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseMainQuantity(mainComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteMain(mainComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedMainList.appendChild(listItem);
+    });
+}
 function increaseMainQuantity(mainId) {
     
-    var existingMainIndex = selectedMain.findIndex(function (mainComponent) {
-        return mainComponent.id === mainId;
-    });
 
-    if (existingMainIndex !== -1) {
-        selectedMain[existingMainIndex].quantity++;
-        displaySelectedMain();
-        localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
-    }displayTotalSum();
+    if(cauhinh==1){
+        var existingMainIndex = selectedMain.findIndex(function (mainComponent) {
+            return mainComponent.id === mainId;
+        });
+    
+        if (existingMainIndex !== -1) {
+            selectedMain[existingMainIndex].quantity++;
+            displaySelectedMain();
+            localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingMainIndex = selectedMain2.findIndex(function (mainComponent) {
+            return mainComponent.id === mainId;
+        });
+    
+        if (existingMainIndex !== -1) {
+            selectedMain2[existingMainIndex].quantity++;
+            displaySelectedMain2();
+            localStorage.setItem('selectedMain2', JSON.stringify(selectedMain2));
+        }displayTotalSum();
+    }
 }
 
 function decreaseMainQuantity(mainId) {
+    if(cauhinh==1){
+        var existingMainIndex = selectedMain.findIndex(function (mainComponent) {
+            return mainComponent.id === mainId;
+        });
     
-    var existingMainIndex = selectedMain.findIndex(function (mainComponent) {
-        return mainComponent.id === mainId;
-    });
+        if (existingMainIndex !== -1 && selectedMain[existingMainIndex].quantity > 1) {
+            selectedMain[existingMainIndex].quantity--;
+            displaySelectedMain();
+            localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingMainIndex = selectedMain2.findIndex(function (mainComponent) {
+            return mainComponent.id === mainId;
+        });
+    
+        if (existingMainIndex !== -1 && selectedMain2[existingMainIndex].quantity > 1) {
+            selectedMain2[existingMainIndex].quantity--;
+            displaySelectedMain2();
+            localStorage.setItem('selectedMain2', JSON.stringify(selectedMain2));
+        }displayTotalSum();
+    }
 
-    if (existingMainIndex !== -1 && selectedMain[existingMainIndex].quantity > 1) {
-        selectedMain[existingMainIndex].quantity--;
-        displaySelectedMain();
-        localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
-    }displayTotalSum();
 }
 
 function deleteMain(mainId) {
     
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa Main khỏi danh sách?");
     if (confirmDelete) {
-        buttonmain.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        if(cauhinh==1){
+            buttonmain.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
         
         
-        var existingMainIndex = selectedMain.findIndex(function (selectedMain) {
-            return selectedMain.id === mainId;
-        });
-
-        if (existingMainIndex !== -1) {
-            selectedMain.splice(existingMainIndex, 1);
-
-            
-            displaySelectedMain();
-            localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
+            var existingMainIndex = selectedMain.findIndex(function (selectedMain) {
+                return selectedMain.id === mainId;
+            });
+    
+            if (existingMainIndex !== -1) {
+                selectedMain.splice(existingMainIndex, 1);
+    
+                
+                displaySelectedMain();
+                localStorage.setItem('selectedMain', JSON.stringify(selectedMain));
+            }
+        }else if(cauhinh ==2){
+            buttonmain2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        
+        
+            var existingMainIndex = selectedMain2.findIndex(function (selectedMain2) {
+                return selectedMain2.id === mainId;
+            });
+    
+            if (existingMainIndex !== -1) {
+                selectedMain2.splice(existingMainIndex, 1);
+    
+                
+                displaySelectedMain2();
+                localStorage.setItem('selectedMain2', JSON.stringify(selectedMain2));
+            }
         }
+
     }displayTotalSum();
 }
 
@@ -469,15 +833,25 @@ function addRam(ramId) {
     var ramImage = ramDiv.querySelector('.img-fluid').src;
 
     
-    var existingRamIndex = selectedRam.findIndex(function (selectedRam) {
-        return selectedRam.id === ramId;
-    });
-
+    var existingRamIndex;
+    if (cauhinh == 1) {
+        existingRamIndex = selectedRam.findIndex(function (selectedRam) {
+            return selectedRam.id === ramId;
+        });
+    } else if (cauhinh == 2) {
+        existingRamIndex = selectedRam2.findIndex(function (selectedRam) {
+            return selectedRam.id === mainId;
+        });
+    }
     
     if (existingRamIndex !== -1) {
-        selectedRam[existingRamIndex].quantity++;
+        if (cauhinh == 1) {
+            selectedRam[existingRamIndex].quantity++;
+        }else if (cauhinh == 2) {
+            selectedRam2[existingRamIndex].quantity++;
+        }
     } else {
-        selectedRam = [];
+        
         var ramComponent = {
             id: ramId,
             name: ramName,
@@ -485,12 +859,23 @@ function addRam(ramId) {
             image: ramImage,
             quantity: 1
         };
-        selectedRam.push(ramComponent);
+        if (cauhinh == 1) {
+            selectedRam = [];
+            selectedRam.push(ramComponent);
+        } else if (cauhinh == 2) {
+            selectedRam2 = [];
+            selectedRam2.push(ramComponent);
+        }
     }
-
+    if(cauhinh==1){
+        displaySelectedRam();
+        localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
+        }else if(cauhinh==2){
+            displaySelectedRam2();
+            localStorage.setItem('selectedRam2', JSON.stringify(selectedRam2));
+        }
     
-    displaySelectedRam();
-    localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
+
 
     displayTotalSum();
     $('#ram').modal('hide');
@@ -569,50 +954,161 @@ function displaySelectedRam() {
         selectedRamList.appendChild(listItem);
     });
 }
+function displaySelectedRam2() {
+    var selectedRamList = document.getElementById('selectedRam2');
+    selectedRamList.innerHTML = ''; 
+    lengthPrd = selectedRam2.length;
+    if (lengthPrd >= 1) {
+        buttonram2.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
+    }
 
-function increaseRamQuantity(ramId) {
     
-    var existingRamIndex = selectedRam.findIndex(function (ramComponent) {
-        return ramComponent.id === ramId;
-    });
+    selectedRam2.forEach(function (ramComponent) {
+        var listItem = document.createElement('li');
 
-    if (existingRamIndex !== -1) {
-        selectedRam[existingRamIndex].quantity++;
-        displaySelectedRam();
-        localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
-    }displayTotalSum();
+        
+        var image = document.createElement('img');
+        image.src = ramComponent.image;
+        image.alt = ramComponent.name;
+        image.style.maxWidth = '90px'; 
+        listItem.appendChild(image);
+
+        
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = ramComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        ram = parseFloat(ramComponent.price.replace(/[^\d]/g, ''));
+        var quanty = ram * ramComponent.quantity;
+        var formattedRam = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedRam = formattedRam.replace('$', '') + 'đ';
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedRam}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+
+        
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseRamQuantity(ramComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+        
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${ramComponent.id}">${ramComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        var a = parseFloat(ramComponent.price.replace(/[^\d]/g, ''));
+        totalram = a*ramComponent.quantity;
+
+        
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseRamQuantity(ramComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteRam(ramComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedRamList.appendChild(listItem);
+    });
+}
+function increaseRamQuantity(ramId) {
+    if(cauhinh==1){
+        var existingRamIndex = selectedRam.findIndex(function (ramComponent) {
+            return ramComponent.id === ramId;
+        });
+    
+        if (existingRamIndex !== -1) {
+            selectedRam[existingRamIndex].quantity++;
+            displaySelectedRam();
+            localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingRamIndex = selectedRam2.findIndex(function (ramComponent) {
+            return ramComponent.id === ramId;
+        });
+    
+        if (existingRamIndex !== -1) {
+            selectedRam2[existingRamIndex].quantity++;
+            displaySelectedRam2();
+            localStorage.setItem('selectedRam2', JSON.stringify(selectedRam2));
+        }displayTotalSum();
+    }
+
 }
 
 function decreaseRamQuantity(ramId) {
+    if(cauhinh==1){
+        var existingRamIndex = selectedRam.findIndex(function (ramComponent) {
+            return ramComponent.id === ramId;
+        });
     
-    var existingRamIndex = selectedRam.findIndex(function (ramComponent) {
-        return ramComponent.id === ramId;
-    });
+        if (existingRamIndex !== -1 && selectedRam[existingRamIndex].quantity > 1) {
+            selectedRam[existingRamIndex].quantity--;
+            displaySelectedRam();
+            localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingRamIndex = selectedRam2.findIndex(function (ramComponent) {
+            return ramComponent.id === ramId;
+        });
+    
+        if (existingRamIndex !== -1 && selectedRam2[existingRamIndex].quantity > 1) {
+            selectedRam2[existingRamIndex].quantity--;
+            displaySelectedRam2();
+            localStorage.setItem('selectedRam2', JSON.stringify(selectedRam2));
+        }displayTotalSum();
+    }
 
-    if (existingRamIndex !== -1 && selectedRam[existingRamIndex].quantity > 1) {
-        selectedRam[existingRamIndex].quantity--;
-        displaySelectedRam();
-        localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
-    }displayTotalSum();
 }
 
 function deleteRam(ramId) {
     
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa RAM khỏi danh sách?");
     if (confirmDelete) {
-        
-        buttonram.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
-        var existingRamIndex = selectedRam.findIndex(function (selectedRam) {
-            return selectedRam.id === ramId;
-        });
-
-        if (existingRamIndex !== -1) {
-            selectedRam.splice(existingRamIndex, 1);
-
-            
-            displaySelectedRam();
-            localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
+        if(cauhinh==1){
+            buttonram.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingRamIndex = selectedRam.findIndex(function (selectedRam) {
+                return selectedRam.id === ramId;
+            });
+    
+            if (existingRamIndex !== -1) {
+                selectedRam.splice(existingRamIndex, 1);
+    
+                
+                displaySelectedRam();
+                localStorage.setItem('selectedRam', JSON.stringify(selectedRam));
+            }
+        }else if(cauhinh ==2){
+            buttonram2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingRamIndex = selectedRam2.findIndex(function (selectedRam) {
+                return selectedRam.id === ramId;
+            });
+    
+            if (existingRamIndex !== -1) {
+                selectedRam2.splice(existingRamIndex, 1);
+    
+                
+                displaySelectedRam2();
+                localStorage.setItem('selectedRam2', JSON.stringify(selectedRam2));
+            }
         }
+
     }displayTotalSum();
 }
 
@@ -2139,11 +2635,3 @@ function calculateTotalSum() {
 }
 
 
-document.getElementById('toggleButton').addEventListener('click', function () {
-    var buttonText = this.innerHTML.trim();
-    if (buttonText === 'Xem thêm') {
-        this.innerHTML = 'Thu gọn';
-    } else {
-        this.innerHTML = 'Xem thêm';
-    }
-});
