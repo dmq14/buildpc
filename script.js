@@ -393,8 +393,8 @@ function displaySelectedCpus() {
         listItem.appendChild(paragraph2);
         
         var decreaseButton = document.createElement('button');
-        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseCpuQuantity(cpuComponent.id);
         };
@@ -462,7 +462,7 @@ function displaySelectedCpus2() {
         
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseCpuQuantity(cpuComponent.id);
         };
@@ -684,7 +684,7 @@ function displaySelectedMain() {
         
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseMainQuantity(mainComponent.id);
         };
@@ -760,7 +760,7 @@ function displaySelectedMain2() {
         
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseMainQuantity(mainComponent.id);
         };
@@ -988,7 +988,7 @@ function displaySelectedRam() {
         
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseRamQuantity(ramComponent.id);
         };
@@ -1061,7 +1061,7 @@ function displaySelectedRam2() {
         
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseRamQuantity(ramComponent.id);
         };
@@ -1281,7 +1281,7 @@ function displaySelectedVga() {
         
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseVgaQuantity(vgaComponent.id);
         };
@@ -1353,7 +1353,7 @@ function displaySelectedVga2() {
         
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseVgaQuantity(vgaComponent.id);
         };
@@ -1564,7 +1564,7 @@ function displaySelectedSsd() {
         
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseSsdQuantity(ssdComponent.id);
         };
@@ -1636,7 +1636,7 @@ function displaySelectedSsd2() {
         
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseSsdQuantity(ssdComponent.id);
         };
@@ -1839,7 +1839,7 @@ function displaySelectedHdd() {
 
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseHddQuantity(hddComponent.id);
         };
@@ -1901,7 +1901,7 @@ function displaySelectedHdd2() {
 
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseHddQuantity(hddComponent.id);
         };
@@ -2110,7 +2110,7 @@ function displaySelectedPsu() {
         
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreasePsuQuantity(psuComponent.id);
         };
@@ -2180,7 +2180,7 @@ function displaySelectedPsu2() {
         
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreasePsuQuantity(psuComponent.id);
         };
@@ -2387,7 +2387,7 @@ function displaySelectedVo() {
         
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseQuantity(selectedVoComponent.id);
         };
@@ -2459,7 +2459,7 @@ function displaySelectedVo2() {
         
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseQuantity(selectedVoComponent.id);
         };
@@ -2657,7 +2657,7 @@ function displaySelectedTannhiet() {
 
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseTannhietQuantity(tannhietComponent.id);
         };
@@ -2723,7 +2723,7 @@ function displaySelectedTannhiet2() {
 
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseTannhietQuantity(tannhietComponent.id);
         };
@@ -2929,7 +2929,7 @@ function displaySelectedManhinh() {
 
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseManhinhQuantity(manhinhComponent.id);
         };
@@ -2995,7 +2995,7 @@ function displaySelectedManhinh2() {
 
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseManhinhQuantity(manhinhComponent.id);
         };
@@ -3198,7 +3198,7 @@ function displaySelectedChuot() {
 
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseChuotQuantity(chuotComponent.id);
         };
@@ -3264,7 +3264,7 @@ function displaySelectedChuot2() {
 
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseChuotQuantity(chuotComponent.id);
         };
@@ -3468,7 +3468,7 @@ function displaySelectedPhim() {
 
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreasePhimQuantity(phimComponent.id);
         };
@@ -3535,7 +3535,7 @@ function displaySelectedPhim2() {
 
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreasePhimQuantity(phimComponent.id);
         };
@@ -3733,7 +3733,7 @@ function displaySelectedTai() {
 
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseTaiQuantity(taiComponent.id);
         };
@@ -3795,7 +3795,7 @@ function displaySelectedTai2() {
 
         var decreaseButton = document.createElement('button');
         decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
-        decreaseButton.className = 'btn-total';
+        decreaseButton.className = 'btn-total pd-l';
         decreaseButton.onclick = function () {
             decreaseTaiQuantity(taiComponent.id);
         };

@@ -38,6 +38,9 @@
     width: 100%;
     
 }
+.pd-l{
+    padding-left: 0;
+}
 .d-in-bl{
     display: inline-block;
 }
