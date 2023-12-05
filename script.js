@@ -51,7 +51,20 @@ function exportToPDF() {
     html2pdf(content, options);
 
 }
+function exportToPDF2() {
+    var content = document.getElementById('content2');
+    var options = {
+        top: 0,
+        margin: 5, 
+        filename: 'BuildPCKV2.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', autoPaging: true  }
+    };
+      
+    html2pdf(content, options);
 
+}
 
 
 window.onload = function () {
@@ -187,6 +200,7 @@ window.onload = function () {
         displaySelectedTai2();
     }
     displayTotalSum();
+    displayTotalSum2();
   
 };
 
@@ -242,6 +256,56 @@ function deleteAll() {
         location.reload();
     }
 }
+function deleteAll2() {
+    var confirmDelete = window.confirm("Bạn có chắc muốn xóa tất cả các linh kiện đã chọn?");
+    if (confirmDelete) {
+
+
+        displaySelectedTannhiet2();
+        displaySelectedManhinh2();
+        displaySelectedChuot2();
+        displaySelectedPhim2();
+        displaySelectedPsu2();
+        displaySelectedVo2();
+        displaySelectedRam2();
+        displaySelectedMain2();
+        displaySelectedCpus2();
+        displaySelectedSsd2();
+        displaySelectedHdd2();
+        displaySelectedVga2();
+        displaySelectedTai2();
+
+        localStorage.removeItem('selectedTannhiet2');
+        localStorage.removeItem('selectedManhinh2');
+        localStorage.removeItem('selectedChuot2');
+        localStorage.removeItem('selectedPhim2');
+        localStorage.removeItem('selectedPsu2');
+        localStorage.removeItem('selectedVo2');
+        localStorage.removeItem('selectedRam2');
+        localStorage.removeItem('selectedMain2');
+        localStorage.removeItem('selectedCpus2');
+        localStorage.removeItem('selectedSsd2');
+        localStorage.removeItem('selectedHdd2');
+        localStorage.removeItem('selectedVga2');
+        localStorage.removeItem('selectedTai2');
+        
+        buttontannhiet2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonmonitor2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonmouse2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonkeyboard2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonpsu2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonvo2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonram2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonmain2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttoncpu2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonssd2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonhdd2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttonvga2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        buttontai2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+        
+        location.reload();
+    }
+}
 //CPU----------------------------------------
 function addCpu(cpuId) {
     var cpuDiv = document.getElementById('cpu' + cpuId);
@@ -292,6 +356,7 @@ function addCpu(cpuId) {
     localStorage.setItem('selectedCpus2', JSON.stringify(selectedCpus2));
     }
     displayTotalSum();
+    displayTotalSum2();
     $('#cpu').modal('hide');
 }
 
@@ -452,7 +517,7 @@ function increaseCpuQuantity(cpuId) {
             displaySelectedCpus2();
             localStorage.setItem('selectedCpus2', JSON.stringify(selectedCpus2));
         }
-        displayTotalSum();
+        displayTotalSum2();
     }
 
 }
@@ -479,7 +544,7 @@ function decreaseCpuQuantity(cpuId) {
             displaySelectedCpus2();
             localStorage.setItem('selectedCpus2', JSON.stringify(selectedCpus2));
         }
-        displayTotalSum();
+        displayTotalSum2();
     }
 
 }
@@ -517,6 +582,7 @@ function deleteCpu(cpuId) {
 
     }
     displayTotalSum();
+    displayTotalSum2();
 }
 
 
@@ -575,6 +641,7 @@ function addMain(mainId) {
 
 
     displayTotalSum();
+    displayTotalSum2();
     $('#main').modal('hide');
 }
 
@@ -752,7 +819,7 @@ function increaseMainQuantity(mainId) {
             selectedMain2[existingMainIndex].quantity++;
             displaySelectedMain2();
             localStorage.setItem('selectedMain2', JSON.stringify(selectedMain2));
-        }displayTotalSum();
+        }displayTotalSum2();
     }
 }
 
@@ -776,7 +843,7 @@ function decreaseMainQuantity(mainId) {
             selectedMain2[existingMainIndex].quantity--;
             displaySelectedMain2();
             localStorage.setItem('selectedMain2', JSON.stringify(selectedMain2));
-        }displayTotalSum();
+        }displayTotalSum2();
     }
 
 }
@@ -818,6 +885,7 @@ function deleteMain(mainId) {
         }
 
     }displayTotalSum();
+    displayTotalSum2();
 }
 
 
@@ -878,6 +946,7 @@ function addRam(ramId) {
 
 
     displayTotalSum();
+    displayTotalSum2();
     $('#ram').modal('hide');
 }
 
@@ -1047,7 +1116,7 @@ function increaseRamQuantity(ramId) {
             selectedRam2[existingRamIndex].quantity++;
             displaySelectedRam2();
             localStorage.setItem('selectedRam2', JSON.stringify(selectedRam2));
-        }displayTotalSum();
+        }displayTotalSum2();
     }
 
 }
@@ -1072,7 +1141,7 @@ function decreaseRamQuantity(ramId) {
             selectedRam2[existingRamIndex].quantity--;
             displaySelectedRam2();
             localStorage.setItem('selectedRam2', JSON.stringify(selectedRam2));
-        }displayTotalSum();
+        }displayTotalSum2();
     }
 
 }
@@ -1109,7 +1178,7 @@ function deleteRam(ramId) {
             }
         }
 
-    }displayTotalSum();
+    }displayTotalSum();displayTotalSum2();
 }
 
 //VGA----------------------------------------
@@ -1170,7 +1239,7 @@ function addVga(vgaId) {
         }
 
 
-    displayTotalSum();
+    displayTotalSum();displayTotalSum2();
     $('#vga').modal('hide');
 }
 
@@ -1338,7 +1407,7 @@ function increaseVgaQuantity(vgaId) {
             selectedVga2[existingVgaIndex].quantity++;
             displaySelectedVga2();
             localStorage.setItem('selectedVga2', JSON.stringify(selectedVga2));
-        }displayTotalSum();
+        }displayTotalSum2();
     }
 
 }
@@ -1363,7 +1432,7 @@ function decreaseVgaQuantity(vgaId) {
             selectedVga2[existingVgaIndex].quantity--;
             displaySelectedVga2();
             localStorage.setItem('selectedVga2', JSON.stringify(selectedVga2));
-        }displayTotalSum();
+        }displayTotalSum2();
     }
 
 }
@@ -1398,7 +1467,7 @@ function deleteVga(vgaId) {
             }
         }
 
-    }displayTotalSum();
+    }displayTotalSum();displayTotalSum2();
 }
 
 //SSD----------------------------------------
@@ -1452,7 +1521,7 @@ function addSsd(ssdId) {
         }
     
 
-    displayTotalSum();
+    displayTotalSum();displayTotalSum2();
     $('#ssd').modal('hide');
 }
 
@@ -1620,7 +1689,7 @@ function increaseSsdQuantity(ssdId) {
             selectedSsd2[existingSsdIndex].quantity++;
             displaySelectedSsd2();
             localStorage.setItem('selectedSsd2', JSON.stringify(selectedSsd2));
-        }displayTotalSum();
+        }displayTotalSum2();
     }
 
 }
@@ -1645,7 +1714,7 @@ function decreaseSsdQuantity(ssdId) {
             selectedSsd2[existingSsdIndex].quantity--;
             displaySelectedSsd2();
             localStorage.setItem('selectedSsd2', JSON.stringify(selectedSsd2));
-        }displayTotalSum();
+        }displayTotalSum2();
     }
 
 }
@@ -1682,7 +1751,7 @@ function deleteSsd(ssdId) {
             }
         }
 
-    }displayTotalSum();
+    }displayTotalSum();displayTotalSum2();
 }
 
 //HDD-------------------------------------
@@ -1734,7 +1803,7 @@ function addHdd(hddId) {
         localStorage.setItem('selectedHdd2', JSON.stringify(selectedHdd2));
     }
 
-    displayTotalSum();
+    displayTotalSum();displayTotalSum2();
     $('#hdd').modal('hide');
 }
 
@@ -1884,7 +1953,7 @@ function increaseHddQuantity(hddId) {
             displaySelectedHdd2();
             localStorage.setItem('selectedHdd2', JSON.stringify(selectedHdd2));
         }
-        displayTotalSum();
+        displayTotalSum2();
     }
 
 }
@@ -1911,7 +1980,7 @@ function decreaseHddQuantity(hddId) {
             displaySelectedHdd2();
             localStorage.setItem('selectedHdd2', JSON.stringify(selectedHdd2));
         }
-        displayTotalSum();
+        displayTotalSum2();
     }
 
 }
@@ -1944,7 +2013,7 @@ function deleteHdd(hddId) {
         }
 
     }
-    displayTotalSum();
+    displayTotalSum();displayTotalSum2();
 }
 //PSU----------------------------------------
 
@@ -1955,16 +2024,25 @@ function addPsu(psuId) {
     var psuPrice = psuDiv.querySelector('.price-prdt').textContent;
     var psuImage = psuDiv.querySelector('.img-fluid').src;
 
-    
-    var existingPsuIndex = selectedPsu.findIndex(function (selectedPsu) {
-        return selectedPsu.id === psuId;
-    });
-
+    var existingPsuIndex;
+    if (cauhinh == 1) {
+        existingPsuIndex = selectedPsu.findIndex(function (selectedPsu) {
+            return selectedPsu.id === psuId;
+        });
+    } else if (cauhinh == 2) {
+        existingPsuIndex = selectedPsu2.findIndex(function (selectedPsu) {
+            return selectedPsu.id === psuId;
+        });
+    }
     
     if (existingPsuIndex !== -1) {
-        selectedPsu[existingPsuIndex].quantity++;
+        if(cauhinh==1){
+            selectedPsu[existingPsuIndex].quantity++;
+        }else if(cauhinh ==2){
+            selectedPsu2[existingPsuIndex].quantity++;
+        }
+        
     } else {
-        selectedPsu = [];
         var psuComponent = {
             id: psuId,
             name: psuName,
@@ -1972,13 +2050,25 @@ function addPsu(psuId) {
             image: psuImage,
             quantity: 1
         };
-        selectedPsu.push(psuComponent);
+        
+        if (cauhinh == 1) {
+            selectedPsu = [];
+            selectedPsu.push(psuComponent);
+        } else if (cauhinh == 2) {
+            selectedPsu2 = [];
+            selectedPsu2.push(psuComponent);
+        }
     }
 
-    
-    displaySelectedPsu();
-    localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
-    displayTotalSum();
+    if(cauhinh==1){
+        displaySelectedPsu();
+        localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
+    }else if(cauhinh==2){
+        displaySelectedPsu2();
+        localStorage.setItem('selectedPsu2', JSON.stringify(selectedPsu2));
+    }
+
+    displayTotalSum();displayTotalSum2();
     $('#psu').modal('hide');
 }
 
@@ -2052,47 +2142,155 @@ function displaySelectedPsu() {
         selectedPsuList.appendChild(listItem);
     });
 }
-
-function increasePsuQuantity(psuId) {
+function displaySelectedPsu2() {
+    var selectedPsuList = document.getElementById('selectedPsu2');
+    selectedPsuList.innerHTML = ''; 
+    lengthPrd = selectedPsu2.length;
+    if (lengthPrd >= 1) {
+        buttonpsu2.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
+    }
     
-    var existingPsuIndex = selectedPsu.findIndex(function (psuComponent) {
-        return psuComponent.id === psuId;
-    });
+    selectedPsu2.forEach(function (psuComponent) {
+        var listItem = document.createElement('li');
 
-    if (existingPsuIndex !== -1) {
-        selectedPsu[existingPsuIndex].quantity++;
-        displaySelectedPsu();
-        localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
-    }displayTotalSum();
+        
+        var image = document.createElement('img');
+        image.src = psuComponent.image;
+        image.alt = psuComponent.name;
+        image.style.maxWidth = '90px'; 
+        listItem.appendChild(image);
+
+        
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = psuComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        
+        psu = parseFloat(psuComponent.price.replace(/[^\d]/g, ''));
+        var quanty = psu * psuComponent.quantity;
+        var formattedPsu = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedPsu = formattedPsu.replace('$', '') + 'đ';
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedPsu}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+
+        
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreasePsuQuantity(psuComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+        
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${psuComponent.id}">${psuComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increasePsuQuantity(psuComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+        
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deletePsu(psuComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedPsuList.appendChild(listItem);
+    });
+}
+function increasePsuQuantity(psuId) {
+    if(cauhinh==1){
+        var existingPsuIndex = selectedPsu.findIndex(function (psuComponent) {
+            return psuComponent.id === psuId;
+        });
+    
+        if (existingPsuIndex !== -1) {
+            selectedPsu[existingPsuIndex].quantity++;
+            displaySelectedPsu();
+            localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingPsuIndex = selectedPsu2.findIndex(function (psuComponent) {
+            return psuComponent.id === psuId;
+        });
+    
+        if (existingPsuIndex !== -1) {
+            selectedPsu2[existingPsuIndex].quantity++;
+            displaySelectedPsu2();
+            localStorage.setItem('selectedPsu2', JSON.stringify(selectedPsu2));
+        }displayTotalSum2();
+    }
+
 }
 
 function decreasePsuQuantity(psuId) {
+    if(cauhinh==1){
+        var existingPsuIndex = selectedPsu.findIndex(function (psuComponent) {
+            return psuComponent.id === psuId;
+        });
     
-    var existingPsuIndex = selectedPsu.findIndex(function (psuComponent) {
-        return psuComponent.id === psuId;
-    });
+        if (existingPsuIndex !== -1 && selectedPsu[existingPsuIndex].quantity > 1) {
+            selectedPsu[existingPsuIndex].quantity--;
+            displaySelectedPsu();
+            localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingPsuIndex = selectedPsu2.findIndex(function (psuComponent) {
+            return psuComponent.id === psuId;
+        });
+    
+        if (existingPsuIndex !== -1 && selectedPs2u[existingPsuIndex].quantity > 1) {
+            selectedPsu2[existingPsuIndex].quantity--;
+            displaySelectedPsu2();
+            localStorage.setItem('selectedPsu2', JSON.stringify(selectedPsu2));
+        }displayTotalSum2();
+    }
 
-    if (existingPsuIndex !== -1 && selectedPsu[existingPsuIndex].quantity > 1) {
-        selectedPsu[existingPsuIndex].quantity--;
-        displaySelectedPsu();
-        localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
-    }displayTotalSum();
 }
 function deletePsu(psuId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa PSU khỏi danh sách?");
     if (confirmDelete) {
-        buttonpsu.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
-        var existingPsuIndex = selectedPsu.findIndex(function (selectedPsu) {
-            return selectedPsu.id === psuId;
-        });
-
-        if (existingPsuIndex !== -1) {
-            selectedPsu.splice(existingPsuIndex, 1);
-
-            displaySelectedPsu();
-            localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
+        if(cauhinh==1){
+            buttonpsu.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingPsuIndex = selectedPsu.findIndex(function (selectedPsu) {
+                return selectedPsu.id === psuId;
+            });
+    
+            if (existingPsuIndex !== -1) {
+                selectedPsu.splice(existingPsuIndex, 1);
+    
+                displaySelectedPsu();
+                localStorage.setItem('selectedPsu', JSON.stringify(selectedPsu));
+            }
+        }else if(cauhinh ==2){
+            buttonpsu2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingPsuIndex = selectedPsu2.findIndex(function (selectedPsu) {
+                return selectedPsu.id === psuId;
+            });
+    
+            if (existingPsuIndex !== -1) {
+                selectedPsu2.splice(existingPsuIndex, 1);
+    
+                displaySelectedPsu2();
+                localStorage.setItem('selectedPsu2', JSON.stringify(selectedPsu2));
+            }
         }
-    }displayTotalSum();
+
+    }displayTotalSum();displayTotalSum2();
 }
 //CASE----------------------------------------
 
@@ -2104,15 +2302,24 @@ function addVo(voId) {
     var voImage = voDiv.querySelector('.img-fluid').src;
 
     
-    var existingVoIndex = selectedVo.findIndex(function (selectedVo) {
-        return selectedVo.id === voId;
-    });
-
+    var existingVoIndex;
+    if (cauhinh == 1) {
+        existingVoIndex = selectedVo.findIndex(function (selectedVo) {
+            return selectedVo.id === voId;
+        });
+    } else if (cauhinh == 2) {
+        existingVoIndex = selectedVo2.findIndex(function (selectedVo) {
+            return selectedVo.id === voId;
+        });
+    }
     
     if (existingVoIndex !== -1) {
-        selectedVo[existingVoIndex].quantity++;
+        if(cauhinh==1){
+            selectedVo[existingVoIndex].quantity++;
+        }else if(cauhinh ==2){
+            selectedVo2[existingVoIndex].quantity++;
+        }
     } else {
-        selectedVo = [];
         var selectedVoComponent = {
             id: voId,
             name: voName,
@@ -2120,13 +2327,24 @@ function addVo(voId) {
             image: voImage,
             quantity: 1
         };
-        selectedVo.push(selectedVoComponent);
+        if(cauhinh==1){
+            selectedVo = [];
+            selectedVo.push(selectedVoComponent);
+        }else if(cauhinh ==2){
+            selectedVo2 = [];
+            selectedVo2.push(selectedVoComponent);
+        }
     }
 
-    
-    displaySelectedVo();
-    localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
-    displayTotalSum();
+    if(cauhinh==1){
+        displaySelectedVo();
+        localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
+    }else if(cauhinh ==2){
+        displaySelectedVo2();
+        localStorage.setItem('selectedVo2', JSON.stringify(selectedVo2));
+    }
+
+    displayTotalSum();displayTotalSum2();
     $('#vo').modal('hide');
 }
 
@@ -2202,48 +2420,154 @@ function displaySelectedVo() {
         selectedVoList.appendChild(listItem);
     });
 }
+function displaySelectedVo2() {
+    var selectedVoList = document.getElementById('selectedVo2');
+    selectedVoList.innerHTML = ''; 
+    lengthPrd = selectedVo2.length;
+    if(lengthPrd >=1){
+       buttonvo2.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
+   }
+    
+    selectedVo2.forEach(function (selectedVoComponent) {
+        var listItem = document.createElement('li');
+
+        
+        var image = document.createElement('img');
+        image.src = selectedVoComponent.image;
+        image.alt = selectedVoComponent.name;
+        image.style.maxWidth = '90px'; 
+        listItem.appendChild(image);
+
+        
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = selectedVoComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        vo = parseFloat(selectedVoComponent.price.replace(/[^\d]/g, ''));
+        var quanty = vo * selectedVoComponent.quantity;
+        var formattedVo = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedVo = formattedVo.replace('$', '') + 'đ';
+        
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedVo}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+
+
+
+        
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseQuantity(selectedVoComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+                
+                var paragraph3 = document.createElement('p');
+                paragraph3.innerHTML = `<span id="quantity${selectedVoComponent.id}">${selectedVoComponent.quantity}`;
+                paragraph3.className = 'd-in-bl';
+                listItem.appendChild(paragraph3);
+        
+                var a = parseFloat(selectedVoComponent.price.replace(/[^\d]/g, ''));
+                totalvo = a*selectedVoComponent.quantity;
+        
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseQuantity(selectedVoComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+        
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteVo(selectedVoComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedVoList.appendChild(listItem);
+    });
+}
 
 function increaseQuantity(voId) {
+    if(cauhinh==1){
+        var existingVoIndex = selectedVo.findIndex(function (selectedVoComponent) {
+            return selectedVoComponent.id === voId;
+        });
     
-    var existingVoIndex = selectedVo.findIndex(function (selectedVoComponent) {
-        return selectedVoComponent.id === voId;
-    });
+        if (existingVoIndex !== -1) {
+            selectedVo[existingVoIndex].quantity++;
+            displaySelectedVo();
+            localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingVoIndex = selectedVo2.findIndex(function (selectedVoComponent) {
+            return selectedVoComponent.id === voId;
+        });
+    
+        if (existingVoIndex !== -1) {
+            selectedVo2[existingVoIndex].quantity++;
+            displaySelectedVo2();
+            localStorage.setItem('selectedVo2', JSON.stringify(selectedVo2));
+        }displayTotalSum2();
+    }
 
-    if (existingVoIndex !== -1) {
-        selectedVo[existingVoIndex].quantity++;
-        displaySelectedVo();
-        localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
-    }displayTotalSum();
 }
 
 function decreaseQuantity(voId) {
+    if(cauhinh==1){
+        var existingVoIndex = selectedVo.findIndex(function (selectedVoComponent) {
+            return selectedVoComponent.id === voId;
+        });
     
-    var existingVoIndex = selectedVo.findIndex(function (selectedVoComponent) {
-        return selectedVoComponent.id === voId;
-    });
+        if (existingVoIndex !== -1 && selectedVo[existingVoIndex].quantity > 1) {
+            selectedVo[existingVoIndex].quantity--;
+            displaySelectedVo();
+            localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingVoIndex = selectedVo2.findIndex(function (selectedVoComponent) {
+            return selectedVoComponent.id === voId;
+        });
+    
+        if (existingVoIndex !== -1 && selectedVo2[existingVoIndex].quantity > 1) {
+            selectedVo2[existingVoIndex].quantity--;
+            displaySelectedVo2();
+            localStorage.setItem('selectedVo2', JSON.stringify(selectedVo2));
+        }displayTotalSum2();
+    }
 
-    if (existingVoIndex !== -1 && selectedVo[existingVoIndex].quantity > 1) {
-        selectedVo[existingVoIndex].quantity--;
-        displaySelectedVo();
-        localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
-    }displayTotalSum();
 }
 
 function deleteVo(voId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa Case khỏi danh sách?");
     if (confirmDelete) {
-        buttonvo.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
-        var existingVoIndex = selectedVo.findIndex(function (selectedVo) {
-            return selectedVo.id === voId;
-        });
-
-        if (existingVoIndex !== -1) {
-            selectedVo.splice(existingVoIndex, 1);
-
-            displaySelectedVo();
-            localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
+        if(cauhinh==1){
+            buttonvo.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingVoIndex = selectedVo.findIndex(function (selectedVo) {
+                return selectedVo.id === voId;
+            });
+            if (existingVoIndex !== -1) {
+                selectedVo.splice(existingVoIndex, 1);
+                displaySelectedVo();
+                localStorage.setItem('selectedVo', JSON.stringify(selectedVo));
+            }
+        }else if(cauhinh ==2){
+            buttonvo2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingVoIndex = selectedVo2.findIndex(function (selectedVo) {
+                return selectedVo.id === voId;
+            });
+            if (existingVoIndex !== -1) {
+                selectedVo2.splice(existingVoIndex, 1);
+                displaySelectedVo2();
+                localStorage.setItem('selectedVo2', JSON.stringify(selectedVo2));
+            }
         }
-    }displayTotalSum();
+    }displayTotalSum();displayTotalSum2();
 }
 
 //TAN NHIET-------------------------------------------
@@ -2253,14 +2577,24 @@ function addTannhiet(tannhietId) {
     var tannhietPrice = tannhietDiv.querySelector('.price-prdt').textContent;
     var tannhietImage = tannhietDiv.querySelector('.img-fluid').src;
 
-    var existingTannhietIndex = selectedTannhiet.findIndex(function (selectedTannhiet) {
-        return selectedTannhiet.id === tannhietId;
-    });
-
+    var existingTannhietIndex;
+    if (cauhinh == 1) {
+        existingTannhietIndex = selectedTannhiet.findIndex(function (selectedTannhiet) {
+            return selectedTannhiet.id === tannhietId;
+        });
+    } else if (cauhinh == 2) {
+        existingTannhietIndex = selectedTannhiet2.findIndex(function (selectedTannhiet) {
+            return selectedTannhiet.id === tannhietId;
+        });
+    }
     if (existingTannhietIndex !== -1) {
-        selectedTannhiet[existingTannhietIndex].quantity++;
+        if(cauhinh==1){
+            selectedTannhiet[existingTannhietIndex].quantity++;
+        }else if(cauhinh ==2){
+            selectedTannhiet2[existingTannhietIndex].quantity++;
+        }
     } else {
-        selectedTannhiet = [];
+        
         var tannhietComponent = {
             id: tannhietId,
             name: tannhietName,
@@ -2268,12 +2602,24 @@ function addTannhiet(tannhietId) {
             image: tannhietImage,
             quantity: 1
         };
-        selectedTannhiet.push(tannhietComponent);
+        if(cauhinh==1){
+            selectedTannhiet = [];
+            selectedTannhiet.push(tannhietComponent);
+        }else if(cauhinh ==2){
+            selectedTannhiet2 = [];
+            selectedTannhiet2.push(tannhietComponent);
+        }
+        
+    }
+    if(cauhinh==1){
+        displaySelectedTannhiet();
+        localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
+    }else if(cauhinh ==2){
+        displaySelectedTannhiet2();
+        localStorage.setItem('selectedTannhiet2', JSON.stringify(selectedTannhiet2));
     }
 
-    displaySelectedTannhiet();
-    localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
-    displayTotalSum();
+    displayTotalSum();displayTotalSum2();
     $('#tannhiet').modal('hide');
 }
 
@@ -2343,46 +2689,153 @@ function displaySelectedTannhiet() {
         selectedTannhietList.appendChild(listItem);
     });
 }
+function displaySelectedTannhiet2() {
+    var selectedTannhietList = document.getElementById('selectedTannhiet2');
+    selectedTannhietList.innerHTML = ''; 
+    lengthPrd = selectedTannhiet2.length;
+    if (lengthPrd >= 1) {
+        buttontannhiet2.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
+    }
+
+    selectedTannhiet2.forEach(function (tannhietComponent) {
+        var listItem = document.createElement('li');
+
+        var image = document.createElement('img');
+        image.src = tannhietComponent.image;
+        image.alt = tannhietComponent.name;
+        image.style.maxWidth = '90px'; 
+        listItem.appendChild(image);
+
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = tannhietComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        tannhiet = parseFloat(tannhietComponent.price.replace(/[^\d]/g, ''));
+        var quanty = tannhiet * tannhietComponent.quantity;
+        var formattedTn = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedTn = formattedTn.replace('$', '') + 'đ';
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedTn}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseTannhietQuantity(tannhietComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${tannhietComponent.id}">${tannhietComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseTannhietQuantity(tannhietComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteTannhiet(tannhietComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedTannhietList.appendChild(listItem);
+    });
+}
 
 function increaseTannhietQuantity(tannhietId) {
-    var existingTannhietIndex = selectedTannhiet.findIndex(function (tannhietComponent) {
-        return tannhietComponent.id === tannhietId;
-    });
+    if(cauhinh==1){
+        var existingTannhietIndex = selectedTannhiet.findIndex(function (tannhietComponent) {
+            return tannhietComponent.id === tannhietId;
+        });
+    
+        if (existingTannhietIndex !== -1) {
+            selectedTannhiet[existingTannhietIndex].quantity++;
+            displaySelectedTannhiet();
+            localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingTannhietIndex = selectedTannhiet2.findIndex(function (tannhietComponent) {
+            return tannhietComponent.id === tannhietId;
+        });
+    
+        if (existingTannhietIndex !== -1) {
+            selectedTannhiet2[existingTannhietIndex].quantity++;
+            displaySelectedTannhiet2();
+            localStorage.setItem('selectedTannhiet2', JSON.stringify(selectedTannhiet2));
+        }displayTotalSum2();
+    }
 
-    if (existingTannhietIndex !== -1) {
-        selectedTannhiet[existingTannhietIndex].quantity++;
-        displaySelectedTannhiet();
-        localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
-    }displayTotalSum();
 }
 
 function decreaseTannhietQuantity(tannhietId) {
-    var existingTannhietIndex = selectedTannhiet.findIndex(function (tannhietComponent) {
-        return tannhietComponent.id === tannhietId;
-    });
+    if(cauhinh==1){
+        var existingTannhietIndex = selectedTannhiet.findIndex(function (tannhietComponent) {
+            return tannhietComponent.id === tannhietId;
+        });
+    
+        if (existingTannhietIndex !== -1 && selectedTannhiet[existingTannhietIndex].quantity > 1) {
+            selectedTannhiet[existingTannhietIndex].quantity--;
+            displaySelectedTannhiet();
+            localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingTannhietIndex = selectedTannhiet2.findIndex(function (tannhietComponent) {
+            return tannhietComponent.id === tannhietId;
+        });
+    
+        if (existingTannhietIndex !== -1 && selectedTannhiet2[existingTannhietIndex].quantity > 1) {
+            selectedTannhiet2[existingTannhietIndex].quantity--;
+            displaySelectedTannhiet2();
+            localStorage.setItem('selectedTannhiet2', JSON.stringify(selectedTannhiet2));
+        }displayTotalSum2();
+    }
 
-    if (existingTannhietIndex !== -1 && selectedTannhiet[existingTannhietIndex].quantity > 1) {
-        selectedTannhiet[existingTannhietIndex].quantity--;
-        displaySelectedTannhiet();
-        localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
-    }displayTotalSum();
 }
 
 function deleteTannhiet(tannhietId) {
-    var confirmDelete = window.confirm("Bạn có chắc muốn xóa Tannhiet khỏi danh sách?");
+    var confirmDelete = window.confirm("Bạn có chắc muốn xóa Tản nhiệt khỏi danh sách?");
     if (confirmDelete) {
-        buttontannhiet.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
-        var existingTannhietIndex = selectedTannhiet.findIndex(function (selectedTannhiet) {
-            return selectedTannhiet.id === tannhietId;
-        });
-
-        if (existingTannhietIndex !== -1) {
-            selectedTannhiet.splice(existingTannhietIndex, 1);
-
-            displaySelectedTannhiet();
-            localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
+        if(cauhinh==1){
+            buttontannhiet.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingTannhietIndex = selectedTannhiet.findIndex(function (selectedTannhiet) {
+                return selectedTannhiet.id === tannhietId;
+            });
+    
+            if (existingTannhietIndex !== -1) {
+                selectedTannhiet.splice(existingTannhietIndex, 1);
+    
+                displaySelectedTannhiet();
+                localStorage.setItem('selectedTannhiet', JSON.stringify(selectedTannhiet));
+            }
+        }else if(cauhinh ==2){
+            buttontannhiet2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingTannhietIndex = selectedTannhiet2.findIndex(function (selectedTannhiet) {
+                return selectedTannhiet.id === tannhietId;
+            });
+    
+            if (existingTannhietIndex !== -1) {
+                selectedTannhiet2.splice(existingTannhietIndex, 1);
+    
+                displaySelectedTannhiet2();
+                localStorage.setItem('selectedTannhiet2', JSON.stringify(selectedTannhiet2));
+            }
         }
-    }displayTotalSum();
+
+    }displayTotalSum();displayTotalSum2();
 }
 
 
@@ -2395,14 +2848,25 @@ function addManhinh(manhinhId) {
     var manhinhPrice = manhinhDiv.querySelector('.price-prdt').textContent;
     var manhinhImage = manhinhDiv.querySelector('.img-fluid').src;
 
-    var existingManhinhIndex = selectedManhinh.findIndex(function (selectedManhinh) {
-        return selectedManhinh.id === manhinhId;
-    });
-
+    var existingManhinhIndex;
+    if (cauhinh == 1) {
+        existingManhinhIndex = selectedManhinh.findIndex(function (selectedManhinh) {
+            return selectedManhinh.id === manhinhId;
+        });
+    } else if (cauhinh == 2) {
+        existingManhinhIndex = selectedManhinh2.findIndex(function (selectedManhinh) {
+            return selectedManhinh.id === manhinhId;
+        });
+    }
     if (existingManhinhIndex !== -1) {
-        selectedManhinh[existingManhinhIndex].quantity++;
+        if(cauhinh==1){
+            selectedManhinh[existingManhinhIndex].quantity++;
+        }else if(cauhinh ==2){
+            selectedManhinh2[existingManhinhIndex].quantity++;
+        }
+        
     } else {
-        selectedManhinh = [];
+        
         var manhinhComponent = {
             id: manhinhId,
             name: manhinhName,
@@ -2410,12 +2874,24 @@ function addManhinh(manhinhId) {
             image: manhinhImage,
             quantity: 1
         };
-        selectedManhinh.push(manhinhComponent);
+        
+        if(cauhinh==1){
+            selectedManhinh = [];
+            selectedManhinh.push(manhinhComponent);
+        }else if(cauhinh ==2){
+            selectedManhinh2 = [];
+            selectedManhinh2.push(manhinhComponent);
+        }
+    }
+    if(cauhinh==1){
+        displaySelectedManhinh();
+        localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
+    }else if(cauhinh ==2){
+        displaySelectedManhinh2();
+        localStorage.setItem('selectedManhinh2', JSON.stringify(selectedManhinh2));
     }
 
-    displaySelectedManhinh();
-    localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
-    displayTotalSum();
+    displayTotalSum();displayTotalSum2();
     $('#monitor').modal('hide');
 }
 
@@ -2485,46 +2961,152 @@ function displaySelectedManhinh() {
         selectedManhinhList.appendChild(listItem);
     });
 }
+function displaySelectedManhinh2() {
+    var selectedManhinhList = document.getElementById('selectedManhinh2');
+    selectedManhinhList.innerHTML = '';
+    lengthPrd = selectedManhinh2.length;
+    if (lengthPrd >= 1) {
+        buttonmonitor2.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
+    }
 
-function increaseManhinhQuantity(manhinhId) {
-    var existingManhinhIndex = selectedManhinh.findIndex(function (manhinhComponent) {
-        return manhinhComponent.id === manhinhId;
+    selectedManhinh2.forEach(function (manhinhComponent) {
+        var listItem = document.createElement('li');
+
+        var image = document.createElement('img');
+        image.src = manhinhComponent.image;
+        image.alt = manhinhComponent.name;
+        image.style.maxWidth = '90px'; 
+        listItem.appendChild(image);
+
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = manhinhComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        manhinh = parseFloat(manhinhComponent.price.replace(/[^\d]/g, ''));
+        var quanty = manhinh * manhinhComponent.quantity;
+        var formattedMh = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedMh = formattedMh.replace('$', '') + 'đ';
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedMh}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseManhinhQuantity(manhinhComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${manhinhComponent.id}">${manhinhComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseManhinhQuantity(manhinhComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteManhinh(manhinhComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedManhinhList.appendChild(listItem);
     });
+}
+function increaseManhinhQuantity(manhinhId) {
+    if(cauhinh==1){
+        var existingManhinhIndex = selectedManhinh.findIndex(function (manhinhComponent) {
+            return manhinhComponent.id === manhinhId;
+        });
+    
+        if (existingManhinhIndex !== -1) {
+            selectedManhinh[existingManhinhIndex].quantity++;
+            displaySelectedManhinh();
+            localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingManhinhIndex = selectedManhinh2.findIndex(function (manhinhComponent) {
+            return manhinhComponent.id === manhinhId;
+        });
+    
+        if (existingManhinhIndex !== -1) {
+            selectedManhinh2[existingManhinhIndex].quantity++;
+            displaySelectedManhinh2();
+            localStorage.setItem('selectedManhinh2', JSON.stringify(selectedManhinh2));
+        }displayTotalSum2();
+    }
 
-    if (existingManhinhIndex !== -1) {
-        selectedManhinh[existingManhinhIndex].quantity++;
-        displaySelectedManhinh();
-        localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
-    }displayTotalSum();
 }
 
 function decreaseManhinhQuantity(manhinhId) {
-    var existingManhinhIndex = selectedManhinh.findIndex(function (manhinhComponent) {
-        return manhinhComponent.id === manhinhId;
-    });
+    if(cauhinh==1){
+        var existingManhinhIndex = selectedManhinh.findIndex(function (manhinhComponent) {
+            return manhinhComponent.id === manhinhId;
+        });
+    
+        if (existingManhinhIndex !== -1 && selectedManhinh[existingManhinhIndex].quantity > 1) {
+            selectedManhinh[existingManhinhIndex].quantity--;
+            displaySelectedManhinh();
+            localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingManhinhIndex = selectedManhinh2.findIndex(function (manhinhComponent) {
+            return manhinhComponent.id === manhinhId;
+        });
+    
+        if (existingManhinhIndex !== -1 && selectedManhinh2[existingManhinhIndex].quantity > 1) {
+            selectedManhinh2[existingManhinhIndex].quantity--;
+            displaySelectedManhinh2();
+            localStorage.setItem('selectedManhinh2', JSON.stringify(selectedManhinh2));
+        }displayTotalSum2();
+    }
 
-    if (existingManhinhIndex !== -1 && selectedManhinh[existingManhinhIndex].quantity > 1) {
-        selectedManhinh[existingManhinhIndex].quantity--;
-        displaySelectedManhinh();
-        localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
-    }displayTotalSum();
 }
 
 function deleteManhinh(manhinhId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa Màn hình khỏi danh sách?");
     if (confirmDelete) {
-        buttonmonitor.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
-        var existingManhinhIndex = selectedManhinh.findIndex(function (selectedManhinh) {
-            return selectedManhinh.id === manhinhId;
-        });
-
-        if (existingManhinhIndex !== -1) {
-            selectedManhinh.splice(existingManhinhIndex, 1);
-
-            displaySelectedManhinh();
-            localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
+        if(cauhinh==1){
+            buttonmonitor.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingManhinhIndex = selectedManhinh.findIndex(function (selectedManhinh) {
+                return selectedManhinh.id === manhinhId;
+            });
+    
+            if (existingManhinhIndex !== -1) {
+                selectedManhinh.splice(existingManhinhIndex, 1);
+    
+                displaySelectedManhinh();
+                localStorage.setItem('selectedManhinh', JSON.stringify(selectedManhinh));
+            }
+        }else if(cauhinh ==2){
+            buttonmonitor2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingManhinhIndex = selectedManhinh2.findIndex(function (selectedManhinh) {
+                return selectedManhinh.id === manhinhId;
+            });
+    
+            if (existingManhinhIndex !== -1) {
+                selectedManhinh2.splice(existingManhinhIndex, 1);
+    
+                displaySelectedManhinh2();
+                localStorage.setItem('selectedManhinh2', JSON.stringify(selectedManhinh2));
+            }
         }
-    }displayTotalSum();
+
+    }displayTotalSum();displayTotalSum2();
 }
 
 //MOUSE-----------------------------------------
@@ -2534,14 +3116,26 @@ function addChuot(chuotId) {
     var chuotPrice = chuotDiv.querySelector('.price-prdt').textContent;
     var chuotImage = chuotDiv.querySelector('.img-fluid').src;
 
-    var existingChuotIndex = selectedChuot.findIndex(function (selectedChuot) {
-        return selectedChuot.id === chuotId;
-    });
 
+    var existingChuotIndex;
+    if (cauhinh == 1) {
+        existingChuotIndex = selectedChuot.findIndex(function (selectedChuot) {
+            return selectedChuot.id === chuotId;
+        });
+    } else if (cauhinh == 2) {
+        existingChuotIndex = selectedChuot2.findIndex(function (selectedChuot) {
+            return selectedChuot.id === chuotId;
+        });
+    }
     if (existingChuotIndex !== -1) {
-        selectedChuot[existingChuotIndex].quantity++;
+        if(cauhinh==1){
+            selectedChuot[existingChuotIndex].quantity++;
+        }else if(cauhinh ==2){
+            selectedChuot2[existingChuotIndex].quantity++;
+        }
+        
     } else {
-        selectedChuot = [];
+        
         var chuotComponent = {
             id: chuotId,
             name: chuotName,
@@ -2549,12 +3143,24 @@ function addChuot(chuotId) {
             image: chuotImage,
             quantity: 1
         };
-        selectedChuot.push(chuotComponent);
+        
+        if(cauhinh==1){
+            selectedChuot = [];
+            selectedChuot.push(chuotComponent);
+        }else if(cauhinh ==2){
+            selectedChuot2 = [];
+            selectedChuot2.push(chuotComponent);
+        }
+    }
+    if(cauhinh==1){
+        displaySelectedChuot();
+        localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
+    }else if(cauhinh ==2){
+        displaySelectedChuot2();
+        localStorage.setItem('selectedChuot2', JSON.stringify(selectedChuot2));
     }
 
-    displaySelectedChuot();
-    localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
-    displayTotalSum();
+    displayTotalSum();displayTotalSum2();
      $('#mouse').modal('hide');
 }
 
@@ -2624,46 +3230,152 @@ function displaySelectedChuot() {
         selectedChuotList.appendChild(listItem);
     });
 }
+function displaySelectedChuot2() {
+    var selectedChuotList = document.getElementById('selectedChuot2');
+    selectedChuotList.innerHTML = '';
+    lengthPrd = selectedChuot2.length;
+    if (lengthPrd >= 1) {
+        buttonmouse2.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
+    }
 
-function increaseChuotQuantity(chuotId) {
-    var existingChuotIndex = selectedChuot.findIndex(function (chuotComponent) {
-        return chuotComponent.id === chuotId;
+    selectedChuot2.forEach(function (chuotComponent) {
+        var listItem = document.createElement('li');
+
+        var image = document.createElement('img');
+        image.src = chuotComponent.image;
+        image.alt = chuotComponent.name;
+        image.style.maxWidth = '90px'; 
+        listItem.appendChild(image);
+
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = chuotComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        chuot = parseFloat(chuotComponent.price.replace(/[^\d]/g, ''));
+        var quanty = chuot * chuotComponent.quantity;
+        var formattedChuot = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedChuot = formattedChuot.replace('$', '') + 'đ';
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedChuot}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseChuotQuantity(chuotComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${chuotComponent.id}">${chuotComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseChuotQuantity(chuotComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteChuot(chuotComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedChuotList.appendChild(listItem);
     });
+}
+function increaseChuotQuantity(chuotId) {
+    if(cauhinh==1){
+        var existingChuotIndex = selectedChuot.findIndex(function (chuotComponent) {
+            return chuotComponent.id === chuotId;
+        });
+    
+        if (existingChuotIndex !== -1) {
+            selectedChuot[existingChuotIndex].quantity++;
+            displaySelectedChuot();
+            localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingChuotIndex = selectedChuot2.findIndex(function (chuotComponent) {
+            return chuotComponent.id === chuotId;
+        });
+    
+        if (existingChuotIndex !== -1) {
+            selectedChuot2[existingChuotIndex].quantity++;
+            displaySelectedChuot2();
+            localStorage.setItem('selectedChuot2', JSON.stringify(selectedChuot2));
+        }displayTotalSum2();
+    }
 
-    if (existingChuotIndex !== -1) {
-        selectedChuot[existingChuotIndex].quantity++;
-        displaySelectedChuot();
-        localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
-    }displayTotalSum();
 }
 
 function decreaseChuotQuantity(chuotId) {
-    var existingChuotIndex = selectedChuot.findIndex(function (chuotComponent) {
-        return chuotComponent.id === chuotId;
-    });
+    if(cauhinh==1){
+        var existingChuotIndex = selectedChuot.findIndex(function (chuotComponent) {
+            return chuotComponent.id === chuotId;
+        });
+    
+        if (existingChuotIndex !== -1 && selectedChuot[existingChuotIndex].quantity > 1) {
+            selectedChuot[existingChuotIndex].quantity--;
+            displaySelectedChuot();
+            localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingChuotIndex = selectedChuot2.findIndex(function (chuotComponent) {
+            return chuotComponent.id === chuotId;
+        });
+    
+        if (existingChuotIndex !== -1 && selectedChuot2[existingChuotIndex].quantity > 1) {
+            selectedChuot2[existingChuotIndex].quantity--;
+            displaySelectedChuot2();
+            localStorage.setItem('selectedChuot2', JSON.stringify(selectedChuot2));
+        }displayTotalSum2();
+    }
 
-    if (existingChuotIndex !== -1 && selectedChuot[existingChuotIndex].quantity > 1) {
-        selectedChuot[existingChuotIndex].quantity--;
-        displaySelectedChuot();
-        localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
-    }displayTotalSum();
 }
 
 function deleteChuot(chuotId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa Chuột khỏi danh sách?");
     if (confirmDelete) {
-        buttonmouse.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
-        var existingChuotIndex = selectedChuot.findIndex(function (selectedChuot) {
-            return selectedChuot.id === chuotId;
-        });
-
-        if (existingChuotIndex !== -1) {
-            selectedChuot.splice(existingChuotIndex, 1);
-
-            displaySelectedChuot();
-            localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
+        if(cauhinh==1){
+            buttonmouse.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingChuotIndex = selectedChuot.findIndex(function (selectedChuot) {
+                return selectedChuot.id === chuotId;
+            });
+    
+            if (existingChuotIndex !== -1) {
+                selectedChuot.splice(existingChuotIndex, 1);
+    
+                displaySelectedChuot();
+                localStorage.setItem('selectedChuot', JSON.stringify(selectedChuot));
+            }
+        }else if(cauhinh ==2){
+            buttonmouse2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingChuotIndex = selectedChuot2.findIndex(function (selectedChuot) {
+                return selectedChuot.id === chuotId;
+            });
+    
+            if (existingChuotIndex !== -1) {
+                selectedChuot2.splice(existingChuotIndex, 1);
+    
+                displaySelectedChuot2();
+                localStorage.setItem('selectedChuot2', JSON.stringify(selectedChuot2));
+            }
         }
-    }displayTotalSum();
+
+    }displayTotalSum();displayTotalSum2();
 }
 
 
@@ -2674,14 +3386,25 @@ function addPhim(phimId) {
     var phimPrice = phimDiv.querySelector('.price-prdt').textContent;
     var phimImage = phimDiv.querySelector('.img-fluid').src;
 
-    var existingPhimIndex = selectedPhim.findIndex(function (selectedPhim) {
-        return selectedPhim.id === phimId;
-    });
-
+    var existingPhimIndex;
+    if (cauhinh == 1) {
+        existingPhimIndex = selectedPhim.findIndex(function (selectedPhim) {
+            return selectedPhim.id === phimId;
+        });
+    } else if (cauhinh == 2) {
+        existingPhimIndex = selectedPhim2.findIndex(function (selectedPhim) {
+            return selectedPhim.id === phimId;
+        });
+    }
     if (existingPhimIndex !== -1) {
-        selectedPhim[existingPhimIndex].quantity++;
+        if(cauhinh==1){
+            selectedPhim[existingPhimIndex].quantity++;
+        }else if(cauhinh ==2){
+            selectedPhim2[existingPhimIndex].quantity++;
+        }
+        
     } else {
-        selectedPhim = [];
+        
         var phimComponent = {
             id: phimId,
             name: phimName,
@@ -2689,12 +3412,24 @@ function addPhim(phimId) {
             image: phimImage,
             quantity: 1
         };
-        selectedPhim.push(phimComponent);
+        
+        if(cauhinh==1){
+            selectedPhim = [];
+            selectedPhim.push(phimComponent);
+        }else if(cauhinh ==2){
+            selectedPhim2 = [];
+            selectedPhim2.push(phimComponent);
+        }
+    }
+    if(cauhinh==1){
+        displaySelectedPhim();
+        localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
+    }else if(cauhinh ==2){
+        displaySelectedPhim2();
+        localStorage.setItem('selectedPhim2', JSON.stringify(selectedPhim2));
     }
 
-    displaySelectedPhim();
-    localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
-    displayTotalSum();
+    displayTotalSum();displayTotalSum2();
      $('#keyboard').modal('hide');
 }
 
@@ -2765,46 +3500,153 @@ function displaySelectedPhim() {
         selectedPhimList.appendChild(listItem);
     });
 }
+function displaySelectedPhim2() {
+    var selectedPhimList = document.getElementById('selectedPhim2');
+    selectedPhimList.innerHTML = '';
+    lengthPrd = selectedPhim2.length;
+    if (lengthPrd >= 1) {
+        buttonkeyboard2.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
+    }
 
-function increasePhimQuantity(phimId) {
-    var existingPhimIndex = selectedPhim.findIndex(function (phimComponent) {
-        return phimComponent.id === phimId;
+    selectedPhim2.forEach(function (phimComponent) {
+        var listItem = document.createElement('li');
+
+        var image = document.createElement('img');
+        image.src = phimComponent.image;
+        image.alt = phimComponent.name;
+        image.style.maxWidth = '90px'; 
+        listItem.appendChild(image);
+
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = phimComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        phim = parseFloat(phimComponent.price.replace(/[^\d]/g, ''));
+        var quanty = phim * phimComponent.quantity;
+        var formattedPhim = quanty.toLocaleString( { style: 'currency', currency: 'VND' });
+        formattedPhim = formattedPhim.replace('$', '') + 'đ';
+
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedPhim}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = ' Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreasePhimQuantity(phimComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${phimComponent.id}">${phimComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increasePhimQuantity(phimComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deletePhim(phimComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedPhimList.appendChild(listItem);
     });
+}
+function increasePhimQuantity(phimId) {
+    if(cauhinh==1){
+        var existingPhimIndex = selectedPhim.findIndex(function (phimComponent) {
+            return phimComponent.id === phimId;
+        });
+    
+        if (existingPhimIndex !== -1) {
+            selectedPhim[existingPhimIndex].quantity++;
+            displaySelectedPhim();
+            localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingPhimIndex = selectedPhim2.findIndex(function (phimComponent) {
+            return phimComponent.id === phimId;
+        });
+    
+        if (existingPhimIndex !== -1) {
+            selectedPhim2[existingPhimIndex].quantity++;
+            displaySelectedPhim2();
+            localStorage.setItem('selectedPhim2', JSON.stringify(selectedPhim2));
+        }displayTotalSum2();
+    }
 
-    if (existingPhimIndex !== -1) {
-        selectedPhim[existingPhimIndex].quantity++;
-        displaySelectedPhim();
-        localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
-    }displayTotalSum();
 }
 
 function decreasePhimQuantity(phimId) {
-    var existingPhimIndex = selectedPhim.findIndex(function (phimComponent) {
-        return phimComponent.id === phimId;
-    });
+    if(cauhinh==1){
+        var existingPhimIndex = selectedPhim.findIndex(function (phimComponent) {
+            return phimComponent.id === phimId;
+        });
+    
+        if (existingPhimIndex !== -1 && selectedPhim[existingPhimIndex].quantity > 1) {
+            selectedPhim[existingPhimIndex].quantity--;
+            displaySelectedPhim();
+            localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
+        }displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingPhimIndex = selectedPhim2.findIndex(function (phimComponent) {
+            return phimComponent.id === phimId;
+        });
+    
+        if (existingPhimIndex !== -1 && selectedPhim2[existingPhimIndex].quantity > 1) {
+            selectedPhim2[existingPhimIndex].quantity--;
+            displaySelectedPhim2();
+            localStorage.setItem('selectedPhim2', JSON.stringify(selectedPhim2));
+        }displayTotalSum2();
+    }
 
-    if (existingPhimIndex !== -1 && selectedPhim[existingPhimIndex].quantity > 1) {
-        selectedPhim[existingPhimIndex].quantity--;
-        displaySelectedPhim();
-        localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
-    }displayTotalSum();
 }
 
 function deletePhim(phimId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa Phím khỏi danh sách?");
     if (confirmDelete) {
-        buttonkeyboard.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
-        var existingPhimIndex = selectedPhim.findIndex(function (selectedPhim) {
-            return selectedPhim.id === phimId;
-        });
-
-        if (existingPhimIndex !== -1) {
-            selectedPhim.splice(existingPhimIndex, 1);
-
-            displaySelectedPhim();
-            localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
+        if(cauhinh==1){
+            buttonkeyboard.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingPhimIndex = selectedPhim.findIndex(function (selectedPhim) {
+                return selectedPhim.id === phimId;
+            });
+    
+            if (existingPhimIndex !== -1) {
+                selectedPhim.splice(existingPhimIndex, 1);
+    
+                displaySelectedPhim();
+                localStorage.setItem('selectedPhim', JSON.stringify(selectedPhim));
+            }
+        }else if(cauhinh ==2){
+            buttonkeyboard2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingPhimIndex = selectedPhim2.findIndex(function (selectedPhim) {
+                return selectedPhim.id === phimId;
+            });
+    
+            if (existingPhimIndex !== -1) {
+                selectedPhim2.splice(existingPhimIndex, 1);
+    
+                displaySelectedPhim2();
+                localStorage.setItem('selectedPhim2', JSON.stringify(selectedPhim2));
+            }
         }
-    }displayTotalSum();
+
+    }displayTotalSum();displayTotalSum2();
 }
 ///tai nghe-------------
 function addTai(taiId) {
@@ -2813,14 +3655,24 @@ function addTai(taiId) {
     var taiPrice = taiDiv.querySelector('.price-prdt').textContent;
     var taiImage = taiDiv.querySelector('.img-fluid').src;
 
-    var existingTaiIndex = selectedTai.findIndex(function (selectedTai) {
-        return selectedTai.id === taiId;
-    });
-
+    var existingTaiIndex;
+    if (cauhinh == 1) {
+        existingTaiIndex = selectedTai.findIndex(function (selectedTai) {
+            return selectedTai.id === taiId;
+        });
+    } else if (cauhinh == 2) {
+        existingTaiIndex = selectedTai2.findIndex(function (selectedTai) {
+            return selectedTai.id === taiId;
+        });
+    }
     if (existingTaiIndex !== -1) {
-        selectedTai[existingTaiIndex].quantity++;
+        if(cauhinh==1){
+            selectedTai[existingTaiIndex].quantity++;
+        }else if(cauhinh ==2){
+            selectedTai2[existingTaiIndex].quantity++;
+        }
     } else {
-        selectedTai = [];
+        
         var taiComponent = {
             id: taiId,
             name: taiName,
@@ -2828,12 +3680,24 @@ function addTai(taiId) {
             image: taiImage,
             quantity: 1
         };
-        selectedTai.push(taiComponent);
+        
+        if(cauhinh==1){
+            selectedTai = [];
+            selectedTai.push(taiComponent);
+        }else if(cauhinh ==2){
+            selectedTai2 = [];
+            selectedTai2.push(taiComponent);
+        }
+    }
+    if(cauhinh==1){
+        displaySelectedTai();
+        localStorage.setItem('selectedTai', JSON.stringify(selectedTai));
+    }else if(cauhinh ==2){
+        displaySelectedTai2();
+        localStorage.setItem('selectedTai2', JSON.stringify(selectedTai2));
     }
 
-    displaySelectedTai();
-    localStorage.setItem('selectedTai', JSON.stringify(selectedTai));
-    displayTotalSum();
+    displayTotalSum();displayTotalSum2();
     $('#tai').modal('hide'); 
 }
 
@@ -2899,48 +3763,150 @@ function displaySelectedTai() {
         selectedTaiList.appendChild(listItem);
     });
 }
-
-function increaseTaiQuantity(taiId) {
-    var existingTaiIndex = selectedTai.findIndex(function (taiComponent) {
-        return taiComponent.id === taiId;
-    });
-
-    if (existingTaiIndex !== -1) {
-        selectedTai[existingTaiIndex].quantity++;
-        displaySelectedTai();
-        localStorage.setItem('selectedTai', JSON.stringify(selectedTai));
+function displaySelectedTai2() {
+    var selectedTaiList = document.getElementById('selectedTai2');
+    selectedTaiList.innerHTML = '';
+    lengthPrd = selectedTai2.length;
+     if(lengthPrd >=1){
+        buttontai2.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chọn lại';
     }
-    displayTotalSum();
+    selectedTai2.forEach(function (taiComponent) {
+        var listItem = document.createElement('li');
+        var image = document.createElement('img');
+        image.src = taiComponent.image;
+        image.alt = taiComponent.name;
+        image.style.maxWidth = '90px';
+        listItem.appendChild(image);
+
+        var paragraph1 = document.createElement('p');
+        paragraph1.textContent = taiComponent.name;
+        paragraph1.className = 'name-prdt';
+        listItem.appendChild(paragraph1);
+
+        var tai = parseFloat(taiComponent.price.replace(/[^\d]/g, ''));
+        var quanty = tai * taiComponent.quantity;
+        var formattedTai = quanty.toLocaleString({ style: 'currency', currency: 'VND' });
+        formattedTai = formattedTai.replace('$', '') + 'đ';
+
+        var paragraph2 = document.createElement('p');
+        paragraph2.innerHTML = `${formattedTai}</span>`;
+        paragraph2.className = 'price-prdt price-total';
+        listItem.appendChild(paragraph2);
+
+        var decreaseButton = document.createElement('button');
+        decreaseButton.innerHTML = 'Số lượng:  <i class="fa fa-caret-left" aria-hidden="true"></i>';
+        decreaseButton.className = 'btn-total';
+        decreaseButton.onclick = function () {
+            decreaseTaiQuantity(taiComponent.id);
+        };
+        listItem.appendChild(decreaseButton);
+
+        var paragraph3 = document.createElement('p');
+        paragraph3.innerHTML = `<span id="quantity${taiComponent.id}">${taiComponent.quantity}`;
+        paragraph3.className = 'd-in-bl';
+        listItem.appendChild(paragraph3);
+
+        var increaseButton = document.createElement('button');
+        increaseButton.innerHTML = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
+        increaseButton.className = 'btn-total';
+        increaseButton.onclick = function () {
+            increaseTaiQuantity(taiComponent.id);
+        };
+        listItem.appendChild(increaseButton);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteTai(taiComponent.id);
+        };
+        listItem.appendChild(deleteButton);
+
+        selectedTaiList.appendChild(listItem);
+    });
+}
+function increaseTaiQuantity(taiId) {
+    if(cauhinh==1){
+        var existingTaiIndex = selectedTai.findIndex(function (taiComponent) {
+            return taiComponent.id === taiId;
+        });
+    
+        if (existingTaiIndex !== -1) {
+            selectedTai[existingTaiIndex].quantity++;
+            displaySelectedTai();
+            localStorage.setItem('selectedTai', JSON.stringify(selectedTai));
+        }
+        displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingTaiIndex = selectedTai2.findIndex(function (taiComponent) {
+            return taiComponent.id === taiId;
+        });
+    
+        if (existingTaiIndex !== -1) {
+            selectedTai2[existingTaiIndex].quantity++;
+            displaySelectedTai2();
+            localStorage.setItem('selectedTai2', JSON.stringify(selectedTai2));
+        }
+        displayTotalSum2();
+    }
+
 }
 
 function decreaseTaiQuantity(taiId) {
-    var existingTaiIndex = selectedTai.findIndex(function (taiComponent) {
-        return taiComponent.id === taiId;
-    });
-
-    if (existingTaiIndex !== -1 && selectedTai[existingTaiIndex].quantity > 1) {
-        selectedTai[existingTaiIndex].quantity--;
-        displaySelectedTai();
-        localStorage.setItem('selectedTai', JSON.stringify(selectedTai));
+    if(cauhinh==1){
+        var existingTaiIndex = selectedTai.findIndex(function (taiComponent) {
+            return taiComponent.id === taiId;
+        });
+    
+        if (existingTaiIndex !== -1 && selectedTai[existingTaiIndex].quantity > 1) {
+            selectedTai[existingTaiIndex].quantity--;
+            displaySelectedTai();
+            localStorage.setItem('selectedTai', JSON.stringify(selectedTai));
+        }
+        displayTotalSum();
+    }else if(cauhinh ==2){
+        var existingTaiIndex = selectedTai2.findIndex(function (taiComponent) {
+            return taiComponent.id === taiId;
+        });
+    
+        if (existingTaiIndex !== -1 && selectedTai2[existingTaiIndex].quantity > 1) {
+            selectedTai2[existingTaiIndex].quantity--;
+            displaySelectedTai2();
+            localStorage.setItem('selectedTai2', JSON.stringify(selectedTai2));
+        }
+        displayTotalSum2();
     }
-    displayTotalSum();
+
 }
 
 function deleteTai(taiId) {
     var confirmDelete = window.confirm("Bạn có chắc muốn xóa tai nghe khỏi danh sách?");
     if (confirmDelete) {
-        buttontai.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
-        var existingTaiIndex = selectedTai.findIndex(function (selectedTai) {
-            return selectedTai.id === taiId;
-        });
-
-        if (existingTaiIndex !== -1) {
-            selectedTai.splice(existingTaiIndex, 1);
-            displaySelectedTai();
-            localStorage.setItem('selectedTai', JSON.stringify(selectedTai));
+        if(cauhinh==1){
+            buttontai.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingTaiIndex = selectedTai.findIndex(function (selectedTai) {
+                return selectedTai.id === taiId;
+            });
+    
+            if (existingTaiIndex !== -1) {
+                selectedTai.splice(existingTaiIndex, 1);
+                displaySelectedTai();
+                localStorage.setItem('selectedTai', JSON.stringify(selectedTai));
+            }
+        }else if(cauhinh ==2){
+            buttontai2.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Chọn sản phẩm';
+            var existingTaiIndex = selectedTai2.findIndex(function (selectedTai) {
+                return selectedTai.id === taiId;
+            });
+    
+            if (existingTaiIndex !== -1) {
+                selectedTai2.splice(existingTaiIndex, 1);
+                displaySelectedTai2();
+                localStorage.setItem('selectedTai2', JSON.stringify(selectedTai2));
+            }
         }
     }
-    displayTotalSum();
+    displayTotalSum();displayTotalSum2();
 }
 //------------------
 function displayTotalSum() {
@@ -2951,7 +3917,14 @@ function displayTotalSum() {
     $('#total-prdt').text(totalSumText);
     $('#total-prdtl').text(totalSumText);
 }
+function displayTotalSum2() {
+    var totalSum = calculateTotalSum2();
+    
+    var totalSumText = `${totalSum.toLocaleString({ style: 'currency', currency: 'VND' }).replace('$', '')}đ`;
 
+    $('#total-prdt2').text(totalSumText);
+    $('#total-prdtl2').text(totalSumText);
+}
 function calculateTotalSum() {
     var totalCpu = 0;
     var totalMain = 0;
@@ -3021,6 +3994,77 @@ function calculateTotalSum() {
     });
     var total = totalCpu +totalMain+totalRam+totalVga+totalSsd+totalPsu+totalVo+totalTamnhiet+totalMh+totalChuot+totalBanphim+totalHdd+totalTai;
     return total;
+}
+function calculateTotalSum2() {
+    var totalCpu = 0;
+    var totalMain = 0;
+    var totalRam = 0;
+    var totalVga = 0;
+    var totalSsd = 0;
+    var totalHdd = 0;
+    var totalPsu = 0;
+    var totalVo = 0;
+    var totalTamnhiet = 0;
+    var totalMh = 0;
+    var totalChuot = 0;
+    var totalBanphim = 0;
+    var totalTai = 0;
+
+    selectedCpus2.forEach(function (cpuComponent) {
+        var cpu = parseFloat(cpuComponent.price.replace(/[^\d]/g, ''));
+        totalCpu += cpu * cpuComponent.quantity;
+        console.log(totalCpu);
+    });
+    selectedMain2.forEach(function (mainComponent) {
+        var mainn = parseFloat(mainComponent.price.replace(/[^\d]/g, ''));
+        totalMain += mainn * mainComponent.quantity;
+    });
+    selectedRam2.forEach(function (ramComponent) {
+        var ram = parseFloat(ramComponent.price.replace(/[^\d]/g, ''));
+        totalRam += ram * ramComponent.quantity;
+    });
+    selectedVga2.forEach(function (vgaComponent) {
+        var vga = parseFloat(vgaComponent.price.replace(/[^\d]/g, ''));
+        totalVga += vga * vgaComponent.quantity;
+    });
+    selectedSsd2.forEach(function (ssdComponent) {
+        var ssd = parseFloat(ssdComponent.price.replace(/[^\d]/g, ''));
+        totalSsd += ssd * ssdComponent.quantity;
+    });
+    selectedHdd2.forEach(function (hddComponent) {
+        var hdd = parseFloat(hddComponent.price.replace(/[^\d]/g, ''));
+        totalHdd += hdd * hddComponent.quantity;
+    });
+    selectedPsu2.forEach(function (psuComponent) {
+        var ssd = parseFloat(psuComponent.price.replace(/[^\d]/g, ''));
+        totalPsu += ssd * psuComponent.quantity;
+    });
+    selectedVo2.forEach(function (voComponent) {
+        var vo = parseFloat(voComponent.price.replace(/[^\d]/g, ''));
+        totalVo += vo * voComponent.quantity;
+    });
+    selectedTannhiet2.forEach(function (tannhietComponent) {
+        var tn = parseFloat(tannhietComponent.price.replace(/[^\d]/g, ''));
+        totalTamnhiet += tn * tannhietComponent.quantity;
+    });
+    selectedManhinh2.forEach(function (manhinhComponent) {
+        var mh = parseFloat(manhinhComponent.price.replace(/[^\d]/g, ''));
+        totalMh += mh * manhinhComponent.quantity;
+    });
+    selectedChuot2.forEach(function (chuotComponent) {
+        var chuot = parseFloat(chuotComponent.price.replace(/[^\d]/g, ''));
+        totalChuot += chuot * chuotComponent.quantity;
+    });
+    selectedPhim2.forEach(function (phimComponent) {
+        var phim = parseFloat(phimComponent.price.replace(/[^\d]/g, ''));
+        totalBanphim += phim * phimComponent.quantity;
+    });
+    selectedTai2.forEach(function (taiComponent) {
+        var tai = parseFloat(taiComponent.price.replace(/[^\d]/g, ''));
+        totalTai += tai * taiComponent.quantity;
+    });
+    var total2 = totalCpu +totalMain+totalRam+totalVga+totalSsd+totalPsu+totalVo+totalTamnhiet+totalMh+totalChuot+totalBanphim+totalHdd+totalTai;
+    return total2;
 }
 
 
