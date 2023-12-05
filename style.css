@@ -31,6 +31,9 @@
     color: red;
     margin-bottom: 0px;
 }
+.view{
+    font-size: 12px;
+}
 .info-prdt p{
     margin-bottom: 0px;
 }
@@ -40,6 +43,9 @@
 }
 .pd-l{
     padding-left: 0;
+}
+.me-2, .percent{
+    font-size: 16px;
 }
 .d-in-bl{
     display: inline-block;
@@ -128,5 +134,14 @@
     }
     .title-h1{
         font-size: 18px;
+    }
+    .me-2, .percent{
+        font-size: 12px;
+    }
+    .price-prdt{
+        font-size: 16px;
+    }
+    .view{
+        font-size: 10px;
     }
 }
